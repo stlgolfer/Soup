@@ -1,0 +1,8 @@
+Language
+! => usage {firstnumber#secondnumber}
+@ => subtract two numbers
+# => multiply two numbers
+$ => divide two numbers
+% => raise to the power of
+[ => Evaluates two statements
+. => End of statement (Doesn't get parsed)
