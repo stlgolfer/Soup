@@ -1,8 +1,14 @@
 Language
-! => usage {firstnumber#secondnumber}
+
+===Basic Functions===
+USAGE: operation{firstnumber#secondnumber}
+! => add two numbers
 @ => subtract two numbers
 # => multiply two numbers
 $ => divide two numbers
 % => raise to the power of
+
+===MISC===
+USAGE: N/A
 [ => Evaluates two statements
 . => End of statement (Doesn't get parsed)

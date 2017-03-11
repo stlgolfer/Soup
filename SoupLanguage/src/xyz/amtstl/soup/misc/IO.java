@@ -1,4 +1,4 @@
-package xyz.amtstl.soup;
+package xyz.amtstl.soup.misc;
 
 public class IO {
 	public static void println(String f) {
