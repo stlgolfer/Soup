@@ -2,6 +2,7 @@ package xyz.amtstl.soup;
 
 public class Parser {
 	private static int inx;
+	private static VariableHandler varHandler = new VariableHandler();
 	
 	public static String[] parseNumbers(int i, String cache) {
 		String whole = "";
@@ -26,7 +27,6 @@ public class Parser {
 		whole = whole.substring(2, whole.length());
 		
 		String[] numbers = whole.split("#");
-		
 		return numbers;
 	}
 	

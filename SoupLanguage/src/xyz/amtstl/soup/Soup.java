@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.List;
 
 import xyz.amtstl.soup.exceptions.SoupSyntaxException;
 import xyz.amtstl.soup.misc.HTTPHandler;
@@ -13,10 +14,12 @@ public class Soup {
 	private static String[] numbers;
 	private static String single;
 	
+	@SuppressWarnings("static-access")
 	public static void main(String args[]) throws Exception {
 		//FileReader reader = new FileReader(System.getProperty("user.dir") + "/" + args[0].toString());
 		FileReader reader = new FileReader("C:/users/alex/desktop/github/soup/Files/" + args[0].toLowerCase().toString());
 		BufferedReader buff = new BufferedReader(reader);
+		Parser Parser = new Parser();
 		
 		final String cache = buff.readLine();
 		
@@ -66,11 +69,21 @@ public class Soup {
 				numbers = Parser.parseNumbers(i, cache);
 				i = Parser.getIndex();
 				
-				if (numbers[0] == numbers[1])
+				IO.println(numbers[0] + " " + numbers[1]);
+				
+				float n1 = Float.parseFloat(numbers[0]);
+				float n2 = Float.parseFloat(numbers[1]);
+				
+				if (n1 == n2)
 					IO.println("True");
 				else
 					IO.println("False");
 				break;
+			case 'v': // gets a variable
+				String v = Parser.parseSingle(i, cache);
+				int ret = VariableHandler.getVar(Integer.parseInt(v));
+				i = Parser.getIndex();
+				IO.printInt(ret);
 			case '.' :
 				break;
 			default :
