@@ -7,13 +7,14 @@ import java.io.IOException;
 import java.util.List;
 
 import xyz.amtstl.soup.exceptions.SoupSyntaxException;
+import xyz.amtstl.soup.logic.LanguageController;
 import xyz.amtstl.soup.logic.LogicController;
-import xyz.amtstl.soup.misc.HTTPHandler;
 import xyz.amtstl.soup.misc.IO;
 
 public class Soup {
 	private static String[] numbers;
 	private static String single;
+	private static int lineNumber = 1;
 	
 	@SuppressWarnings("static-access")
 	public static void main(String args[]) throws Exception {
@@ -21,6 +22,8 @@ public class Soup {
 		//FileReader reader = new FileReader("C:/users/alex/desktop/github/soup/Files/" + args[0].toLowerCase().toString());
 		FileReader reader = new FileReader("C:/Users/amigala/Desktop/Github/Soup/Files/" + args[0].toLowerCase().toString());
 		BufferedReader buff = new BufferedReader(reader);
+		
+		// controllers
 		LogicController logic = new LogicController();
 		
 		while (true) {		
@@ -56,12 +59,6 @@ public class Soup {
 				logic.soupLog(i, cache);
 				i = logic.getIndex();
 				break;
-			case 'G' :
-				single = Parser.parseSingle(i, cache);
-				i = Parser.getIndex();
-				
-				IO.println(HTTPHandler.sendGet(single));
-				break;
 			case '[' : // basic if statement
 				logic.soupIf(i, cache);
 				i = logic.getIndex();
@@ -73,13 +70,13 @@ public class Soup {
 			case '.' :
 				break;
 			default :
-				throw new SoupSyntaxException(cache.charAt(i), i);
+				throw new SoupSyntaxException(cache.charAt(i), i, lineNumber);
 			}
 		}
 		} catch (NullPointerException ex) { System.exit(0);}
 		
+		lineNumber++;
 		logic.setIndex(0);
-		
 		}
 	}
 }

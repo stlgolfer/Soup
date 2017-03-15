@@ -2,6 +2,7 @@ package xyz.amtstl.soup.logic;
 
 import xyz.amtstl.soup.Parser;
 import xyz.amtstl.soup.VariableHandler;
+import xyz.amtstl.soup.exceptions.SoupVariableException;
 import xyz.amtstl.soup.misc.IO;
 
 public class LogicController {
@@ -70,7 +71,7 @@ public class LogicController {
 			IO.println("False");
 	}
 	
-	public static void soupRetrieveVar(int i, String cache) {
+	public static void soupRetrieveVar(int i, String cache) throws NumberFormatException, SoupVariableException {
 		String v = p.parseSingle(i, cache);
 		index = p.getIndex();
 		int ret = VariableHandler.getVar(Integer.parseInt(v));

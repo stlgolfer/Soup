@@ -3,6 +3,8 @@ package xyz.amtstl.soup;
 import java.util.ArrayList;
 import java.util.List;
 
+import xyz.amtstl.soup.exceptions.SoupVariableException;
+
 public class VariableHandler {
 	private static List<Integer> intVars = new ArrayList<Integer>();
 	
@@ -10,7 +12,11 @@ public class VariableHandler {
 		intVars.add(point, v);
 	}
 	
-	public static int getVar(int i) {
-		return intVars.get(i);
+	public static int getVar(int i) throws SoupVariableException {
+		try {
+			return intVars.get(i);
+		} catch (IndexOutOfBoundsException ex) {
+			throw new SoupVariableException(i);
+		}
 	}
 }
