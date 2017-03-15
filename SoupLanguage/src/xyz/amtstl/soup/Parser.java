@@ -56,4 +56,8 @@ public class Parser {
 	public static int getIndex() {
 		return inx;
 	}
+	
+	public static void setIndex(int newIndex) {
+		inx = newIndex;
+	}
 }

@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.util.List;
 
 import xyz.amtstl.soup.exceptions.SoupSyntaxException;
+import xyz.amtstl.soup.logic.LogicController;
 import xyz.amtstl.soup.misc.HTTPHandler;
 import xyz.amtstl.soup.misc.IO;
 
@@ -17,46 +18,43 @@ public class Soup {
 	@SuppressWarnings("static-access")
 	public static void main(String args[]) throws Exception {
 		//FileReader reader = new FileReader(System.getProperty("user.dir") + "/" + args[0].toString());
-		FileReader reader = new FileReader("C:/users/alex/desktop/github/soup/Files/" + args[0].toLowerCase().toString());
+		//FileReader reader = new FileReader("C:/users/alex/desktop/github/soup/Files/" + args[0].toLowerCase().toString());
+		FileReader reader = new FileReader("C:/Users/amigala/Desktop/Github/Soup/Files/" + args[0].toLowerCase().toString());
 		BufferedReader buff = new BufferedReader(reader);
-		Parser Parser = new Parser();
+		LogicController logic = new LogicController();
 		
+		while (true) {		
 		final String cache = buff.readLine();
 		
+		try {
 		for (int i = 0; i < cache.length(); i++) {
 			char c = cache.charAt(i);
 			
 			switch (c) {
-			case '!' : // add two numbers				
-				numbers = Parser.parseNumbers(i, cache);
-				i = Parser.getIndex();
-				
-				IO.printFloat(Float.parseFloat(numbers[0]) + Float.parseFloat(numbers[1]));
+			case '!' : // add two numbers
+				logic.soupAdd(i, cache);
+				i = logic.getIndex();
 				break;
 			case '@' : // subtract two numbers
-				numbers = Parser.parseNumbers(i, cache);
-				i = Parser.getIndex();
-				
-				IO.printFloat(Float.parseFloat(numbers[0]) - Float.parseFloat(numbers[1]));
+				logic.soupSubtract(i, cache);
+				i = logic.getIndex();
 				break;
 				
-			case '#' : // multiply two numbers				
-				numbers = Parser.parseNumbers(i, cache);
-				i = Parser.getIndex();
-				
-				IO.printFloat(Float.parseFloat(numbers[0]) * Float.parseFloat(numbers[1]));
+			case '#' : // multiply two numbers
+				logic.soupMultiply(i, cache);
+				i = logic.getIndex();
 				break;
 			case '$' : // divide two numbers
-				numbers = Parser.parseNumbers(i, cache);
-				i = Parser.getIndex();
-				
-				IO.printFloat(Float.parseFloat(numbers[0]) / Float.parseFloat(numbers[1]));
+				logic.soupDivide(i, cache);
+				i = logic.getIndex();
 				break;
 			case '%' : // pow one number
-				numbers = Parser.parseNumbers(i, cache);
-				i = Parser.getIndex();
-				
-				IO.printFloat((float)Math.pow(Float.parseFloat(numbers[0]), Float.parseFloat(numbers[1])));
+				logic.soupPow(i, cache);
+				i = logic.getIndex();
+				break;
+			case '^' : // basic logarithm
+				logic.soupLog(i, cache);
+				i = logic.getIndex();
 				break;
 			case 'G' :
 				single = Parser.parseSingle(i, cache);
@@ -65,30 +63,23 @@ public class Soup {
 				IO.println(HTTPHandler.sendGet(single));
 				break;
 			case '[' : // basic if statement
-				
-				numbers = Parser.parseNumbers(i, cache);
-				i = Parser.getIndex();
-				
-				IO.println(numbers[0] + " " + numbers[1]);
-				
-				float n1 = Float.parseFloat(numbers[0]);
-				float n2 = Float.parseFloat(numbers[1]);
-				
-				if (n1 == n2)
-					IO.println("True");
-				else
-					IO.println("False");
+				logic.soupIf(i, cache);
+				i = logic.getIndex();
 				break;
 			case 'v': // gets a variable
-				String v = Parser.parseSingle(i, cache);
-				int ret = VariableHandler.getVar(Integer.parseInt(v));
-				i = Parser.getIndex();
-				IO.printInt(ret);
+				logic.soupRetrieveVar(i, cache);
+				i = logic.getIndex();
+				break;
 			case '.' :
 				break;
 			default :
 				throw new SoupSyntaxException(cache.charAt(i), i);
 			}
+		}
+		} catch (NullPointerException ex) { System.exit(0);}
+		
+		logic.setIndex(0);
+		
 		}
 	}
 }

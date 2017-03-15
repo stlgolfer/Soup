@@ -7,6 +7,7 @@ USAGE: operation{firstnumber#secondnumber}
 # => multiply two numbers
 $ => divide two numbers
 % => raise to the power of
+^ => log {exponent#base}
 
 ===MISC===
 USAGE: N/A
