@@ -21,3 +21,15 @@ Idendentifier | Operation
 ----- | -----
 `!` | Adding
 `@` | Subtracting
+`#` | Multiply
+`$` | Divide
+`%` | Raise to the Power Of
+`^` | Logarithm (Exponent#Base)
+
+# Miscellaneous Characters
+These are characters that have some special functions
+
+Indentifier | Operation
+------- | --------
+`[` | Evaluates two single-digits
+`.` | Doesn't get parsed (it's like a semicolon)
