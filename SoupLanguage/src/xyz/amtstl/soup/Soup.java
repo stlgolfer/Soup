@@ -18,9 +18,9 @@ public class Soup {
 	
 	@SuppressWarnings("static-access")
 	public static void main(String args[]) throws Exception {
-		//FileReader reader = new FileReader(System.getProperty("user.dir") + "/" + args[0].toString());
+		FileReader reader = new FileReader(System.getProperty("user.dir") + "/" + args[0].toString());
 		//FileReader reader = new FileReader("C:/users/alex/desktop/github/soup/Files/" + args[0].toLowerCase().toString());
-		FileReader reader = new FileReader("C:/Users/amigala/Desktop/Github/Soup/Files/" + args[0].toLowerCase().toString());
+		//FileReader reader = new FileReader("C:/Users/amigala/Desktop/Github/Soup/Files/" + args[0].toLowerCase().toString());
 		BufferedReader buff = new BufferedReader(reader);
 		
 		// controllers
