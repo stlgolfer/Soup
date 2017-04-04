@@ -27,56 +27,58 @@ public class Soup {
 		LogicController logic = new LogicController();
 		
 		while (true) {		
-		final String cache = buff.readLine();
+			final String cache = buff.readLine();
 		
-		try {
-		for (int i = 0; i < cache.length(); i++) {
-			char c = cache.charAt(i);
+			try {
+				for (int i = 0; i < cache.length(); i++) {
+					char c = cache.charAt(i);
 			
-			switch (c) {
-			case '!' : // add two numbers
-				logic.soupAdd(i, cache);
-				i = logic.getIndex();
-				break;
-			case '@' : // subtract two numbers
-				logic.soupSubtract(i, cache);
-				i = logic.getIndex();
-				break;
+					switch (c) {
+						case '!' : // add two numbers
+							logic.soupAdd(i, cache);
+							i = logic.getIndex();
+							break;
+						case '@' : // subtract two numbers
+							logic.soupSubtract(i, cache);
+							i = logic.getIndex();
+							break;
 				
-			case '#' : // multiply two numbers
-				logic.soupMultiply(i, cache);
-				i = logic.getIndex();
-				break;
-			case '$' : // divide two numbers
-				logic.soupDivide(i, cache);
-				i = logic.getIndex();
-				break;
-			case '%' : // pow one number
-				logic.soupPow(i, cache);
-				i = logic.getIndex();
-				break;
-			case '^' : // basic logarithm
-				logic.soupLog(i, cache);
-				i = logic.getIndex();
-				break;
-			case '[' : // basic if statement
-				logic.soupIf(i, cache);
-				i = logic.getIndex();
-				break;
-			case 'v': // gets a variable
-				logic.soupRetrieveVar(i, cache);
-				i = logic.getIndex();
-				break;
-			case '.' :
-				break;
-			default :
-				throw new SoupSyntaxException(cache.charAt(i), i, lineNumber);
-			}
+						case '#' : // multiply two numbers
+							logic.soupMultiply(i, cache);
+							i = logic.getIndex();
+							break;
+						case '$' : // divide two numbers
+							logic.soupDivide(i, cache);
+							i = logic.getIndex();
+							break;
+						case '%' : // pow one number
+							logic.soupPow(i, cache);
+							i = logic.getIndex();
+							break;
+						case '^' : // basic logarithm
+							logic.soupLog(i, cache);
+							i = logic.getIndex();
+							break;
+						case '[' : // basic if statement
+							logic.soupIf(i, cache);
+							i = logic.getIndex();
+							break;
+						case 'v': // gets a variable
+							logic.soupRetrieveVar(i, cache);
+							i = logic.getIndex();
+							break;
+						case '.' :
+							break;
+						default :
+							throw new SoupSyntaxException(cache.charAt(i), i, lineNumber);
+					}
+				}
+		} catch (NullPointerException ex) {
+			System.exit(0);
 		}
-		} catch (NullPointerException ex) { System.exit(0);}
 		
-		lineNumber++;
-		logic.setIndex(0);
+			lineNumber++;
+			logic.setIndex(0);
 		}
 	}
 }

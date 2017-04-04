@@ -26,7 +26,7 @@ public class Parser {
 		
 		whole = whole.substring(2, whole.length());
 		
-		String[] numbers = whole.split("#");
+		String[] numbers = whole.split(",");
 		return numbers;
 	}
 	
