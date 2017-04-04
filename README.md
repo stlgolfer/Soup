@@ -4,7 +4,7 @@
 # Basic Syntax
 For most double paramater operations, this is the syntax
 
-`i{f#e}`
+`i{f,e}`
 
 where 
 
@@ -17,7 +17,7 @@ e | second paramater
 # Basic Double Paramater Functions
 Currently, Soup can do only basic math functions such as adding and subtracting, but more will be added in the future
 
-Idendentifier | Operation
+Token | Operation
 ----- | -----
 `!` | Adding
 `@` | Subtracting
@@ -29,7 +29,7 @@ Idendentifier | Operation
 # Miscellaneous Characters
 These are characters that have some special functions
 
-Indentifier | Operation
+Token | Operation
 ------- | --------
 `[` | Evaluates two single-digits
 `.` | Doesn't get parsed (it's like a semicolon)
