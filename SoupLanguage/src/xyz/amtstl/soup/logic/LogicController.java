@@ -56,11 +56,20 @@ public class LogicController {
 		IO.println(String.valueOf((Math.log(ex)/(Math.log(base)))));
 	}
 	
+	public static void soupPrint(int i, String cache) {
+		single = p.parseSingle(i, cache);
+		index = p.getIndex();
+		
+		IO.println(single);
+	}
+	
 	public static void soupIf(int i, String cache) {
 		numbers = p.parseNumbers(i, cache);
 		index = p.getIndex();
 		
 		IO.println(numbers[0] + " " + numbers[1]);
+		
+		
 		
 		float n1 = Float.parseFloat(numbers[0]);
 		float n2 = Float.parseFloat(numbers[1]);

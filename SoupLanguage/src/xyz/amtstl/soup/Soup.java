@@ -18,9 +18,9 @@ public class Soup {
 	
 	@SuppressWarnings("static-access")
 	public static void main(String args[]) throws Exception {
-		FileReader reader = new FileReader(System.getProperty("user.dir") + "/" + args[0].toString());
+		//FileReader reader = new FileReader(System.getProperty("user.dir") + "/" + args[0].toString());
 		//FileReader reader = new FileReader("C:/users/alex/desktop/github/soup/Files/" + args[0].toLowerCase().toString());
-		//FileReader reader = new FileReader("C:/Users/amigala/Desktop/Github/Soup/Files/" + args[0].toLowerCase().toString());
+		FileReader reader = new FileReader("C:/Users/amigala/Desktop/Github/Soup/Files/program.soup");
 		BufferedReader buff = new BufferedReader(reader);
 		
 		// controllers
@@ -28,7 +28,7 @@ public class Soup {
 		
 		while (true) {		
 			final String cache = buff.readLine();
-		
+			
 			try {
 				for (int i = 0; i < cache.length(); i++) {
 					char c = cache.charAt(i);
@@ -61,6 +61,10 @@ public class Soup {
 							break;
 						case '[' : // basic if statement
 							logic.soupIf(i, cache);
+							i = logic.getIndex();
+							break;
+						case '&' :
+							logic.soupPrint(i, cache);
 							i = logic.getIndex();
 							break;
 						case 'v': // gets a variable
