@@ -2,12 +2,9 @@ package xyz.amtstl.soup;
 
 public class Parser {
 	private static int inx;
-	private static VariableHandler varHandler = new VariableHandler();
 	
 	public static String[] parseNumbers(int i, String cache) {
 		String whole = "";
-		String n1 = "";
-		String n2 = "";
 		
 		int index = 0;
 		
