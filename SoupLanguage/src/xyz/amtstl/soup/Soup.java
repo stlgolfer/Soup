@@ -23,8 +23,8 @@ public class Soup {
 	@SuppressWarnings("static-access")
 	public static void main(String args[]) throws Exception {
 		//FileReader reader = new FileReader(System.getProperty("user.dir") + "/" + args[0].toString());
-		FileReader reader = new FileReader("C:/users/alex/desktop/github/soup/Files/program.soup");
-		//FileReader reader = new FileReader("C:/Users/amigala/Desktop/Github/Soup/Files/program.soup");
+		//FileReader reader = new FileReader("C:/users/alex/desktop/github/soup/Files/program.soup");
+		FileReader reader = new FileReader("C:/Users/amigala/Desktop/Github/Soup/Files/program.soup");
 		BufferedReader buff = new BufferedReader(reader);
 		
 		while (true) {
@@ -32,17 +32,17 @@ public class Soup {
 			
 			try {
 				for (int i = 0; i < cache.length(); i++) {
-					IO.println("Current Pos: " + String.valueOf(i) + " Cache Length: " + String.valueOf(cache.length()));
-					char c = cache.charAt(i);
-					checkToken(i, cache, c);
-					i = indexCache;
+					checkToken(i, cache, cache.charAt(i));
+					//i = indexCache; - i am worried about this because I don't know why commenting
+					// this works; it's a little alarming
+					
+					//IO.println("Index: " + String.valueOf(indexCache) + " Line: "+ String.valueOf(lineNumber) + " Cache Length: " + String.valueOf(cache.length()));
 				}
 			} catch (NullPointerException ex) {
 				System.exit(0);
 			}
-			
-			indexCache = 0;
 			lineNumber++;
+			indexCache = 0;
 			logic.setIndex(0);
 		}
 	}
@@ -71,13 +71,16 @@ public class Soup {
 			case '[' : // basic if statement
 				logic.soupIf(i, cache);
 				break;
-			case '&' :
+			case '&' : // print line
 				logic.soupPrint(i, cache);
+				break;
+			case ':' : // extension of if
+				logic.soupIfDo(i, cache);
 				break;
 			case 'v': // gets a variable
 				logic.soupRetrieveVar(i, cache);
 				break;
-			case '.' :
+			case '.' : // like a semicolon
 				break;
 			default :
 				throw new SoupSyntaxException(cache.charAt(i), i, lineNumber);
@@ -85,13 +88,10 @@ public class Soup {
 	}
 	
 	public static void checkToken(int i, String cache, char c) throws NumberFormatException, SoupVariableException, SoupSyntaxException {
-		for (int e = 0; i < lang.languageTokens.size(); i++) {
+		for (int e = 0; e < lang.languageTokens.size(); e++) {
 			if (cache.charAt(i) == lang.languageTokens.get(e)) {
 				parseFunc(c, i, cache);
-				indexCache = logic.getIndex();
-			}
-			else {
-				indexCache += 1;
+				//indexCache = logic.getIndex();
 			}
 		}
 	}

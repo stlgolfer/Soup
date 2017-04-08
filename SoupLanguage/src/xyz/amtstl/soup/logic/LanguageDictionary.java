@@ -19,6 +19,7 @@ public class LanguageDictionary {
 		addToken('[');
 		addToken('.');
 		addToken('v');
+		addToken(':');
 	}
 	
 	public static void addToken(char token) {
