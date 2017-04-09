@@ -21,6 +21,8 @@ public class LanguageDictionary {
 		addToken('v');
 		addToken(':');
 		addToken(';');
+		addToken('i');
+		addToken('*');
 	}
 	
 	public static void addToken(char token) {

@@ -23,8 +23,8 @@ public class Soup {
 	@SuppressWarnings("static-access")
 	public static void main(String args[]) throws Exception {
 		//FileReader reader = new FileReader(System.getProperty("user.dir") + "/" + args[0].toString());
-		//FileReader reader = new FileReader("C:/users/alex/desktop/github/soup/Files/program.soup");
-		FileReader reader = new FileReader("C:/Users/amigala/Desktop/Github/Soup/Files/program.soup");
+		FileReader reader = new FileReader("C:/users/alex/desktop/github/soup/Files/program.soup");
+		//FileReader reader = new FileReader("C:/Users/amigala/Desktop/Github/Soup/Files/program.soup");
 		BufferedReader buff = new BufferedReader(reader);
 		
 		while (true) {
@@ -81,6 +81,12 @@ public class Soup {
 				logic.soupStoreVar(i, cache);
 			case 'v': // gets a variable
 				logic.soupRetrieveVar(i, cache);
+				break;
+			case 'i': // gets var from user and stores it
+				logic.soupStoreUserIn(i, cache);
+				break;
+			case '*':
+				logic.soupQuad(i, cache);
 				break;
 			case '.' : // like a semicolon
 				break;

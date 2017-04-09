@@ -1,9 +1,13 @@
 package xyz.amtstl.soup;
 
+import xyz.amtstl.soup.exceptions.SoupVariableException;
+import xyz.amtstl.soup.logic.InterVar;
+import xyz.amtstl.soup.misc.IO;
+
 public class Parser {
 	private static int inx;
 	
-	public static String[] parseNumbers(int i, String cache) {
+	public static String[] parseNumbers(int i, String cache) throws NumberFormatException, SoupVariableException {
 		String whole = "";
 		
 		int index = 0;
@@ -24,6 +28,7 @@ public class Parser {
 		whole = whole.substring(2, whole.length());
 		
 		String[] numbers = whole.split(",");
+		//return InterVar.parseInternalVar(numbers);
 		return numbers;
 	}
 	
@@ -44,9 +49,8 @@ public class Parser {
 		
 		
 		inx = index;
-		
 		whole = whole.substring(2, whole.length());
-		
+		IO.println("DON'T USE SINGLE PARSER");
 		return whole;
 	}
 	
