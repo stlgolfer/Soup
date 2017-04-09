@@ -11,6 +11,7 @@ public class LogicController {
 	private static String[] numbers;
 	private static String single;
 	public static boolean ifState = false;
+	private static float lastResult = 0;
 	
 	private static int index;
 	
@@ -23,30 +24,35 @@ public class LogicController {
 		numbers = p.parseNumbers(i, cache);
 		index = p.getIndex();
 		IO.printFloat(Float.parseFloat(numbers[0]) + Float.parseFloat(numbers[1]));
+		lastResult = Float.parseFloat(numbers[0]) + Float.parseFloat(numbers[1]);
 	}
 	
 	public static void soupSubtract(int i, String cache) {
 		numbers = p.parseNumbers(i, cache);
 		index = p.getIndex();
 		IO.printFloat(Float.parseFloat(numbers[0]) - Float.parseFloat(numbers[1]));
+		lastResult = Float.parseFloat(numbers[0]) - Float.parseFloat(numbers[1]);
 	}
 	
 	public static void soupMultiply(int i, String cache) {
 		numbers = p.parseNumbers(i, cache);
 		index = p.getIndex();
 		IO.printFloat(Float.parseFloat(numbers[0]) * Float.parseFloat(numbers[1]));
+		lastResult = Float.parseFloat(numbers[0]) * Float.parseFloat(numbers[1]);
 	}
 	
 	public static void soupDivide(int i, String cache) {
 		numbers = p.parseNumbers(i, cache);
 		index = p.getIndex();
 		IO.printFloat(Float.parseFloat(numbers[0]) / Float.parseFloat(numbers[1]));
+		lastResult = Float.parseFloat(numbers[0]) / Float.parseFloat(numbers[1]);
 	}
 	
 	public static void soupPow(int i, String cache) {
 		numbers = p.parseNumbers(i, cache);
 		index = p.getIndex();
 		IO.printFloat((float)Math.pow(Float.parseFloat(numbers[0]), Float.parseFloat(numbers[1])));
+		lastResult = (float)Math.pow(Float.parseFloat(numbers[0]), Float.parseFloat(numbers[1]));
 	}
 	
 	public static void soupLog(int i, String cache) {
@@ -57,6 +63,7 @@ public class LogicController {
 		double base = Double.parseDouble(numbers[1]);
 		
 		IO.println(String.valueOf((Math.log(ex)/(Math.log(base)))));
+		lastResult = (float)(Math.log(ex)/(Math.log(base)));
 	}
 	
 	public static void soupPrint(int i, String cache) {
@@ -126,10 +133,16 @@ public class LogicController {
 	}
 	
 	public static void soupRetrieveVar(int i, String cache) throws NumberFormatException, SoupVariableException {
-		String v = p.parseSingle(i, cache);
+		String f = p.parseSingle(i, cache);
 		index = p.getIndex();
-		int ret = VariableHandler.getVar(Integer.parseInt(v));
+		int ret = v.getVar(Integer.parseInt(f));
 		IO.printInt(ret);
+	}
+	
+	public static void soupStoreVar(int i, String cache) {
+		String f = p.parseSingle(i, cache);
+		index = p.getIndex();
+		v.insertVar((int)lastResult, Integer.parseInt(f));
 	}
 	
 	public static int getIndex() {
@@ -138,5 +151,9 @@ public class LogicController {
 	
 	public static void setIndex(int newIndex) {
 		p.setIndex(newIndex);
+	}
+	
+	public static float getLastResult() {
+		return lastResult;
 	}
 }

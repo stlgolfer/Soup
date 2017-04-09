@@ -74,9 +74,11 @@ public class Soup {
 			case '&' : // print line
 				logic.soupPrint(i, cache);
 				break;
-			case ':' : // extension of if
+			case ';' : // extension of if
 				logic.soupIfDo(i, cache);
 				break;
+			case ':' : // stores last result
+				logic.soupStoreVar(i, cache);
 			case 'v': // gets a variable
 				logic.soupRetrieveVar(i, cache);
 				break;
