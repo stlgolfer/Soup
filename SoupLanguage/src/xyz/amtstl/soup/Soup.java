@@ -23,8 +23,8 @@ public class Soup {
 	@SuppressWarnings("static-access")
 	public static void main(String args[]) throws Exception {
 		//FileReader reader = new FileReader(System.getProperty("user.dir") + "/" + args[0].toString());
-		FileReader reader = new FileReader("C:/users/alex/desktop/github/soup/Files/program.soup");
-		//FileReader reader = new FileReader("C:/Users/amigala/Desktop/Github/Soup/Files/program.soup");
+		//FileReader reader = new FileReader("C:/users/alex/desktop/github/soup/Files/program.soup");
+		FileReader reader = new FileReader("C:/Users/amigala/Desktop/Github/Soup/Files/program.soup");
 		BufferedReader buff = new BufferedReader(reader);
 		
 		while (true) {
@@ -32,17 +32,75 @@ public class Soup {
 			
 			try {
 				for (int i = 0; i < cache.length(); i++) {
-					checkToken(i, cache, cache.charAt(i));
+					//checkToken(i, cache, cache.charAt(i));
 					//i = indexCache; - i am worried about this because I don't know why commenting
 					// this works; it's a little alarming
 					
 					//IO.println("Index: " + String.valueOf(indexCache) + " Line: "+ String.valueOf(lineNumber) + " Cache Length: " + String.valueOf(cache.length()));
+					char c = cache.charAt(i);
+					switch (c) {
+					case '!' : // add two numbers
+						logic.soupAdd(i, cache);
+						i = logic.getIndex();
+						break;
+					case '@' : // subtract two numbers
+						logic.soupSubtract(i, cache);
+						i = logic.getIndex();
+						break;
+					case '#' : // multiply two numbers
+						logic.soupMultiply(i, cache);	
+						i = logic.getIndex();
+						break;
+					case '$' : // divide two numbers
+						logic.soupDivide(i, cache);		
+						i = logic.getIndex();
+						break;
+					case '%' : // pow one number
+						logic.soupPow(i, cache);	
+						i = logic.getIndex();
+						break;
+					case '^' : // basic logarithm
+						logic.soupLog(i, cache);	
+						i = logic.getIndex();
+						break;
+					case '[' : // basic if statement
+						logic.soupIf(i, cache);
+						i = logic.getIndex();
+						break;
+					case '&' : // print line
+						logic.soupPrint(i, cache);
+						i = logic.getIndex();
+						break;
+					case ';' : // extension of if
+						logic.soupIfDo(i, cache);
+						i = logic.getIndex();
+						break;
+					case ':' : // stores last result
+						logic.soupStoreVar(i, cache);
+						i = logic.getIndex();
+						break;
+					case 'v': // gets a variable
+						logic.soupRetrieveVar(i, cache);
+						i = logic.getIndex();
+						break;
+					case 'i': // gets var from user and stores it
+						logic.soupStoreUserIn(i, cache);
+						i = logic.getIndex();
+						break;
+					case '*':
+						logic.soupQuad(i, cache);
+						i = logic.getIndex();
+						break;
+					case '.' : // like a semicolon
+						break;
+					default :
+						throw new SoupSyntaxException(cache.charAt(i), i, lineNumber);
+					}
 				}
 			} catch (NullPointerException ex) {
 				System.exit(0);
 			}
 			lineNumber++;
-			indexCache = 0;
 			logic.setIndex(0);
 		}
 	}

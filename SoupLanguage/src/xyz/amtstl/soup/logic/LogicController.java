@@ -174,6 +174,7 @@ public class LogicController {
 		numbers = p.parseNumbers(i, cache);
 		index = p.getIndex();
 		v.insertVar((int)lastResult, Integer.parseInt(numbers[0]));
+		//IO.println(String.valueOf(numbers[0]));
 	}
 	
 	public static void soupStoreUserIn(int i, String cache) throws NumberFormatException, SoupVariableException {
