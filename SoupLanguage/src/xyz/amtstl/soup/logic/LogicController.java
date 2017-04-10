@@ -14,7 +14,7 @@ import xyz.amtstl.soup.misc.IO;
  */
 public class LogicController {
 	private static Parser p;
-	private static VariableHandler v;
+	public static VariableHandler v;
 	
 	private static String[] numbers;
 	private static String single;
