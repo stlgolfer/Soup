@@ -1,22 +1,29 @@
 package xyz.amtstl.soup.logic;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import xyz.amtstl.soup.exceptions.SoupVariableException;
 import xyz.amtstl.soup.misc.IO;
 
 public class InterVar {
-	public static String[] parseInternalVar(String[] numbers) throws NumberFormatException, SoupVariableException {
+	public static String[] parseInternalVar(String[] numbers, int[] intArr) throws NumberFormatException, SoupVariableException {
 		IO.println("Hello from intervar");
-		for (int f: LogicController.v.intVars) {
-			IO.printInt(f);
-		}
-		for (int e = 0; e < numbers.length; e++) {
-			if (numbers[e].charAt(0) == 'v') {
-				numbers[e] = String.valueOf(LogicController.v.getVar(Integer.valueOf(numbers[e].charAt(2))));
+		String[] n = numbers;
+		List<Integer> ints = new ArrayList<Integer>();
+		
+		for (String f : n) {
+			if (f.charAt(0) == 'v') {
+				int retIndex = Integer.parseInt(f.substring(2, f.length()));
+				f = String.valueOf(LogicController.v.getVar(retIndex));
+				IO.println("Number Retrieved from InterVar: " + f);
+				ints.add(Integer.valueOf(f));
 			}
 		}
-		for (String f : numbers) {
-			IO.println(f);
+		
+		for (int i = 0; i < ints.size(); i++) {
+			n[i] = String.valueOf(ints.get(i));
 		}
-		return numbers;
+		return n;
 	}
 }

@@ -22,9 +22,9 @@ public class Soup {
 	
 	@SuppressWarnings("static-access")
 	public static void main(String args[]) throws Exception {
-		//FileReader reader = new FileReader(System.getProperty("user.dir") + "/" + args[0].toString());
+		FileReader reader = new FileReader(System.getProperty("user.dir") + "/" + args[0].toString());
 		//FileReader reader = new FileReader("C:/users/alex/desktop/github/soup/Files/program.soup");
-		FileReader reader = new FileReader("C:/Users/amigala/Desktop/Github/Soup/Files/program.soup");
+		//FileReader reader = new FileReader("C:/Users/amigala/Desktop/Github/Soup/Files/program.soup");
 		BufferedReader buff = new BufferedReader(reader);
 		
 		while (true) {
