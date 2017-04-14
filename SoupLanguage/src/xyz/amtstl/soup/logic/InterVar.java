@@ -7,23 +7,24 @@ import xyz.amtstl.soup.exceptions.SoupVariableException;
 import xyz.amtstl.soup.misc.IO;
 
 public class InterVar {
-	public static String[] parseInternalVar(String[] numbers, int[] intArr) throws NumberFormatException, SoupVariableException {
-		IO.println("Hello from intervar");
-		String[] n = numbers;
-		List<Integer> ints = new ArrayList<Integer>();
+	private static List<String> temp = new ArrayList<String>();
+	
+	public static void parseInternalVar(String[] numbers) throws NumberFormatException, SoupVariableException {
+		temp = new ArrayList<String>();
 		
-		for (String f : n) {
-			if (f.charAt(0) == 'v') {
-				int retIndex = Integer.parseInt(f.substring(2, f.length()));
-				f = String.valueOf(LogicController.v.getVar(retIndex));
-				IO.println("Number Retrieved from InterVar: " + f);
-				ints.add(Integer.valueOf(f));
+		/* Parse the v function */
+		for (String e : numbers) {
+			if (e.charAt(0) == 'v') {
+				int indexReq = Integer.parseInt(e.substring(1));
+				temp.add(String.valueOf(VariableHandler.getVar(indexReq)));
+			}
+			else {
+				temp.add(e);
 			}
 		}
-		
-		for (int i = 0; i < ints.size(); i++) {
-			n[i] = String.valueOf(ints.get(i));
-		}
-		return n;
+	}
+	
+	public static List<String> getParsedNumbers() {
+		return temp;
 	}
 }

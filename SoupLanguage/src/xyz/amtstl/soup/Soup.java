@@ -14,7 +14,6 @@ import xyz.amtstl.soup.misc.IO;
 
 public class Soup {
 	private static int lineNumber = 1;
-	private static int indexCache = 0;
 	
 	// controllers
 	static LogicController logic = new LogicController();
@@ -27,16 +26,15 @@ public class Soup {
 		//FileReader reader = new FileReader("C:/Users/amigala/Desktop/Github/Soup/Files/program.soup");
 		BufferedReader buff = new BufferedReader(reader);
 		
+		/*
+		 * ALWAYS USE BREAKS WHEN ADDING NEW TOKENS AND FUNCTIONS
+		 * 
+		 */
 		while (true) {
 			final String cache = buff.readLine();
 			
 			try {
 				for (int i = 0; i < cache.length(); i++) {
-					//checkToken(i, cache, cache.charAt(i));
-					//i = indexCache; - i am worried about this because I don't know why commenting
-					// this works; it's a little alarming
-					
-					//IO.println("Index: " + String.valueOf(indexCache) + " Line: "+ String.valueOf(lineNumber) + " Cache Length: " + String.valueOf(cache.length()));
 					char c = cache.charAt(i);
 					switch (c) {
 					case '!' : // add two numbers
@@ -48,7 +46,7 @@ public class Soup {
 						i = logic.getIndex();
 						break;
 					case '#' : // multiply two numbers
-						logic.soupMultiply(i, cache);	
+						logic.soupMultiply(i, cache);
 						i = logic.getIndex();
 						break;
 					case '$' : // divide two numbers
@@ -91,6 +89,10 @@ public class Soup {
 						logic.soupQuad(i, cache);
 						i = logic.getIndex();
 						break;
+					case '+':
+						logic.soupStoreSingle(i, cache);
+						i = logic.getIndex();
+						break;
 					case '.' : // like a semicolon
 						break;
 					default :
@@ -106,6 +108,15 @@ public class Soup {
 	}
 	
 	@SuppressWarnings("static-access")
+	/**
+	 * Did the corresponding function per character
+	 * @param c
+	 * @param i
+	 * @param cache
+	 * @throws NumberFormatException
+	 * @throws SoupVariableException
+	 * @throws SoupSyntaxException
+	 */
 	public static void parseFunc(char c, int i, String cache) throws NumberFormatException, SoupVariableException, SoupSyntaxException {
 		switch (c) {
 			case '!' : // add two numbers
@@ -143,8 +154,11 @@ public class Soup {
 			case 'i': // gets var from user and stores it
 				logic.soupStoreUserIn(i, cache);
 				break;
-			case '*':
+			case '*': // calculate the quad formula
 				logic.soupQuad(i, cache);
+				break;
+			case '+': // store a variable
+				logic.soupStoreSingle(i, cache);
 				break;
 			case '.' : // like a semicolon
 				break;
@@ -153,6 +167,16 @@ public class Soup {
 		}
 	}
 	
+	/**
+	 * Checks tokens
+	 * @deprecated
+	 * @param i
+	 * @param cache
+	 * @param c
+	 * @throws NumberFormatException
+	 * @throws SoupVariableException
+	 * @throws SoupSyntaxException
+	 */
 	public static void checkToken(int i, String cache, char c) throws NumberFormatException, SoupVariableException, SoupSyntaxException {
 		for (int e = 0; e < lang.languageTokens.size(); e++) {
 			if (cache.charAt(i) == lang.languageTokens.get(e)) {
