@@ -209,6 +209,10 @@ public class LogicController {
 		v.insertVar(Integer.parseInt(ns.get(0)), Integer.valueOf(ns.get(1)));
 	}
 	
+	public void soupComment(int i, String cache) throws NumberFormatException, SoupVariableException {
+		index = cache.length();
+	}
+	
 	public static int getIndex() {
 		return index;
 	}

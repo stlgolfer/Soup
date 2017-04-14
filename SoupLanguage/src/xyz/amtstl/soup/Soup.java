@@ -21,9 +21,9 @@ public class Soup {
 	
 	@SuppressWarnings("static-access")
 	public static void main(String args[]) throws Exception {
-		FileReader reader = new FileReader(System.getProperty("user.dir") + "/" + args[0].toString());
+		//FileReader reader = new FileReader(System.getProperty("user.dir") + "/" + args[0].toString());
 		//FileReader reader = new FileReader("C:/users/alex/desktop/github/soup/Files/program.soup");
-		//FileReader reader = new FileReader("C:/Users/amigala/Desktop/Github/Soup/Files/program.soup");
+		FileReader reader = new FileReader("C:/Users/amigala/Desktop/Github/Soup/Files/program.soup");
 		BufferedReader buff = new BufferedReader(reader);
 		
 		/*
@@ -93,7 +93,13 @@ public class Soup {
 						logic.soupStoreSingle(i, cache);
 						i = logic.getIndex();
 						break;
+					case '/': // comments
+						logic.soupComment(i, cache);
+						i = logic.getIndex();
+						break;
 					case '.' : // like a semicolon
+						break;
+					case ' ':
 						break;
 					default :
 						throw new SoupSyntaxException(cache.charAt(i), i, lineNumber);
