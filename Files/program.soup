@@ -1,2 +1,4 @@
-+{3,0} //this stores a var
-&{The Number is: ,0}.v{0}
++{3,4}:{0}
+-{v0,1}:{1}
+*{v0,v1}:{2}
+p{Calculated number is: ,0}.v{2}

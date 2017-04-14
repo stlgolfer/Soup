@@ -21,9 +21,9 @@ public class Soup {
 	
 	@SuppressWarnings("static-access")
 	public static void main(String args[]) throws Exception {
-		//FileReader reader = new FileReader(System.getProperty("user.dir") + "/" + args[0].toString());
+		FileReader reader = new FileReader(System.getProperty("user.dir") + "/" + args[0].toString());
 		//FileReader reader = new FileReader("C:/users/alex/desktop/github/soup/Files/program.soup");
-		FileReader reader = new FileReader("C:/Users/amigala/Desktop/Github/Soup/Files/program.soup");
+		//FileReader reader = new FileReader("C:/Users/amigala/Desktop/Github/Soup/Files/program.soup");
 		BufferedReader buff = new BufferedReader(reader);
 		
 		/*
@@ -37,27 +37,27 @@ public class Soup {
 				for (int i = 0; i < cache.length(); i++) {
 					char c = cache.charAt(i);
 					switch (c) {
-					case '!' : // add two numbers
+					case '+' : // add two numbers
 						logic.soupAdd(i, cache);
 						i = logic.getIndex();
 						break;
-					case '@' : // subtract two numbers
+					case '-' : // subtract two numbers
 						logic.soupSubtract(i, cache);
 						i = logic.getIndex();
 						break;
-					case '#' : // multiply two numbers
+					case '*' : // multiply two numbers
 						logic.soupMultiply(i, cache);
 						i = logic.getIndex();
 						break;
-					case '$' : // divide two numbers
+					case '%' : // divide two numbers
 						logic.soupDivide(i, cache);		
 						i = logic.getIndex();
 						break;
-					case '%' : // pow one number
+					case '^' : // pow one number
 						logic.soupPow(i, cache);	
 						i = logic.getIndex();
 						break;
-					case '^' : // basic logarithm
+					case '#' : // basic logarithm
 						logic.soupLog(i, cache);	
 						i = logic.getIndex();
 						break;
@@ -65,7 +65,7 @@ public class Soup {
 						logic.soupIf(i, cache);
 						i = logic.getIndex();
 						break;
-					case '&' : // print line
+					case 'p' : // print line
 						logic.soupPrint(i, cache);
 						i = logic.getIndex();
 						break;
@@ -85,11 +85,11 @@ public class Soup {
 						logic.soupStoreUserIn(i, cache);
 						i = logic.getIndex();
 						break;
-					case '*':
+					case '@': // quadratic formula
 						logic.soupQuad(i, cache);
 						i = logic.getIndex();
 						break;
-					case '+':
+					case '~': // stores a single variable
 						logic.soupStoreSingle(i, cache);
 						i = logic.getIndex();
 						break;
