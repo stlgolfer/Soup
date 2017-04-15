@@ -15,7 +15,13 @@ import xyz.amtstl.soup.misc.IO;
  *
  */
 public class LogicController {
+	/**
+	 * Parser Variable
+	 */
 	private static Parser p;
+	/**
+	 * VariableHandler global var
+	 */
 	public static VariableHandler v;
 	
 	//private static String[] numbers;
@@ -25,6 +31,9 @@ public class LogicController {
 	
 	private static int index;
 	
+	/**
+	 * Constructor takes no args
+	 */
 	public LogicController() {
 		p = new Parser();
 		v = new VariableHandler();
@@ -36,7 +45,14 @@ public class LogicController {
 	 * 
 	 */
 	
-	public static void soupAdd(int i, String cache) throws NumberFormatException, SoupVariableException {
+	/**
+	 * Adds numbers
+	 * @param i index to be passed to parser
+	 * @param cache line of code from main loop
+	 * @throws NumberFormatException
+	 * @throws SoupVariableException
+	 */
+	public void soupAdd(int i, String cache) throws NumberFormatException, SoupVariableException {
 		/*numbers = p.parseNumbers(i, cache);
 		index = p.getIndex();
 		IO.printFloat(Float.parseFloat(numbers[0]) + Float.parseFloat(numbers[1]));
@@ -49,7 +65,14 @@ public class LogicController {
 		lastResult = Float.parseFloat(ns.get(0)) + Float.parseFloat(ns.get(1));
 	}
 	
-	public static void soupSubtract(int i, String cache) throws NumberFormatException, SoupVariableException {
+	/**
+	 * Subtracts numbers
+	 * @param i index to be passed to parser
+	 * @param cache line of code from main loop
+	 * @throws NumberFormatException
+	 * @throws SoupVariableException
+	 */
+	public void soupSubtract(int i, String cache) throws NumberFormatException, SoupVariableException {
 		ns = p.parse(i, cache);
 		index = p.getIndex();
 		
@@ -57,7 +80,14 @@ public class LogicController {
 		lastResult = Float.parseFloat(ns.get(0)) - Float.parseFloat(ns.get(1));
 	}
 	
-	public static void soupMultiply(int i, String cache) throws NumberFormatException, SoupVariableException {
+	/**
+	 * Multiplies numbers
+	 * @param i index to be passed to parser
+	 * @param cache line of code from main loop
+	 * @throws NumberFormatException
+	 * @throws SoupVariableException
+	 */
+	public void soupMultiply(int i, String cache) throws NumberFormatException, SoupVariableException {
 		ns = p.parse(i, cache);
 		index = p.getIndex();
 		
@@ -65,7 +95,14 @@ public class LogicController {
 		lastResult = Float.parseFloat(ns.get(0)) * Float.parseFloat(ns.get(1));
 	}
 	
-	public static void soupDivide(int i, String cache) throws NumberFormatException, SoupVariableException {
+	/**
+	 * Divides numbers
+	 * @param i index to be passed to parser
+	 * @param cache line of code from main loop
+	 * @throws NumberFormatException
+	 * @throws SoupVariableException
+	 */
+	public void soupDivide(int i, String cache) throws NumberFormatException, SoupVariableException {
 		ns = p.parse(i, cache);
 		index = p.getIndex();
 		
@@ -73,7 +110,14 @@ public class LogicController {
 		lastResult = Float.parseFloat(ns.get(0)) / Float.parseFloat(ns.get(1));
 	}
 	
-	public static void soupPow(int i, String cache) throws NumberFormatException, SoupVariableException {
+	/**
+	 * Raises numbers per exponent
+	 * @param i index to be passed to parser
+	 * @param cache line of code from main loop
+	 * @throws NumberFormatException
+	 * @throws SoupVariableException
+	 */
+	public void soupPow(int i, String cache) throws NumberFormatException, SoupVariableException {
 		ns = p.parse(i, cache);
 		index = p.getIndex();
 		
@@ -81,7 +125,14 @@ public class LogicController {
 		lastResult = (float)Math.pow(Float.parseFloat(ns.get(0)), Float.parseFloat(ns.get(1)));
 	}
 	
-	public static void soupLog(int i, String cache) throws NumberFormatException, SoupVariableException {
+	/**
+	 * Logarithms
+	 * @param i index to be passed to parser
+	 * @param cache line of code from main loop
+	 * @throws NumberFormatException
+	 * @throws SoupVariableException
+	 */
+	public void soupLog(int i, String cache) throws NumberFormatException, SoupVariableException {
 		ns = p.parse(i, cache);
 		index = p.getIndex();
 		
@@ -92,7 +143,14 @@ public class LogicController {
 		lastResult = (float)(Math.log(ex)/(Math.log(base)));
 	}
 	
-	public static void soupQuad(int i, String cache) throws NumberFormatException, SoupVariableException {
+	/**
+	 * Applies the Quadratic formula
+	 * @param i index to be passed to parser
+	 * @param cache line of code from main loop
+	 * @throws NumberFormatException
+	 * @throws SoupVariableException
+	 */
+	public void soupQuad(int i, String cache) throws NumberFormatException, SoupVariableException {
 		ns = p.parse(i, cache);
 		index = p.getIndex();
 		
@@ -110,11 +168,89 @@ public class LogicController {
 		IO.println("X=" + String.valueOf(pos) + "\n" + "X=" + String.valueOf(neg));
 	}
 	
+	/**
+	 * Applies trigonometric functions
+	 * @param i index to be passed to parser
+	 * @param cache line of code from main loop
+	 * @throws NumberFormatException
+	 * @throws SoupVariableException
+	 */
+	public void soupTrig(int i, String cache) throws NumberFormatException, SoupVariableException {
+		ns = p.parse(i, cache);
+		index = p.getIndex();
+		
+		String condition = ns.get(0);
+		
+		/*
+		 * Add the arc and inverse side of things
+		 */
+		switch (condition) {
+		case "s" : // sine
+			IO.printFloat(Float.valueOf((float)(Math.sin(Double.parseDouble(ns.get(1))))));
+			lastResult = (float)(Math.sin(Double.parseDouble(ns.get(1))));
+			break;
+		case "c" : // cosine
+			IO.printFloat(Float.valueOf((float)(Math.cos(Double.parseDouble(ns.get(1))))));
+			lastResult = (float)(Math.cos(Double.parseDouble(ns.get(1))));
+			break;
+		case "t" : // tangent
+			IO.printFloat(Float.valueOf((float)(Math.tan(Double.parseDouble(ns.get(1))))));
+			lastResult = (float)(Math.tan(Double.parseDouble(ns.get(1))));
+			break;
+		}
+	}
+	
+	/**
+	 * Absolute values a number
+	 * @param i index to be passed to parser
+	 * @param cache line of code from main loop
+	 * @throws NumberFormatException
+	 * @throws SoupVariableException
+	 */
+	public void soupAbs(int i, String cache) throws NumberFormatException, SoupVariableException {
+		ns = p.parse(i, cache);
+		index = p.getIndex();
+		
+		lastResult = Math.abs(Float.parseFloat(ns.get(0)));
+		IO.println(String.valueOf(lastResult));
+	}
+	
+	/**
+	 * Rounds a number using Java math.round()
+	 * @param i index to be passed to parser
+	 * @param cache line of code from main loop
+	 * @throws NumberFormatException
+	 * @throws SoupVariableException
+	 */
+	public void soupRound(int i, String cache) throws NumberFormatException, SoupVariableException {
+		ns = p.parse(i, cache);
+		index = p.getIndex();
+		
+		lastResult = (float)Math.round(Float.valueOf(ns.get(0)));
+		IO.printFloat(lastResult);
+	}
+	
+	/*public void soupSummation(int i, String cache) throws NumberFormatException, SoupVariableException {
+		ns = p.parse(i, cache);
+		index = p.getIndex();
+		
+		for (int e = Integer.parseInt(ns.get(0)); e <= Integer.parseInt(ns.get(1)); e++) {
+		}
+	}*/
+	
 	/*
 	 * FUNCTIONALITY CONTROLS
 	 * 
 	 */
-	public static void soupPrint(int i, String cache) throws NumberFormatException, SoupVariableException {
+	
+	/**
+	 * Prints some text per args
+	 * @param i index to be passed to parser
+	 * @param cache line of code from main loop
+	 * @throws NumberFormatException
+	 * @throws SoupVariableException
+	 */
+	public void soupPrint(int i, String cache) throws NumberFormatException, SoupVariableException {
 		ns = p.parse(i, cache);
 		index = p.getIndex();
 		
@@ -122,15 +258,19 @@ public class LogicController {
 		if (mode == 0) {
 			IO.print(ns.get(0));
 		}
-		if (mode == 1) {
-			IO.println("\b" + ns.get(0));
-		}
 		else {
 			IO.println(ns.get(0));
 		}
 	}
 	
-	public static void soupIf(int i, String cache) throws NumberFormatException, SoupVariableException {
+	/**
+	 * Checks two numbers and prints whether they're true or false
+	 * @param i index to be passed to parser
+	 * @param cache line of code from main loop
+	 * @throws NumberFormatException
+	 * @throws SoupVariableException
+	 */
+	public void soupIf(int i, String cache) throws NumberFormatException, SoupVariableException {
 		ns = p.parse(i, cache);
 		index = p.getIndex();
 		
@@ -149,7 +289,14 @@ public class LogicController {
 		}
 	}
 	
-	public static void soupIfDo(int i, String cache) throws NumberFormatException, SoupVariableException {
+	/**
+	 * Extension of if function
+	 * @param i index to be passed to parser
+	 * @param cache line of code from main loop
+	 * @throws NumberFormatException
+	 * @throws SoupVariableException
+	 */
+	public void soupIfDo(int i, String cache) throws NumberFormatException, SoupVariableException {
 		ns = p.parse(i, cache);
 		index = p.getIndex();
 		
@@ -177,7 +324,14 @@ public class LogicController {
 		isStore = false;
 	}
 	
-	public static void soupRetrieveVar(int i, String cache) throws NumberFormatException, SoupVariableException {
+	/**
+	 * Retrieves a variable from VariableHandler
+	 * @param i index to be passed to parser
+	 * @param cache line of code from main loop
+	 * @throws NumberFormatException
+	 * @throws SoupVariableException
+	 */
+	public void soupRetrieveVar(int i, String cache) throws NumberFormatException, SoupVariableException {
 		ns = p.parse(i, cache);
 		index = p.getIndex();
 		
@@ -185,14 +339,28 @@ public class LogicController {
 		IO.printFloat(ret);
 	}
 	
-	public static void soupStoreVar(int i, String cache) throws NumberFormatException, SoupVariableException {
+	/**
+	 * Stores a variable
+	 * @param i index to be passed to parser
+	 * @param cache line of code from main loop
+	 * @throws NumberFormatException
+	 * @throws SoupVariableException
+	 */
+	public void soupStoreVar(int i, String cache) throws NumberFormatException, SoupVariableException {
 		ns = p.parse(i, cache);
 		index = p.getIndex();
 		
 		v.insertVar(lastResult, Integer.parseInt(ns.get(0)));
 	}
 	
-	public static void soupStoreUserIn(int i, String cache) throws NumberFormatException, SoupVariableException {
+	/**
+	 * Stores the user input
+	 * @param i index to be passed to parser
+	 * @param cache line of code from main loop
+	 * @throws NumberFormatException
+	 * @throws SoupVariableException
+	 */
+	public void soupStoreUserIn(int i, String cache) throws NumberFormatException, SoupVariableException {
 		ns = p.parse(i, cache);
 		index = p.getIndex();
 		
@@ -203,6 +371,13 @@ public class LogicController {
 		v.insertVar(lastResult, Integer.parseInt(ns.get(1)));
 	}
 	
+	/**
+	 * Stores a single variable
+	 * @param i index to be passed to parser
+	 * @param cache line of code from main loop
+	 * @throws NumberFormatException
+	 * @throws SoupVariableException
+	 */
 	public void soupStoreSingle(int i, String cache) throws NumberFormatException, SoupVariableException {
 		ns = p.parse(i, cache);
 		index = p.getIndex();
@@ -210,18 +385,37 @@ public class LogicController {
 		v.insertVar(Float.parseFloat(ns.get(0)), Integer.valueOf(ns.get(1)));
 	}
 	
+	/**
+	 * Parses comments
+	 * @param i index to be passed to parser
+	 * @param cache line of code from main loop
+	 * @throws NumberFormatException
+	 * @throws SoupVariableException
+	 */
 	public void soupComment(int i, String cache) throws NumberFormatException, SoupVariableException {
 		index = cache.length();
 	}
 	
+	/**
+	 * Gets the current index
+	 * @return the current index
+	 */
 	public static int getIndex() {
 		return index;
 	}
 	
+	/**
+	 * Sets the current index
+	 * @param newIndex the new index
+	 */
 	public static void setIndex(int newIndex) {
 		p.setIndex(newIndex);
 	}
 	
+	/**
+	 * Gets the last result
+	 * @return the last result variable
+	 */
 	public static float getLastResult() {
 		return lastResult;
 	}

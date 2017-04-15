@@ -14,16 +14,23 @@ import xyz.amtstl.soup.misc.IO;
 
 public class Soup {
 	private static int lineNumber = 1;
+	private static boolean canAdvance = true;
 	
 	// controllers
 	static LogicController logic = new LogicController();
 	static LanguageDictionary lang = new LanguageDictionary();
 	
 	@SuppressWarnings("static-access")
+	/**
+	 * Main thread marshal
+	 * @param args args from user
+	 * @throws Exception for forced exit
+	 */
 	public static void main(String args[]) throws Exception {
-		FileReader reader = new FileReader(System.getProperty("user.dir") + "/" + args[0].toString());
+		//FileReader reader = new FileReader(System.getProperty("user.dir") + "/" + args[0].toString());
 		//FileReader reader = new FileReader("C:/users/alex/desktop/github/soup/Files/program.soup");
 		//FileReader reader = new FileReader("C:/Users/amigala/Desktop/Github/Soup/Files/program.soup");
+		FileReader reader = new FileReader("C:/Users/Alex/Desktop/Github/Soup/Files/program.soup");
 		BufferedReader buff = new BufferedReader(reader);
 		
 		/*
@@ -89,6 +96,18 @@ public class Soup {
 						logic.soupQuad(i, cache);
 						i = logic.getIndex();
 						break;
+					case '$' : // trig
+						logic.soupTrig(i, cache);
+						i = logic.getIndex();
+						break;
+					case '|' : // absolute value
+						logic.soupAbs(i, cache);
+						i = logic.getIndex();
+						break;
+					case '?' : // round number to int
+						logic.soupRound(i, cache);
+						i = logic.getIndex();
+						break;
 					case '~': // stores a single variable
 						logic.soupStoreSingle(i, cache);
 						i = logic.getIndex();
@@ -99,7 +118,7 @@ public class Soup {
 						break;
 					case '.' : // like a semicolon
 						break;
-					case ' ':
+					case ' ': // space nullifier
 						break;
 					default :
 						throw new SoupSyntaxException(cache.charAt(i), i+1, lineNumber);
