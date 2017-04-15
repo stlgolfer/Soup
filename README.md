@@ -19,20 +19,25 @@ Currently, Soup can do only basic math functions such as adding and subtracting,
 
 Token | Operation
 ----- | -----
-`!` | Adding
-`@` | Subtracting
-`#` | Multiply
-`$` | Divide
-`%` | Raise to the Power Of
-`^` | Logarithm (Exponent#Base)
-`&` | Print (e = 1 print, 0 for println)
+`+` | Adding
+`-` | Subtracting
+`*` | Multiply
+`%` | Divide
+`^` | Raise to the Power Of
+`#` | Logarithm (Exponent#Base)
+`p` | Print (e = 1 print, e = 0 for print line)
+`|` | Absolute Value of single number
+`?` | Rounds the number
+`~` | Stores a variable at a specific index `~{3,0} // number 3 at index 0`
+`/` | Comments (jumps index to the end of the line)
+` ` | Only a single space between functions is permitted (it's proper to use a period, though)
 
 # Triple Paramater Functions
 These are functions that take three paramaters
 
 Token | Operation | Notes
 ----- | ----- | -----
-`*` | Quadratic {aterm,bterm,cterm} | Returns NaN if calculation is nonreal
+`@` | Quadratic {aterm,bterm,cterm} | Returns NaN if calculation is nonreal
 
 # Variable Storage
 Please note that you must store variables sequentially. For example, you cannot store a variable in index 0 and then store another one in index 4; you must then store in index 1. Also, you cannot print after retrieving a variable (it's a bug)
@@ -40,7 +45,40 @@ Please note that you must store variables sequentially. For example, you cannot 
 Token | Operation | Example
 ---- | ---- | -----
 `:` | Stores the last operation's output in the specific index (excluding print) | `!{5,5}:{0}`
-`v` | Retrieves a variable | `v{0}`
+
+# Trig Functions
+_Please note that trig functions return in RADIANS so be aware and plan accordingly_
+
+## Regular Functions
+`${f,e}`
+
+where
+
+`f` Case | `e` Function
+------ | -------
+`s` | Sine of number
+`c` | Cosine of number
+`t` | Tangent of number
+
+# Variable Retrieval
+## Explicit Recalling
+Variables can be called from within functions or just printed to the screen
+
+If you want to just recall a variable:
+
+`v{0}`
+
+where 0 is the index that you want to pull from.
+
+## Interpolated Recalling
+Variables can be recalled from within functions for interpolation and manipulation
+
+For example:
+
+```
+~{3,0} // stores '3' in index 0
++{v0,3} // v will substitute the recalled variable at index 0 and add it with 3 to get the answer
+```
 
 # Getting User Input
 In Soup, you can accept the user's input and store it like this:
@@ -58,5 +96,6 @@ Token | Operation
 `.` | Doesn't get parsed (it's like a semicolon)
 
 # Import things to know
-- With the new structure of parsefunc, you can't have a Soup token inside a print function
+- Sometimes you can't always do everything in one function, so break it up and store the results
 - Soup doesn't like it when you have spaces between paramaters
+- remember that variables can be interpolated with other functions, so use that to your advantage
