@@ -27,10 +27,18 @@ public class Soup {
 	 * @throws Exception for forced exit
 	 */
 	public static void main(String args[]) throws Exception {
-		//FileReader reader = new FileReader(System.getProperty("user.dir") + "/" + args[0].toString());
-		//FileReader reader = new FileReader("C:/users/alex/desktop/github/soup/Files/program.soup");
-		//FileReader reader = new FileReader("C:/Users/amigala/Desktop/Github/Soup/Files/program.soup");
-		FileReader reader = new FileReader("C:/Users/Alex/Desktop/Github/Soup/Files/program.soup");
+		FileReader reader = null;
+		
+		try {
+			//FileReader reader = new FileReader(System.getProperty("user.dir") + "/" + args[0].toString());
+			//FileReader reader = new FileReader("C:/users/alex/desktop/github/soup/Files/program.soup");
+			//FileReader reader = new FileReader("C:/Users/amigala/Desktop/Github/Soup/Files/program.soup");
+			reader = new FileReader("C:/Users/Alex/Desktop/Github/Soup/Files/program.sop");
+		}
+		catch (FileNotFoundException ex) {
+			IO.println("File not found! Are you sure it is in this folder?");
+			System.exit(0);
+		}
 		BufferedReader buff = new BufferedReader(reader);
 		
 		/*
