@@ -26,7 +26,7 @@ Token | Operation
 `^` | Raise to the Power Of
 `#` | Logarithm (Exponent#Base)
 `p` | Print (e = 1 print, e = 0 for print line)
-`|` | Absolute Value of single number
+`{pipe}` | Absolute Value of single number
 `?` | Rounds the number
 `~` | Stores a variable at a specific index `~{3,0} // number 3 at index 0`
 `/` | Comments (jumps index to the end of the line)
@@ -95,7 +95,7 @@ Token | Operation
 `[` | Evaluates two single-digits
 `.` | Doesn't get parsed (it's like a semicolon)
 
-# Import things to know
+# Important things to know
 - Sometimes you can't always do everything in one function, so break it up and store the results
 - Soup doesn't like it when you have spaces between paramaters
 - remember that variables can be interpolated with other functions, so use that to your advantage
