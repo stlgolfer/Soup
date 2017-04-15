@@ -30,10 +30,10 @@ public class Soup {
 		FileReader reader = null;
 		
 		try {
-			//FileReader reader = new FileReader(System.getProperty("user.dir") + "/" + args[0].toString());
+			reader = new FileReader(System.getProperty("user.dir") + "/" + args[0].toString());
 			//FileReader reader = new FileReader("C:/users/alex/desktop/github/soup/Files/program.soup");
 			//FileReader reader = new FileReader("C:/Users/amigala/Desktop/Github/Soup/Files/program.soup");
-			reader = new FileReader("C:/Users/Alex/Desktop/Github/Soup/Files/program.sop");
+			//reader = new FileReader("C:/Users/Alex/Desktop/Github/Soup/Files/program.sop");
 		}
 		catch (FileNotFoundException ex) {
 			IO.println("File not found! Are you sure it is in this folder?");
@@ -114,6 +114,10 @@ public class Soup {
 						break;
 					case '?' : // round number to int
 						logic.soupRound(i, cache);
+						i = logic.getIndex();
+						break;
+					case '&' : // square root
+						logic.soupSquareRoot(i, cache);
 						i = logic.getIndex();
 						break;
 					case '~': // stores a single variable

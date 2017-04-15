@@ -230,6 +230,21 @@ public class LogicController {
 		IO.printFloat(lastResult);
 	}
 	
+	/**
+	 * Square Roots a number
+	 * @param i index to be passed to parser
+	 * @param cache line of code from main loop
+	 * @throws NumberFormatException
+	 * @throws SoupVariableException
+	 */
+	public void soupSquareRoot(int i, String cache) throws NumberFormatException, SoupVariableException {
+		ns = p.parse(i, cache);
+		index = p.getIndex();
+		
+		lastResult = (float)Math.sqrt(Double.parseDouble(ns.get(0)));
+		IO.printFloat(lastResult);
+	}
+	
 	/*public void soupSummation(int i, String cache) throws NumberFormatException, SoupVariableException {
 		ns = p.parse(i, cache);
 		index = p.getIndex();
