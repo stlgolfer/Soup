@@ -102,7 +102,7 @@ public class Soup {
 					case ' ':
 						break;
 					default :
-						throw new SoupSyntaxException(cache.charAt(i), i, lineNumber);
+						throw new SoupSyntaxException(cache.charAt(i), i+1, lineNumber);
 					}
 				}
 			} catch (NullPointerException ex) {

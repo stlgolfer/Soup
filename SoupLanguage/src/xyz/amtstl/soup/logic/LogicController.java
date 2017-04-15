@@ -22,7 +22,6 @@ public class LogicController {
 	private static List<String> ns;
 	public static boolean ifState = false;
 	private static float lastResult = 0;
-	public static int varCache = 0;
 	
 	private static int index;
 	
@@ -123,6 +122,9 @@ public class LogicController {
 		if (mode == 0) {
 			IO.print(ns.get(0));
 		}
+		if (mode == 1) {
+			IO.println("\b" + ns.get(0));
+		}
 		else {
 			IO.println(ns.get(0));
 		}
@@ -163,12 +165,12 @@ public class LogicController {
 		if (ifState == true) {
 			IO.println(String.valueOf(ns.get(0)));
 			if (isStore)
-			v.insertVar(Integer.parseInt(ns.get(0)), Integer.parseInt(ns.get(2)));
+			v.insertVar(Float.parseFloat(ns.get(0)), Integer.parseInt(ns.get(2)));
 		}
 		else {
 			IO.println(String.valueOf(ns.get(1)));
 			if (isStore)
-			v.insertVar(Integer.parseInt(ns.get(1)), Integer.parseInt(ns.get(2)));
+			v.insertVar(Float.parseFloat(ns.get(1)), Integer.parseInt(ns.get(2)));
 		}
 		
 		ifState = false;
@@ -179,16 +181,15 @@ public class LogicController {
 		ns = p.parse(i, cache);
 		index = p.getIndex();
 		
-		int ret = v.getVar(Integer.parseInt(ns.get(0)));
-		IO.printInt(ret);
-		varCache = ret;
+		float ret = v.getVar(Integer.parseInt(ns.get(0)));
+		IO.printFloat(ret);
 	}
 	
 	public static void soupStoreVar(int i, String cache) throws NumberFormatException, SoupVariableException {
 		ns = p.parse(i, cache);
 		index = p.getIndex();
 		
-		v.insertVar((int)lastResult, Integer.parseInt(ns.get(0)));
+		v.insertVar(lastResult, Integer.parseInt(ns.get(0)));
 	}
 	
 	public static void soupStoreUserIn(int i, String cache) throws NumberFormatException, SoupVariableException {
@@ -197,16 +198,16 @@ public class LogicController {
 		
 		IO.println(ns.get(0));
 		Scanner s = new Scanner(System.in);
-		lastResult = (int)s.nextInt();
+		lastResult = s.nextFloat();
 		
-		v.insertVar((int)lastResult, Integer.parseInt(ns.get(1)));
+		v.insertVar(lastResult, Integer.parseInt(ns.get(1)));
 	}
 	
 	public void soupStoreSingle(int i, String cache) throws NumberFormatException, SoupVariableException {
 		ns = p.parse(i, cache);
 		index = p.getIndex();
 		
-		v.insertVar(Integer.parseInt(ns.get(0)), Integer.valueOf(ns.get(1)));
+		v.insertVar(Float.parseFloat(ns.get(0)), Integer.valueOf(ns.get(1)));
 	}
 	
 	public void soupComment(int i, String cache) throws NumberFormatException, SoupVariableException {

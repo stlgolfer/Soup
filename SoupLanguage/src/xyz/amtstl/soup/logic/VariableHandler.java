@@ -6,14 +6,13 @@ import java.util.List;
 import xyz.amtstl.soup.exceptions.SoupVariableException;
 
 public class VariableHandler {
-	protected static List<Integer> intVars = new ArrayList<Integer>();
-	private static List<String> stringVars = new ArrayList<String>();
+	protected static List<Float> intVars = new ArrayList<Float>();
 	
-	public static void insertVar(int v, int point) {
+	public void insertVar(float v, int point) {
 		intVars.add(point, v);
 	}
 	
-	public static int getVar(int i) throws SoupVariableException {
+	public static float getVar(int i) throws SoupVariableException {
 		try {
 			return intVars.get(i);
 		} catch (IndexOutOfBoundsException ex) {
