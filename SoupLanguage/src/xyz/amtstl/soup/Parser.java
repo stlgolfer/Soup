@@ -19,7 +19,7 @@ public class Parser {
 	 * @return
 	 * @throws NumberFormatException
 	 * @throws SoupVariableException
-	 * @deprecated use the new Parser (it's integrated withe InterVar
+	 * @deprecated use the new Parser (it's integrated with InterVar)
 	 */
 	public static String[] parseNumbers(int i, String cache) throws NumberFormatException, SoupVariableException {
 		String whole = "";

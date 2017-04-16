@@ -26,16 +26,16 @@ public class Soup {
 	 * @param args args from user
 	 * @throws Exception for forced exit
 	 */
-	public static void main(String args[]) throws Exception {
+	public static void main(String args[]) throws Exception {		
 		FileReader reader = null;
 		
 		try {
-			//reader = new FileReader(System.getProperty("user.dir") + "/" + args[0].toString());
+			reader = new FileReader(System.getProperty("user.dir") + "/" + args[0].toString());
 			//FileReader reader = new FileReader("C:/users/alex/desktop/github/soup/Files/program.soup");
 			//FileReader reader = new FileReader("C:/Users/amigala/Desktop/Github/Soup/Files/program.soup");
-			reader = new FileReader("C:/Users/Alex/Desktop/Github/Soup/Files/program.soup");
+			//reader = new FileReader("C:/Users/Alex/Desktop/Github/Soup/Files/fulltest.soup");
 		}
-		catch (FileNotFoundException ex) {
+		catch (Exception ex) {
 			IO.println("File not found! Are you sure it is in this folder?");
 			System.exit(0);
 		}
@@ -124,6 +124,10 @@ public class Soup {
 						logic.soupSquareRoot(i, cache);
 						i = logic.getIndex();
 						break;
+					case 'R' : // random number generator
+						logic.soupRandomNum(i, cache);
+						i = logic.getIndex();
+						break;
 					case '~': // stores a single variable
 						logic.soupStoreSingle(i, cache);
 						i = logic.getIndex();
@@ -148,7 +152,6 @@ public class Soup {
 		}
 	}
 	
-	@SuppressWarnings("static-access")
 	/**
 	 * Did the corresponding function per character
 	 * @param c

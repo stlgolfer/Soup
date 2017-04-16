@@ -2,7 +2,9 @@ package xyz.amtstl.soup.logic;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.Scanner;
+import java.util.concurrent.ThreadLocalRandom;
 
 import xyz.amtstl.extendedmath.functions.Area2D;
 import xyz.amtstl.extendedmath.functions.Area3D;
@@ -364,6 +366,24 @@ public class LogicController {
 		index = p.getIndex();
 		
 		lastResult = (float)Math.sqrt(Double.parseDouble(ns.get(0)));
+		IO.printFloat(lastResult);
+	}
+	
+	/**
+	 * Will spawn a random number in lastResult between the bounds
+	 * @param i index to be passed to parser
+	 * @param cache line of code from main loop
+	 * @throws NumberFormatException
+	 * @throws SoupVariableException
+	 * @throws SoupSyntaxException
+	 */
+	public void soupRandomNum(int i, String cache) throws NumberFormatException, SoupVariableException, SoupSyntaxException {
+		ns = p.parse(i, cache);
+		Validator.validateNumbers(ns);
+		index = p.getIndex();
+		
+		Random rnd = new Random();
+		lastResult = ThreadLocalRandom.current().nextInt(Integer.valueOf((int) Float.parseFloat(ns.get(0))), Integer.valueOf((int) Float.parseFloat(ns.get(1))));
 		IO.printFloat(lastResult);
 	}
 	
