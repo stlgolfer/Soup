@@ -9,20 +9,25 @@ public class LanguageDictionary {
 	public LanguageDictionary() {
 		languageTokens = new ArrayList<Character>();
 		
-		addToken('!');
-		addToken('@');
-		addToken('#');
-		addToken('$');
+		addToken('+');
+		addToken('-');
+		addToken('*');
 		addToken('%');
 		addToken('^');
-		addToken('&');
+		addToken('#');
+		addToken('A');
 		addToken('[');
-		addToken('.');
-		addToken('v');
-		addToken(':');
+		addToken('p');
 		addToken(';');
+		addToken(':');
+		addToken('v');
 		addToken('i');
-		addToken('*');
+		addToken('@');
+		addToken('$');
+		addToken('|');
+		addToken('?');
+		addToken('&');
+		addToken('~');
 	}
 	
 	public static void addToken(char token) {

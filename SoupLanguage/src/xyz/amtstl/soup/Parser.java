@@ -2,8 +2,10 @@ package xyz.amtstl.soup;
 
 import java.util.List;
 
+import xyz.amtstl.soup.exceptions.SoupSyntaxException;
 import xyz.amtstl.soup.exceptions.SoupVariableException;
 import xyz.amtstl.soup.logic.InterVar;
+import xyz.amtstl.soup.logic.LanguageDictionary;
 //import xyz.amtstl.soup.logic.InterVar;
 import xyz.amtstl.soup.misc.IO;
 
@@ -42,7 +44,7 @@ public class Parser {
 		return numbers;
 	}
 	
-	public static List<String> parse(int i, String cache) throws NumberFormatException, SoupVariableException {
+	public static List<String> parse(int i, String cache) throws NumberFormatException, SoupVariableException, SoupSyntaxException {
 		String whole = "";
 		
 		int index = 0;

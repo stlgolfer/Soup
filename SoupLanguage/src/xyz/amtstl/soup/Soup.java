@@ -13,7 +13,7 @@ import xyz.amtstl.soup.logic.LogicController;
 import xyz.amtstl.soup.misc.IO;
 
 public class Soup {
-	private static int lineNumber = 1;
+	public static int lineNumber = 1;
 	private static boolean canAdvance = true;
 	
 	// controllers
@@ -30,10 +30,10 @@ public class Soup {
 		FileReader reader = null;
 		
 		try {
-			reader = new FileReader(System.getProperty("user.dir") + "/" + args[0].toString());
+			//reader = new FileReader(System.getProperty("user.dir") + "/" + args[0].toString());
 			//FileReader reader = new FileReader("C:/users/alex/desktop/github/soup/Files/program.soup");
 			//FileReader reader = new FileReader("C:/Users/amigala/Desktop/Github/Soup/Files/program.soup");
-			//reader = new FileReader("C:/Users/Alex/Desktop/Github/Soup/Files/program.sop");
+			reader = new FileReader("C:/Users/Alex/Desktop/Github/Soup/Files/program.soup");
 		}
 		catch (FileNotFoundException ex) {
 			IO.println("File not found! Are you sure it is in this folder?");
@@ -74,6 +74,10 @@ public class Soup {
 						break;
 					case '#' : // basic logarithm
 						logic.soupLog(i, cache);	
+						i = logic.getIndex();
+						break;
+					case 'A' : // area
+						logic.soupArea(i, cache);
 						i = logic.getIndex();
 						break;
 					case '[' : // basic if statement
