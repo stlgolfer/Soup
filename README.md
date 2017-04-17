@@ -14,8 +14,15 @@ i | the indentifier
 f | first paramater
 e | second paramater
 
-# Basic Double Paramater Functions
-Currently, Soup can do only basic math functions such as adding and subtracting, but more will be added in the future
+# Basic Functions (Poly-Argument Functions)
+Soup can do these basic math functions along with other functions. Functions will continuously calculate the arguments left to right.
+
+Example
+
+`+{4,5,5}` -> `14`
+`%{12,2,2}` -> `3` (12/2 -> 6, 6/2 -> 3)
+
+Key: italics denotes that the function only takes one argument
 
 Token | Operation
 ----- | -----
@@ -23,16 +30,17 @@ Token | Operation
 `-` | Subtracting
 `*` | Multiply
 `%` | Divide
-`^` | Raise to the Power Of
-`#` | Logarithm (Exponent#Base)
+`^` | Raise to the Power Of (base,exponent)
+`#` | Logarithm (exponent,base)
 `p` | Print (e = 1 print, e = 0 for print line)
 `{pipe}` | Absolute Value of single number
-`?` | Rounds the number
+`&` | *Square Root*
+`?` | *Rounds the number*
 `~` | Stores a variable at a specific index `~{3,0} // number 3 at index 0`
 `/` | Comments (jumps index to the end of the line)
 ` ` | Only a single space between functions is permitted (it's proper to use a period, though)
 
-# Triple Paramater Functions
+# Triple Paramater Functions (Static Arguments)
 These are functions that take three paramaters
 
 Token | Operation | Notes
@@ -49,7 +57,8 @@ Token | Operation | Example
 # Trig Functions
 _Please note that trig functions return in RADIANS so be aware and plan accordingly_
 
-## Regular Functions
+Key
+
 `${f,e}`
 
 where
@@ -59,6 +68,24 @@ where
 `s` | Sine of number
 `c` | Cosine of number
 `t` | Tangent of number
+`arcs` | Arc Sine
+`arcc` | Arc Cosine
+`arct` | Arc Tangent
+
+# Area Functions
+Soup can also calculate areas for you with ease
+
+Key
+
+`A{f,e}`
+
+where
+
+`f` case | `e` function
+------ | -------
+`s` | Finds the area of a square `A{s,4,4}` -> `16`
+`tri` | Finds the ara of a triangle `A{tri,4,4}` -> `8`
+`tra` | Trapezoid `A{tra, 4,4}`
 
 # Variable Retrieval
 ## Explicit Recalling
@@ -80,6 +107,13 @@ For example:
 +{v0,3} // v will substitute the recalled variable at index 0 and add it with 3 to get the answer
 ```
 
+# Variable Storing
+Very important notes:
+1. Most functions will add cache their output
+2. Variables **Must be stored seqentially**. For example, you can't store a variable in index 0 and then index 5
+3. Each output **must** have their own index (variables cannot be overwritten)
+4. Variable storing gets
+
 # Getting User Input
 In Soup, you can accept the user's input and store it like this:
 
@@ -90,12 +124,12 @@ The first paramater is the string and the second paramater is the index where th
 # Miscellaneous Characters
 These are characters that have some special functions
 
-Token | Operation
+Token | Operation | Notes
 ------- | --------
 `[` | Evaluates two single-digits
-`.` | Doesn't get parsed (it's like a semicolon)
+`.` | End of function | it's like a semicolon, it's not necessary but it's there for making code easier to read
 
-# Important things to know
+# Important Things to Remember
 - Sometimes you can't always do everything in one function, so break it up and store the results
 - Soup doesn't like it when you have spaces between paramaters
 - remember that variables can be interpolated with other functions, so use that to your advantage
