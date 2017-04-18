@@ -30,10 +30,10 @@ public class Soup {
 		FileReader reader = null;
 		
 		try {
-			reader = new FileReader(System.getProperty("user.dir") + "/" + args[0].toString());
+			//reader = new FileReader(System.getProperty("user.dir") + "/" + args[0].toString());
 			//FileReader reader = new FileReader("C:/users/alex/desktop/github/soup/Files/program.soup");
 			//FileReader reader = new FileReader("C:/Users/amigala/Desktop/Github/Soup/Files/program.soup");
-			//reader = new FileReader("C:/Users/Alex/Desktop/Github/Soup/Files/fulltest.soup");
+			reader = new FileReader("C:/Users/Alex/Desktop/Github/Soup/Files/program.soup");
 		}
 		catch (Exception ex) {
 			IO.println("File not found! Are you sure it is in this folder?");
@@ -146,6 +146,9 @@ public class Soup {
 				}
 			} catch (NullPointerException ex) {
 				System.exit(0);
+			}
+			catch (Exception e) {
+				throw new SoupSyntaxException();
 			}
 			lineNumber++;
 			logic.setIndex(0);
