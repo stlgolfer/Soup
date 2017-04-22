@@ -28,6 +28,13 @@ public class LanguageDictionary {
 		addToken('?');
 		addToken('&');
 		addToken('~');
+		addToken('R');
+		addToken('H');
+		addToken('/');
+		addToken('[');
+		addToken('.');
+		addToken(' ');
+		addToken('>');
 	}
 	
 	public static void addToken(char token) {

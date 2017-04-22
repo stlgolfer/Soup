@@ -18,7 +18,7 @@ public class Soup {
 	private static boolean canAdvance = true;
 	
 	// controllers
-	static LogicController logic = new LogicController();
+	public static LogicController logic = new LogicController();
 	static LanguageDictionary lang = new LanguageDictionary();
 	
 	@SuppressWarnings("static-access")
@@ -129,7 +129,7 @@ public class Soup {
 						logic.soupRandomNum(i, cache);
 						i = logic.getIndex();
 						break;
-					case 'h' : // html generator
+					case 'H' : // html generator
 						logic.soupHTMLHandler(i, cache);
 						i = logic.getIndex();
 						break;
@@ -141,7 +141,15 @@ public class Soup {
 						logic.soupComment(i, cache);
 						i = logic.getIndex();
 						break;
+					case '[' : // loop
+						logic.soupLoop(i, cache);
+						i = logic.getIndex();
+						break;
 					case '.' : // like a semicolon
+						break;
+					case ']' :
+						break;
+					case '>' :
 						break;
 					case ' ': // space nullifier
 						break;
@@ -168,57 +176,90 @@ public class Soup {
 	 */
 	public static void parseFunc(char c, int i, String cache) throws NumberFormatException, SoupVariableException, SoupSyntaxException {
 		switch (c) {
-			case '!' : // add two numbers
-				logic.soupAdd(i, cache);
-				break;
-			case '@' : // subtract two numbers
-				logic.soupSubtract(i, cache);
-				break;
-			case '#' : // multiply two numbers
-				logic.soupMultiply(i, cache);			
-				break;
-			case '$' : // divide two numbers
-				logic.soupDivide(i, cache);			
-				break;
-			case '%' : // pow one number
-				logic.soupPow(i, cache);			
-				break;
-			case '^' : // basic logarithm
-				logic.soupLog(i, cache);			
-				break;
-			case '[' : // basic if statement
-				logic.soupIf(i, cache);
-				break;
-			case '&' : // print line
-				logic.soupPrint(i, cache);
-				break;
-			case ';' : // extension of if
-				logic.soupIfDo(i, cache);
-				break;
-			case ':' : // stores last result
-				logic.soupStoreVar(i, cache);
-			case 'v': // gets a variable
-				logic.soupRetrieveVar(i, cache);
-				break;
-			case 'i': // gets var from user and stores it
-				logic.soupStoreUserIn(i, cache);
-				break;
-			case '*': // calculate the quad formula
-				logic.soupQuad(i, cache);
-				break;
-			case '+': // store a variable
-				logic.soupStoreSingle(i, cache);
-				break;
-			case '.' : // like a semicolon
-				break;
-			default :
-				throw new SoupSyntaxException(cache.charAt(i), i, lineNumber);
+		case '+' : // add two numbers
+			logic.soupAdd(i, cache);
+			break;
+		case '-' : // subtract two numbers
+			logic.soupSubtract(i, cache);
+			break;
+		case '*' : // multiply two numbers
+			logic.soupMultiply(i, cache);
+			break;
+		case '%' : // divide two numbers
+			logic.soupDivide(i, cache);		
+			break;
+		case '^' : // pow one number
+			logic.soupPow(i, cache);	
+			break;
+		case '#' : // basic logarithm
+			logic.soupLog(i, cache);	
+			break;
+		case 'A' : // area
+			logic.soupArea(i, cache);
+			break;
+		case '=' : // basic if statement
+			logic.soupIf(i, cache);
+			break;
+		case 'p' : // print line
+			logic.soupPrint(i, cache);
+			break;
+		case ';' : // extension of if
+			logic.soupIfDo(i, cache);
+			break;
+		case ':' : // stores last result
+			logic.soupStoreVar(i, cache);
+			break;
+		case 'v': // gets a variable
+			logic.soupRetrieveVar(i, cache);
+			break;
+		case 'i': // gets var from user and stores it
+			logic.soupStoreUserIn(i, cache);
+			break;
+		case '@': // quadratic formula
+			logic.soupQuad(i, cache);
+			break;
+		case '$' : // trig
+			logic.soupTrig(i, cache);
+			break;
+		case '|' : // absolute value
+			logic.soupAbs(i, cache);
+			break;
+		case '?' : // round number to int
+			logic.soupRound(i, cache);
+			break;
+		case '&' : // square root
+			logic.soupSquareRoot(i, cache);
+			break;
+		case 'R' : // random number generator
+			logic.soupRandomNum(i, cache);
+			break;
+		case 'H' : // html generator
+			logic.soupHTMLHandler(i, cache);
+			break;
+		case '~': // stores a single variable
+			logic.soupStoreSingle(i, cache);
+			break;
+		case '/': // comments
+			logic.soupComment(i, cache);
+			break;
+		case '[' : // loop
+			logic.soupLoop(i, cache);
+			break;
+		case '.' : // like a semicolon
+			break;
+		case ']' :
+			break;
+		case '>' :
+			break;
+		case ' ': // space nullifier
+			break;
+		default :
+			throw new SoupSyntaxException(cache.charAt(i), i+1, lineNumber);
 		}
 	}
 	
 	/**
 	 * Checks tokens
-	 * @deprecated
 	 * @param i
 	 * @param cache
 	 * @param c

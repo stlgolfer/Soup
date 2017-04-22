@@ -55,6 +55,7 @@ public class LogicController {
 		p = new Parser();
 		v = new VariableHandler();
 		ns = new ArrayList<String>();
+		VariableHandler.initiateVar();
 	}
 	
 	/*
@@ -595,6 +596,13 @@ public class LogicController {
 		index = p.getIndex();
 		
 		v.insertVar(Float.parseFloat(ns.get(0)), Integer.valueOf(ns.get(1)));
+	}
+	
+	public void soupLoop(int i, String cache) throws NumberFormatException, SoupVariableException, SoupSyntaxException {
+		ns = p.parse(i, cache);
+		Validator.validateNumbers(ns);
+		index = p.getIndex() + 1;
+		Looper.execNewLoop(Integer.parseInt(ns.get(0)), Integer.parseInt(ns.get(1)), cache);
 	}
 	
 	/**

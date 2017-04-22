@@ -1,2 +1,2 @@
-${t,5}
-h{NOODLE SOUP,Whuz good?}
+[{0,2}].i{What's the number,0}.+{v0,1}
+p{Program complete,0}
