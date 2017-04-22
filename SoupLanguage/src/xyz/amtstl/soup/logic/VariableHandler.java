@@ -19,4 +19,8 @@ public class VariableHandler {
 			throw new SoupVariableException(i);
 		}
 	}
+	
+	public static List<Float> getVarStore() {
+		return intVars;
+	}
 }

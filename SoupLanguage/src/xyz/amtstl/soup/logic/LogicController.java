@@ -1,19 +1,17 @@
 package xyz.amtstl.soup.logic;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 import java.util.concurrent.ThreadLocalRandom;
 
-import xyz.amtstl.extendedmath.functions.Area2D;
-import xyz.amtstl.extendedmath.functions.Area3D;
-import xyz.amtstl.extendedmath.functions.Volume;
-import xyz.amtstl.extendedmath.shapes.FlatShape;
 import xyz.amtstl.soup.Parser;
 import xyz.amtstl.soup.exceptions.SoupSyntaxException;
 import xyz.amtstl.soup.exceptions.SoupVariableException;
 import xyz.amtstl.soup.misc.IO;
+import xyz.amtstl.soup.output.HTMLGen;
 
 /**
  * This is the main logic controller that handles all operations
@@ -90,6 +88,7 @@ public class LogicController {
 		
 		lastResult = out;
 		IO.printFloat(lastResult);
+		HTMLGen.getTotalOutputs().add(lastResult);
 		//IO.printFloat(Float.parseFloat(ns.get(0)) + Float.parseFloat(ns.get(1)));
 		//lastResult = Float.parseFloat(ns.get(0)) + Float.parseFloat(ns.get(1));
 	}
@@ -114,6 +113,7 @@ public class LogicController {
 		
 		lastResult = out;
 		IO.printFloat(lastResult);
+		HTMLGen.getTotalOutputs().add(lastResult);
 	}
 	
 	/**
@@ -136,6 +136,7 @@ public class LogicController {
 		
 		lastResult = out;
 		IO.printFloat(lastResult);
+		HTMLGen.getTotalOutputs().add(lastResult);
 	}
 	
 	/**
@@ -158,6 +159,7 @@ public class LogicController {
 		
 		lastResult = out;
 		IO.printFloat(lastResult);
+		HTMLGen.getTotalOutputs().add(lastResult);
 	}
 	
 	/**
@@ -175,6 +177,7 @@ public class LogicController {
 		
 		IO.printFloat((float)Math.pow(Float.parseFloat(ns.get(0)), Float.parseFloat(ns.get(1))));
 		lastResult = (float)Math.pow(Float.parseFloat(ns.get(0)), Float.parseFloat(ns.get(1)));
+		HTMLGen.getTotalOutputs().add(lastResult);
 	}
 	
 	/**
@@ -195,6 +198,7 @@ public class LogicController {
 		
 		IO.println(String.valueOf((Math.log(ex)/(Math.log(base)))));
 		lastResult = (float)(Math.log(ex)/(Math.log(base)));
+		HTMLGen.getTotalOutputs().add(lastResult);
 	}
 	
 	/**
@@ -277,6 +281,7 @@ public class LogicController {
 		default :
 			throw new SoupSyntaxException(cache.charAt(i+2), i);
 		}
+		HTMLGen.getTotalOutputs().add(lastResult);
 	}
 	
 	/**
@@ -302,20 +307,21 @@ public class LogicController {
 		
 		switch (condition) {
 		case "s" : // square
-			lastResult = Area2D.findArea2D(new FlatShape(Integer.parseInt(ns.get(1)), Integer.parseInt(ns.get(2))));
+			lastResult = Float.parseFloat(ns.get(1)) * Float.parseFloat(ns.get(2));
 			IO.printFloat(lastResult);
 			break;
 		case "tri" : // traingle
-			lastResult = Area2D.findAreaTriangle(Integer.parseInt(ns.get(1)), Integer.parseInt(ns.get(2)));
+			lastResult = Float.parseFloat(ns.get(1)) * Float.parseFloat(ns.get(2))/2;
 			IO.printFloat(lastResult);
 			break;
 		case "tra" : // trapezoid
-			lastResult = Area2D.findAreaTrapezoid(Float.parseFloat(ns.get(1)), Float.parseFloat(ns.get(2)), Float.parseFloat(ns.get(3)));
+			lastResult = ((Float.parseFloat(ns.get(1)) + Float.parseFloat(ns.get(2))/2) * Float.parseFloat(ns.get(3)));
 			IO.printFloat(lastResult);
 			break;
 		default :
 			throw new SoupSyntaxException(cache.charAt(i+2), i);
 		}
+		HTMLGen.getTotalOutputs().add(lastResult);
 	}
 	
 	/**
@@ -333,6 +339,7 @@ public class LogicController {
 		
 		lastResult = Math.abs(Float.parseFloat(ns.get(0)));
 		IO.println(String.valueOf(lastResult));
+		HTMLGen.getTotalOutputs().add(lastResult);
 	}
 	
 	/**
@@ -350,6 +357,7 @@ public class LogicController {
 		
 		lastResult = (float)Math.round(Float.valueOf(ns.get(0)));
 		IO.printFloat(lastResult);
+		HTMLGen.getTotalOutputs().add(lastResult);
 	}
 	
 	/**
@@ -367,6 +375,7 @@ public class LogicController {
 		
 		lastResult = (float)Math.sqrt(Double.parseDouble(ns.get(0)));
 		IO.printFloat(lastResult);
+		HTMLGen.getTotalOutputs().add(lastResult);
 	}
 	
 	/**
@@ -385,6 +394,7 @@ public class LogicController {
 		Random rnd = new Random();
 		lastResult = ThreadLocalRandom.current().nextInt(Integer.valueOf((int) Float.parseFloat(ns.get(0))), Integer.valueOf((int) Float.parseFloat(ns.get(1))));
 		IO.printFloat(lastResult);
+		HTMLGen.getTotalOutputs().add(lastResult);
 	}
 	
 	/*public void soupSummation(int i, String cache) throws NumberFormatException, SoupVariableException {
@@ -453,6 +463,25 @@ public class LogicController {
 		else {
 			ifState = false;
 			IO.println("False");
+		}
+	}
+	
+	/**
+	 * This is the handler that marshals the the HTML generator
+	 * @param i index to be passed to parser
+	 * @param cache line of code from main loop
+	 * @throws NumberFormatException
+	 * @throws SoupVariableException
+	 * @throws SoupSyntaxException
+	 */
+	public void soupHTMLHandler(int i, String cache) throws NumberFormatException, SoupVariableException, SoupSyntaxException {
+		ns = p.parse(i, cache);
+		index = p.getIndex();
+		try {
+			HTMLGen.generateOutputDocumentation();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 	

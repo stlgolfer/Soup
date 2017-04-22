@@ -11,6 +11,7 @@ import xyz.amtstl.soup.exceptions.SoupVariableException;
 import xyz.amtstl.soup.logic.LanguageDictionary;
 import xyz.amtstl.soup.logic.LogicController;
 import xyz.amtstl.soup.misc.IO;
+import xyz.amtstl.soup.output.HTMLGen;
 
 public class Soup {
 	public static int lineNumber = 1;
@@ -32,8 +33,8 @@ public class Soup {
 		try {
 			//reader = new FileReader(System.getProperty("user.dir") + "/" + args[0].toString());
 			//FileReader reader = new FileReader("C:/users/alex/desktop/github/soup/Files/program.soup");
-			//FileReader reader = new FileReader("C:/Users/amigala/Desktop/Github/Soup/Files/program.soup");
-			reader = new FileReader("C:/Users/Alex/Desktop/Github/Soup/Files/program.soup");
+			reader = new FileReader("C:/Users/amigala/Desktop/Github/Soup/Files/program.soup");
+			//reader = new FileReader("C:/Users/Alex/Desktop/Github/Soup/Files/program.soup");
 		}
 		catch (Exception ex) {
 			IO.println("File not found! Are you sure it is in this folder?");
@@ -128,6 +129,10 @@ public class Soup {
 						logic.soupRandomNum(i, cache);
 						i = logic.getIndex();
 						break;
+					case '<' : // html generator
+						logic.soupHTMLHandler(i, cache);
+						i = logic.getIndex();
+						break;
 					case '~': // stores a single variable
 						logic.soupStoreSingle(i, cache);
 						i = logic.getIndex();
@@ -146,9 +151,6 @@ public class Soup {
 				}
 			} catch (NullPointerException ex) {
 				System.exit(0);
-			}
-			catch (Exception e) {
-				throw new SoupSyntaxException();
 			}
 			lineNumber++;
 			logic.setIndex(0);
