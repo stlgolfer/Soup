@@ -33,8 +33,8 @@ public class Soup {
 		try {
 			//reader = new FileReader(System.getProperty("user.dir") + "/" + args[0].toString());
 			//FileReader reader = new FileReader("C:/users/alex/desktop/github/soup/Files/program.soup");
-			reader = new FileReader("C:/Users/amigala/Desktop/Github/Soup/Files/program.soup");
-			//reader = new FileReader("C:/Users/Alex/Desktop/Github/Soup/Files/program.soup");
+			//reader = new FileReader("C:/Users/amigala/Desktop/Github/Soup/Files/program.soup");
+			reader = new FileReader("C:/Users/Alex/Desktop/Github/Soup/Files/program.soup");
 		}
 		catch (Exception ex) {
 			IO.println("File not found! Are you sure it is in this folder?");
@@ -81,7 +81,7 @@ public class Soup {
 						logic.soupArea(i, cache);
 						i = logic.getIndex();
 						break;
-					case '[' : // basic if statement
+					case '=' : // basic if statement
 						logic.soupIf(i, cache);
 						i = logic.getIndex();
 						break;
@@ -129,7 +129,7 @@ public class Soup {
 						logic.soupRandomNum(i, cache);
 						i = logic.getIndex();
 						break;
-					case '<' : // html generator
+					case 'h' : // html generator
 						logic.soupHTMLHandler(i, cache);
 						i = logic.getIndex();
 						break;

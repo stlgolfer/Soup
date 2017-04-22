@@ -478,7 +478,7 @@ public class LogicController {
 		ns = p.parse(i, cache);
 		index = p.getIndex();
 		try {
-			HTMLGen.generateOutputDocumentation();
+			HTMLGen.generateOutputDocumentation(ns.get(0), ns.get(1));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -565,6 +565,7 @@ public class LogicController {
 	public void soupStoreUserIn(int i, String cache) throws NumberFormatException, SoupVariableException, SoupSyntaxException {
 		ns = p.parse(i, cache);
 		
+		HTMLGen.getQuestionStrings().add(ns.get(0));
 		List<String> validation = new ArrayList<String>();
 		for (int e = 1; e < ns.size(); e++) {
 			validation.add(ns.get(e));
