@@ -624,9 +624,16 @@ public class LogicController {
 	 */
 	public void soupForLoop(int i, String cache) throws NumberFormatException, SoupVariableException, SoupSyntaxException {
 		ns = p.parse(i, cache);
-		Validator.validateNumbers(ns);
+		
+		/*List<String> validation = new ArrayList<String>();
+		for (String f : ns) {
+			validation.add(f);
+		}
+		validation.remove(validation.size() - 1);
+		Validator.validateNumbers(validation);*/
+		
 		index = p.getIndex() + 1;
-		Looper.execNewForLoop(Integer.parseInt(ns.get(0)), Integer.parseInt(ns.get(1)), cache);
+		Looper.execNewForLoop(Integer.parseInt(ns.get(0)), Integer.parseInt(ns.get(1)), cache, ns.get(2));
 	}
 	
 	/**
@@ -640,7 +647,7 @@ public class LogicController {
 	 */
 	public void soupWhileLoop(int i, String cache) throws SoupSyntaxException, NumberFormatException, SoupVariableException {
 		ns = p.parse(i, cache);
-		Validator.validateNumbers(ns);
+		
 		index = p.getIndex();
 		Looper.execNewWhileLoop((int) Float.parseFloat(ns.get(0)), (int) Float.parseFloat(ns.get(1)), cache);
 	}
