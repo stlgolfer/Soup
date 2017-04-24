@@ -15,7 +15,6 @@ import xyz.amtstl.soup.output.HTMLGen;
 
 public class Soup {
 	public static int lineNumber = 1;
-	private static boolean canAdvance = true;
 	
 	// controllers
 	public static LogicController logic = new LogicController();
@@ -33,8 +32,8 @@ public class Soup {
 		try {
 			//reader = new FileReader(System.getProperty("user.dir") + "/" + args[0].toString());
 			//FileReader reader = new FileReader("C:/users/alex/desktop/github/soup/Files/program.soup");
-			//reader = new FileReader("C:/Users/amigala/Desktop/Github/Soup/Files/program.soup");
-			reader = new FileReader("C:/Users/Alex/Desktop/Github/Soup/Files/program.soup");
+			reader = new FileReader("C:/Users/amigala/Desktop/Github/Soup/Files/program.soup");
+			//reader = new FileReader("C:/Users/Alex/Desktop/Github/Soup/Files/program.soup");
 		}
 		catch (Exception ex) {
 			IO.println("File not found! Are you sure it is in this folder?");
@@ -85,10 +84,10 @@ public class Soup {
 						logic.soupIf(i, cache);
 						i = logic.getIndex();
 						break;
-					case 'p' : // print line
+					case 'P' : // print line
 						logic.soupPrint(i, cache);
 						i = logic.getIndex();
-						break;
+						break;						
 					case ';' : // extension of if
 						logic.soupIfDo(i, cache);
 						i = logic.getIndex();
@@ -97,11 +96,11 @@ public class Soup {
 						logic.soupStoreVar(i, cache);
 						i = logic.getIndex();
 						break;
-					case 'v': // gets a variable
+					case 'V': // gets a variable
 						logic.soupRetrieveVar(i, cache);
 						i = logic.getIndex();
 						break;
-					case 'i': // gets var from user and stores it
+					case 'I': // gets var from user and stores it
 						logic.soupStoreUserIn(i, cache);
 						i = logic.getIndex();
 						break;
@@ -200,19 +199,16 @@ public class Soup {
 		case '=' : // basic if statement
 			logic.soupIf(i, cache);
 			break;
-		case 'p' : // print line
-			logic.soupPrint(i, cache);
-			break;
 		case ';' : // extension of if
 			logic.soupIfDo(i, cache);
 			break;
 		case ':' : // stores last result
 			logic.soupStoreVar(i, cache);
 			break;
-		case 'v': // gets a variable
+		case 'V': // gets a variable
 			logic.soupRetrieveVar(i, cache);
 			break;
-		case 'i': // gets var from user and stores it
+		case 'I': // gets var from user and stores it
 			logic.soupStoreUserIn(i, cache);
 			break;
 		case '@': // quadratic formula
@@ -252,6 +248,9 @@ public class Soup {
 		case '>' :
 			break;
 		case ' ': // space nullifier
+			break;
+		case 'P':
+			logic.soupPrint(i, cache);
 			break;
 		default :
 			throw new SoupSyntaxException(cache.charAt(i), i+1, lineNumber);

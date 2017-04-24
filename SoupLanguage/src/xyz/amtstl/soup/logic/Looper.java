@@ -22,6 +22,8 @@ public class Looper {
 		for (int e = minBound; e < maxBound; e++) {
 			for (int i = groundState; i < cache.length(); i++) {
 				Soup.checkToken(i, cache, cache.charAt(i));
+				/*i = Soup.logic.getIndex();
+				IO.println("Index: " + String.valueOf(Soup.logic.getIndex()));*/
 			}
 		}
 	}

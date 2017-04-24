@@ -17,11 +17,9 @@ public class LanguageDictionary {
 		addToken('#');
 		addToken('A');
 		addToken('[');
-		addToken('p');
 		addToken(';');
 		addToken(':');
-		addToken('v');
-		addToken('i');
+		addToken('I');
 		addToken('@');
 		addToken('$');
 		addToken('|');
@@ -35,6 +33,8 @@ public class LanguageDictionary {
 		addToken('.');
 		addToken(' ');
 		addToken('>');
+		addToken('V');
+		addToken('P');
 	}
 	
 	public static void addToken(char token) {

@@ -421,6 +421,7 @@ public class LogicController {
 	 */
 	public void soupPrint(int i, String cache) throws NumberFormatException, SoupVariableException, SoupSyntaxException {
 		ns = p.parse(i, cache);
+		index = p.getIndex();
 		
 		List<String> validation = new ArrayList<String>();
 		for (int e = 1; e < ns.size(); e++) {
@@ -428,15 +429,29 @@ public class LogicController {
 		}
 		Validator.validateNumbers(validation);
 		
-		index = p.getIndex();
-		
-		int mode = Integer.parseInt(ns.get(1));
-		if (mode == 0) {
+		switch (ns.get(1)) {
+		case "0" :
 			IO.print(ns.get(0));
-		}
-		else {
+			break;
+		case "1" :
 			IO.println(ns.get(0));
+			break;
 		}
+	}
+	
+	/**
+	 * Prints line to the user
+	 * @deprecated
+	 * @param i
+	 * @param cache
+	 * @throws NumberFormatException
+	 * @throws SoupVariableException
+	 * @throws SoupSyntaxException
+	 */
+	public void soupPrintLine(int i, String cache) throws NumberFormatException, SoupVariableException, SoupSyntaxException {
+		ns = p.parse(i, cache);
+		index = p.getIndex();
+		IO.println(ns.get(0));
 	}
 	
 	/**
