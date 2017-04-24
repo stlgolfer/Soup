@@ -17,13 +17,24 @@ public class Looper {
 	 * @throws SoupVariableException
 	 * @throws SoupSyntaxException
 	 */
-	public static void execNewLoop(int minBound, int maxBound, String cache) throws NumberFormatException, SoupVariableException, SoupSyntaxException {
+	public static void execNewForLoop(int minBound, int maxBound, String cache) throws NumberFormatException, SoupVariableException, SoupSyntaxException {
 		groundState = Soup.logic.getIndex();
 		for (int e = minBound; e < maxBound; e++) {
 			for (int i = groundState; i < cache.length(); i++) {
 				Soup.checkToken(i, cache, cache.charAt(i));
-				/*i = Soup.logic.getIndex();
-				IO.println("Index: " + String.valueOf(Soup.logic.getIndex()));*/
+			}
+		}
+	}
+	
+	public static void execNewWhileLoop(int first, int second, String cache) throws NumberFormatException, SoupVariableException, SoupSyntaxException {
+		groundState = Soup.logic.getIndex();
+		while (true) {
+			for (int i = groundState; i < cache.length(); i++) {
+				Soup.checkToken(i, cache, cache.charAt(i));
+			}
+			Soup.logic.soupRefreshNumbers(1, cache);
+			if (Soup.logic.ns.get(0) == Soup.logic.ns.get(1)) {
+				break;
 			}
 		}
 	}

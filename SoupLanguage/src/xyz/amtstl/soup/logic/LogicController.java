@@ -34,7 +34,7 @@ public class LogicController {
 	/**
 	 * Main variable where the parsed data is
 	 */
-	private static List<String> ns;
+	public static List<String> ns;
 	
 	public static boolean ifState = false;
 	
@@ -613,11 +613,33 @@ public class LogicController {
 		v.insertVar(Float.parseFloat(ns.get(0)), Integer.valueOf(ns.get(1)));
 	}
 	
-	public void soupLoop(int i, String cache) throws NumberFormatException, SoupVariableException, SoupSyntaxException {
+	public void soupForLoop(int i, String cache) throws NumberFormatException, SoupVariableException, SoupSyntaxException {
 		ns = p.parse(i, cache);
 		Validator.validateNumbers(ns);
 		index = p.getIndex() + 1;
-		Looper.execNewLoop(Integer.parseInt(ns.get(0)), Integer.parseInt(ns.get(1)), cache);
+		Looper.execNewForLoop(Integer.parseInt(ns.get(0)), Integer.parseInt(ns.get(1)), cache);
+	}
+	
+	/**
+	 * 
+	 * @deprecated
+	 * @param i
+	 * @param cache
+	 * @throws SoupSyntaxException
+	 * @throws NumberFormatException
+	 * @throws SoupVariableException
+	 */
+	public void soupWhileLoop(int i, String cache) throws SoupSyntaxException, NumberFormatException, SoupVariableException {
+		ns = p.parse(i, cache);
+		Validator.validateNumbers(ns);
+		index = p.getIndex();
+		Looper.execNewWhileLoop((int) Float.parseFloat(ns.get(0)), (int) Float.parseFloat(ns.get(1)), cache);
+	}
+	
+	public void soupRefreshNumbers(int i, String cache) throws NumberFormatException, SoupVariableException, SoupSyntaxException {
+		ns = p.parse(i, cache);
+		Validator.validateNumbers(ns);
+		index = p.getIndex();
 	}
 	
 	/**

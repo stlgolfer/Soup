@@ -141,13 +141,17 @@ public class Soup {
 						i = logic.getIndex();
 						break;
 					case '[' : // loop
-						logic.soupLoop(i, cache);
+						logic.soupForLoop(i, cache);
 						i = logic.getIndex();
 						break;
 					case '.' : // like a semicolon
 						break;
 					case ']' :
 						break;
+					/*case '<' : // while loop
+						logic.soupWhileLoop(i, cache);
+						i = logic.getIndex();
+						break;*/
 					case '>' :
 						break;
 					case ' ': // space nullifier
@@ -239,7 +243,7 @@ public class Soup {
 			logic.soupComment(i, cache);
 			break;
 		case '[' : // loop
-			logic.soupLoop(i, cache);
+			logic.soupForLoop(i, cache);
 			break;
 		case '.' : // like a semicolon
 			break;
