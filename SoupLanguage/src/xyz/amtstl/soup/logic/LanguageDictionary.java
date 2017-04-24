@@ -17,17 +17,23 @@ public class LanguageDictionary {
 		addToken('#');
 		addToken('A');
 		addToken('[');
-		addToken('p');
 		addToken(';');
 		addToken(':');
-		addToken('v');
-		addToken('i');
-		addToken('@');
+		addToken('I');
 		addToken('$');
 		addToken('|');
 		addToken('?');
 		addToken('&');
 		addToken('~');
+		addToken('R');
+		addToken('H');
+		addToken('/');
+		addToken('[');
+		addToken('.');
+		addToken(' ');
+		addToken('>');
+		addToken('V');
+		addToken('P');
 	}
 	
 	public static void addToken(char token) {
