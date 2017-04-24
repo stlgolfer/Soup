@@ -72,7 +72,7 @@ public class Soup {
 						logic.soupPow(i, cache);	
 						i = logic.getIndex();
 						break;
-					case '#' : // basic logarithm
+					case '#' : // base 10 logarithm
 						logic.soupLog(i, cache);	
 						i = logic.getIndex();
 						break;
