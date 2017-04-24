@@ -195,10 +195,11 @@ public class LogicController {
 		index = p.getIndex();
 		
 		double ex = Double.parseDouble(ns.get(0));
-		double base = Double.parseDouble(ns.get(1));
+		/*double base = Double.parseDouble(ns.get(1));*/
 		
-		IO.println(String.valueOf((Math.log(ex)/(Math.log(base)))));
-		lastResult = (float)(Math.log(ex)/(Math.log(base)));
+		/*IO.println(String.valueOf((Math.log(ex)/(Math.log(base)))));*/
+		lastResult = (float)(Math.log10(ex));
+		IO.printFloat(lastResult);
 		HTMLGen.getTotalOutputs().add(lastResult);
 	}
 	
@@ -613,6 +614,14 @@ public class LogicController {
 		v.insertVar(Float.parseFloat(ns.get(0)), Integer.valueOf(ns.get(1)));
 	}
 	
+	/**
+	 * Executes a new for loop on main thread
+	 * @param i index to be passed to parser
+	 * @param cache line of code from main loop
+	 * @throws NumberFormatException
+	 * @throws SoupVariableException
+	 * @throws SoupSyntaxException
+	 */
 	public void soupForLoop(int i, String cache) throws NumberFormatException, SoupVariableException, SoupSyntaxException {
 		ns = p.parse(i, cache);
 		Validator.validateNumbers(ns);
@@ -621,10 +630,10 @@ public class LogicController {
 	}
 	
 	/**
-	 * 
+	 * Did a while loop
 	 * @deprecated
-	 * @param i
-	 * @param cache
+	 * @param i index to be passed to parser
+	 * @param cache line of code from main loop
 	 * @throws SoupSyntaxException
 	 * @throws NumberFormatException
 	 * @throws SoupVariableException
@@ -636,6 +645,15 @@ public class LogicController {
 		Looper.execNewWhileLoop((int) Float.parseFloat(ns.get(0)), (int) Float.parseFloat(ns.get(1)), cache);
 	}
 	
+	/**
+	 * Refreshes Numbers
+	 * @deprecated
+	 * @param i index to be passed to parser
+	 * @param cache line of code from main loop
+	 * @throws NumberFormatException
+	 * @throws SoupVariableException
+	 * @throws SoupSyntaxException
+	 */
 	public void soupRefreshNumbers(int i, String cache) throws NumberFormatException, SoupVariableException, SoupSyntaxException {
 		ns = p.parse(i, cache);
 		Validator.validateNumbers(ns);

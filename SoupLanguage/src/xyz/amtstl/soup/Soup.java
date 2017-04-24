@@ -104,11 +104,7 @@ public class Soup {
 						logic.soupStoreUserIn(i, cache);
 						i = logic.getIndex();
 						break;
-					case '@': // quadratic formula
-						logic.soupQuad(i, cache);
-						i = logic.getIndex();
-						break;
-					case '$' : // trig
+					case '$' : // trigonometric functions
 						logic.soupTrig(i, cache);
 						i = logic.getIndex();
 						break;
@@ -147,12 +143,6 @@ public class Soup {
 					case '.' : // like a semicolon
 						break;
 					case ']' :
-						break;
-					/*case '<' : // while loop
-						logic.soupWhileLoop(i, cache);
-						i = logic.getIndex();
-						break;*/
-					case '>' :
 						break;
 					case ' ': // space nullifier
 						break;
@@ -215,9 +205,6 @@ public class Soup {
 		case 'I': // gets var from user and stores it
 			logic.soupStoreUserIn(i, cache);
 			break;
-		case '@': // quadratic formula
-			logic.soupQuad(i, cache);
-			break;
 		case '$' : // trig
 			logic.soupTrig(i, cache);
 			break;
@@ -248,8 +235,6 @@ public class Soup {
 		case '.' : // like a semicolon
 			break;
 		case ']' :
-			break;
-		case '>' :
 			break;
 		case ' ': // space nullifier
 			break;

@@ -20,7 +20,6 @@ public class LanguageDictionary {
 		addToken(';');
 		addToken(':');
 		addToken('I');
-		addToken('@');
 		addToken('$');
 		addToken('|');
 		addToken('?');
