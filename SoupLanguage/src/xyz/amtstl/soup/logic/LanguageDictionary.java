@@ -34,6 +34,8 @@ public class LanguageDictionary {
 		addToken('>');
 		addToken('V');
 		addToken('P');
+		addToken('X');
+		addToken('=');
 	}
 	
 	public static void addToken(char token) {

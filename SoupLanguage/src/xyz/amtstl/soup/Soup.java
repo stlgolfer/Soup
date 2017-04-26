@@ -30,8 +30,8 @@ public class Soup {
 		FileReader reader = null;
 		
 		try {
-			reader = new FileReader(System.getProperty("user.dir") + "/" + args[0].toString());
-			//FileReader reader = new FileReader("C:/users/alex/desktop/github/soup/Files/program.soup");
+			//reader = new FileReader(System.getProperty("user.dir") + "/" + args[0].toString());
+			reader = new FileReader("C:/users/alex/desktop/github/soup/Files/program.soup");
 			//reader = new FileReader("C:/Users/amigala/Desktop/Github/Soup/Files/program.soup");
 			//reader = new FileReader("C:/Users/Alex/Desktop/Github/Soup/Files/program.soup");
 		}
@@ -140,9 +140,19 @@ public class Soup {
 						logic.soupForLoop(i, cache);
 						i = logic.getIndex();
 						break;
-					case '.' : // like a semicolon
-						break;
 					case ']' :
+						break;
+					case '<' : // while loop
+						logic.soupWhileLoop(i, cache);
+						i = logic.getIndex();
+						break;
+					case '>' :
+						break;
+					case 'X' : // breaks loop
+						logic.soupBreakLoop();
+						i = logic.getIndex();
+						break;
+					case '.' : // like a semicolon
 						break;
 					case ' ': // space nullifier
 						break;
@@ -240,6 +250,11 @@ public class Soup {
 			break;
 		case 'P':
 			logic.soupPrint(i, cache);
+			break;
+		case '>' :
+			break;
+		case 'X' : // breaks loop
+			logic.soupBreakLoop();
 			break;
 		default :
 			throw new SoupSyntaxException(cache.charAt(i), i+1, lineNumber);

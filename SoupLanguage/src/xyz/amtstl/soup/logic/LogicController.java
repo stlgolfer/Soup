@@ -24,7 +24,7 @@ public class LogicController {
 	/**
 	 * Parser Variable
 	 */
-	private static Parser p;
+	public static Parser p;
 	
 	/**
 	 * VariableHandler global var
@@ -633,12 +633,11 @@ public class LogicController {
 		Validator.validateNumbers(validation);*/
 		
 		index = p.getIndex() + 1;
-		Looper.execNewForLoop(Integer.parseInt(ns.get(0)), Integer.parseInt(ns.get(1)), cache, ns.get(2));
+		Looper.execNewForLoop(Integer.parseInt(ns.get(0)), Integer.parseInt(ns.get(1)), cache, " ");
 	}
 	
 	/**
-	 * Did a while loop
-	 * @deprecated
+	 * Does a while loop
 	 * @param i index to be passed to parser
 	 * @param cache line of code from main loop
 	 * @throws SoupSyntaxException
@@ -649,7 +648,7 @@ public class LogicController {
 		ns = p.parse(i, cache);
 		
 		index = p.getIndex();
-		Looper.execNewWhileLoop((int) Float.parseFloat(ns.get(0)), (int) Float.parseFloat(ns.get(1)), cache);
+		Looper.execNewWhileLoop(cache);
 	}
 	
 	/**
@@ -663,8 +662,13 @@ public class LogicController {
 	 */
 	public void soupRefreshNumbers(int i, String cache) throws NumberFormatException, SoupVariableException, SoupSyntaxException {
 		ns = p.parse(i, cache);
-		Validator.validateNumbers(ns);
+		//Validator.validateNumbers(ns);
 		index = p.getIndex();
+	}
+	
+	public void soupBreakLoop() {
+		Looper.isBreak = true;
+		index += 1;
 	}
 	
 	/**
