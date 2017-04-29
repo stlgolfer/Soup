@@ -10,6 +10,7 @@ import xyz.amtstl.soup.exceptions.SoupSyntaxException;
 import xyz.amtstl.soup.exceptions.SoupVariableException;
 import xyz.amtstl.soup.logic.LanguageDictionary;
 import xyz.amtstl.soup.logic.LogicController;
+import xyz.amtstl.soup.logic.Suppressor;
 import xyz.amtstl.soup.misc.IO;
 import xyz.amtstl.soup.output.HTMLGen;
 
@@ -69,11 +70,11 @@ public class Soup {
 						i = logic.getIndex();
 						break;
 					case '^' : // pow one number
-						logic.soupPow(i, cache);	
+						logic.soupPow(i, cache);
 						i = logic.getIndex();
 						break;
 					case '#' : // base 10 logarithm
-						logic.soupLog(i, cache);	
+						logic.soupLog(i, cache);
 						i = logic.getIndex();
 						break;
 					case 'A' : // area
@@ -155,6 +156,8 @@ public class Soup {
 					case '.' : // like a semicolon
 						break;
 					case ' ': // space nullifier
+						break;
+					case ')' :
 						break;
 					default :
 						throw new SoupSyntaxException(cache.charAt(i), i+1, lineNumber);
@@ -256,6 +259,8 @@ public class Soup {
 		case 'X' : // breaks loop
 			logic.soupBreakLoop();
 			break;
+		case ')' :
+			break;
 		default :
 			throw new SoupSyntaxException(cache.charAt(i), i+1, lineNumber);
 		}
@@ -275,6 +280,23 @@ public class Soup {
 			if (cache.charAt(i) == lang.languageTokens.get(e)) {
 				parseFunc(c, i, cache);
 				//indexCache = logic.getIndex();
+			}
+		}
+	}
+	
+	public static void checkToken(int i, String cache, char c, Suppressor s) throws NumberFormatException, SoupVariableException, SoupSyntaxException {
+		for (int e = 0; e < lang.languageTokens.size(); e++) {
+			if (cache.charAt(i) == lang.languageTokens.get(e)) {
+				if (!s.isSuppressed()) {
+					parseFunc(c, i, cache);
+				}
+				else if (s.isSuppressed() && i != s.getContinueIndex()) {
+					// do nothing
+				}
+				else if (s.isSuppressed() && i == s.getContinueIndex()) {
+					s.setSuppression(false);
+					parseFunc(c, i, cache);
+				}
 			}
 		}
 	}

@@ -21,9 +21,21 @@ public class Looper {
 	public static void execNewForLoop(int minBound, int maxBound, String cache, String direction) throws NumberFormatException, SoupVariableException, SoupSyntaxException {
 		groundState = Soup.logic.getIndex();
 		for (int e = minBound; e < maxBound + 1; e++) {
+			//IO.printFloat(Soup.logic.v.getVar(1000));
+			
 			for (int i = groundState; i < cache.length(); i++) {
-				Soup.checkToken(i, cache, cache.charAt(i));
+				//IO.printInt(i);
+				if (cache.charAt(i) == ';') {
+					Soup.checkToken(i, cache, cache.charAt(i));
+					i = Soup.logic.getIndex();
+				}
+				else {
+					Soup.checkToken(i, cache, cache.charAt(i));
+				}
+				//Soup.checkToken(i, cache, cache.charAt(i));
 			}
+			Soup.logic.setIndex(groundState);
+			e = (int) Soup.logic.v.getVar(1000);
 			Soup.logic.v.insertVar((float) Float.valueOf(e), 1000);
 			if (isBreak) {
 				isBreak = false;
@@ -41,15 +53,22 @@ public class Looper {
 		while ((float)firstCondition == (float)secondCondition) {
 			// parse the line
 			for (int i = groundState; i < cache.length(); i++) {
-				Soup.checkToken(i, cache, cache.charAt(i));
+				if (cache.charAt(i) == ';') {
+					Soup.checkToken(i, cache, cache.charAt(i));
+					i = Soup.logic.getIndex();
+				}
+				else {
+					Soup.checkToken(i, cache, cache.charAt(i));
+				}
 			}
 			
+			Soup.logic.setIndex(groundState);
 			Soup.logic.ns = Soup.logic.p.parse(0, cache);
 			firstCondition = (int)Integer.valueOf((int) Float.parseFloat(Soup.logic.ns.get(0)));
 			secondCondition = (int)Integer.valueOf((int) Float.parseFloat(Soup.logic.ns.get(1)));
 			
-			IO.printInt(firstCondition);
-			IO.printInt(secondCondition);
+			/*IO.printInt(firstCondition);
+			IO.printInt(secondCondition);*/
 			
 			if (isBreak) {
 				isBreak = false;

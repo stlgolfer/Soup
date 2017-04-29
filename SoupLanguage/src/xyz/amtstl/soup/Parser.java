@@ -69,6 +69,31 @@ public class Parser {
 		return InterVar.getParsedNumbers();
 	}
 	
+	public static List<String> parseInternalFunctions(int i, String cache) throws NumberFormatException, SoupVariableException, SoupSyntaxException {
+		String whole = "";
+		
+		int index = 0;
+		
+		for (int e = i; e < cache.length(); e++) {
+			if (cache.charAt(e) == ')'){
+				index = e;
+				break;
+			}
+			else if(cache.charAt(e) != ')') {
+				whole+=cache.charAt(e);
+			}
+		}
+		
+		inx = index;
+		
+		whole = whole.substring(2, whole.length());
+		
+		//String[] numbers = whole.split(",");
+		
+		InterVar.parseInternalVar(whole.split("!"));
+		return InterVar.getParsedNumbers();
+	}
+	
 	/**
 	 * Parses a single number
 	 * @deprecated

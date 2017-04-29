@@ -8,6 +8,7 @@ import java.util.Scanner;
 import java.util.concurrent.ThreadLocalRandom;
 
 import xyz.amtstl.soup.Parser;
+import xyz.amtstl.soup.Soup;
 import xyz.amtstl.soup.exceptions.SoupSyntaxException;
 import xyz.amtstl.soup.exceptions.SoupVariableException;
 import xyz.amtstl.soup.misc.IO;
@@ -49,6 +50,11 @@ public class LogicController {
 	private static int index;
 	
 	/**
+	 * Variable that locks the index
+	 */
+	private static boolean lockIndex = false;
+	
+	/**
 	 * Constructor takes no args
 	 */
 	public LogicController() {
@@ -80,6 +86,8 @@ public class LogicController {
 		
 		ns = p.parse(i, cache);
 		Validator.validateNumbers(ns);
+		
+		if (!lockIndex)
 		index = p.getIndex();
 		
 		float out = Float.parseFloat(ns.get(0));
@@ -105,6 +113,8 @@ public class LogicController {
 	public void soupSubtract(int i, String cache) throws NumberFormatException, SoupVariableException, SoupSyntaxException {
 		ns = p.parse(i, cache);
 		Validator.validateNumbers(ns);
+		
+		if (!lockIndex)
 		index = p.getIndex();
 		
 		float out = Float.parseFloat(ns.get(0));
@@ -128,6 +138,8 @@ public class LogicController {
 	public void soupMultiply(int i, String cache) throws NumberFormatException, SoupVariableException, SoupSyntaxException {
 		ns = p.parse(i, cache);
 		Validator.validateNumbers(ns);
+		
+		if (!lockIndex)
 		index = p.getIndex();
 		
 		float out = Float.parseFloat(ns.get(0));
@@ -151,6 +163,8 @@ public class LogicController {
 	public void soupDivide(int i, String cache) throws NumberFormatException, SoupVariableException, SoupSyntaxException {
 		ns = p.parse(i, cache);
 		Validator.validateNumbers(ns);
+		
+		if (!lockIndex)
 		index = p.getIndex();
 		
 		float out = Float.parseFloat(ns.get(0));
@@ -174,6 +188,8 @@ public class LogicController {
 	public void soupPow(int i, String cache) throws NumberFormatException, SoupVariableException, SoupSyntaxException {
 		ns = p.parse(i, cache);
 		Validator.validateNumbers(ns);
+		
+		if (!lockIndex)
 		index = p.getIndex();
 		
 		IO.printFloat((float)Math.pow(Float.parseFloat(ns.get(0)), Float.parseFloat(ns.get(1))));
@@ -192,6 +208,8 @@ public class LogicController {
 	public void soupLog(int i, String cache) throws NumberFormatException, SoupVariableException, SoupSyntaxException {
 		ns = p.parse(i, cache);
 		Validator.validateNumbers(ns);
+		
+		if (!lockIndex)
 		index = p.getIndex();
 		
 		double ex = Double.parseDouble(ns.get(0));
@@ -215,6 +233,8 @@ public class LogicController {
 	public void soupQuad(int i, String cache) throws NumberFormatException, SoupVariableException, SoupSyntaxException {
 		ns = p.parse(i, cache);
 		Validator.validateNumbers(ns);
+		
+		if (!lockIndex)
 		index = p.getIndex();
 		
 		float a = Float.parseFloat(ns.get(0));
@@ -248,6 +268,7 @@ public class LogicController {
 		}
 		Validator.validateNumbers(validation);
 		
+		if (!lockIndex)
 		index = p.getIndex();
 		
 		String condition = ns.get(0);
@@ -303,6 +324,7 @@ public class LogicController {
 		}
 		Validator.validateNumbers(validation);
 		
+		if (!lockIndex)
 		index = p.getIndex();
 		
 		String condition = ns.get(0);
@@ -337,6 +359,8 @@ public class LogicController {
 	public void soupAbs(int i, String cache) throws NumberFormatException, SoupVariableException, SoupSyntaxException {
 		ns = p.parse(i, cache);
 		Validator.validateNumbers(ns);
+		
+		if (!lockIndex)
 		index = p.getIndex();
 		
 		lastResult = Math.abs(Float.parseFloat(ns.get(0)));
@@ -355,6 +379,8 @@ public class LogicController {
 	public void soupRound(int i, String cache) throws NumberFormatException, SoupVariableException, SoupSyntaxException {
 		ns = p.parse(i, cache);
 		Validator.validateNumbers(ns);
+		
+		if (!lockIndex)
 		index = p.getIndex();
 		
 		lastResult = (float)Math.round(Float.valueOf(ns.get(0)));
@@ -373,6 +399,8 @@ public class LogicController {
 	public void soupSquareRoot(int i, String cache) throws NumberFormatException, SoupVariableException, SoupSyntaxException {
 		ns = p.parse(i, cache);
 		Validator.validateNumbers(ns);
+		
+		if (!lockIndex)
 		index = p.getIndex();
 		
 		lastResult = (float)Math.sqrt(Double.parseDouble(ns.get(0)));
@@ -391,6 +419,8 @@ public class LogicController {
 	public void soupRandomNum(int i, String cache) throws NumberFormatException, SoupVariableException, SoupSyntaxException {
 		ns = p.parse(i, cache);
 		Validator.validateNumbers(ns);
+		
+		if (!lockIndex)
 		index = p.getIndex();
 		
 		Random rnd = new Random();
@@ -422,6 +452,8 @@ public class LogicController {
 	 */
 	public void soupPrint(int i, String cache) throws NumberFormatException, SoupVariableException, SoupSyntaxException {
 		ns = p.parse(i, cache);
+		
+		if (!lockIndex)
 		index = p.getIndex();
 		
 		List<String> validation = new ArrayList<String>();
@@ -451,6 +483,8 @@ public class LogicController {
 	 */
 	public void soupPrintLine(int i, String cache) throws NumberFormatException, SoupVariableException, SoupSyntaxException {
 		ns = p.parse(i, cache);
+		
+		if (!lockIndex)
 		index = p.getIndex();
 		IO.println(ns.get(0));
 	}
@@ -466,6 +500,8 @@ public class LogicController {
 	public void soupIf(int i, String cache) throws NumberFormatException, SoupVariableException, SoupSyntaxException {
 		ns = p.parse(i, cache);
 		Validator.validateNumbers(ns);
+		
+		if (!lockIndex)
 		index = p.getIndex();
 		
 		//IO.println(numbers[0] + " " + numbers[1]);
@@ -493,6 +529,8 @@ public class LogicController {
 	 */
 	public void soupHTMLHandler(int i, String cache) throws NumberFormatException, SoupVariableException, SoupSyntaxException {
 		ns = p.parse(i, cache);
+		
+		if (!lockIndex)
 		index = p.getIndex();
 		try {
 			HTMLGen.generateOutputDocumentation(ns.get(0), ns.get(1));
@@ -511,10 +549,10 @@ public class LogicController {
 	 * @throws SoupSyntaxException 
 	 */
 	public void soupIfDo(int i, String cache) throws NumberFormatException, SoupVariableException, SoupSyntaxException {
-		ns = p.parse(i, cache);
+		ns = p.parseInternalFunctions(i, cache);
 		index = p.getIndex();
 		
-		boolean isStore = false;
+		/*boolean isStore = false;
 		try {
 			String makeorbreak = ns.get(2);
 			isStore = true;
@@ -532,10 +570,27 @@ public class LogicController {
 			IO.println(String.valueOf(ns.get(1)));
 			if (isStore)
 			v.insertVar(Float.parseFloat(ns.get(1)), Integer.parseInt(ns.get(2)));
+		}*/
+		
+		String True = ns.get(0);
+		String False = ns.get(1);
+		lockIndex = true;
+		
+		if (ifState) {
+			for (int e = 0; e < True.length(); e++) {
+				Soup.checkToken(e, True, True.charAt(e));
+			}
+		}
+		else {
+			for (int e = 0; e < False.length(); e++) {
+				Soup.checkToken(e, False, False.charAt(e));
+			}
 		}
 		
+		lockIndex = false;
+		
 		ifState = false;
-		isStore = false;
+		//isStore = false;
 	}
 	
 	/**
@@ -549,6 +604,8 @@ public class LogicController {
 	public void soupRetrieveVar(int i, String cache) throws NumberFormatException, SoupVariableException, SoupSyntaxException {
 		ns = p.parse(i, cache);
 		Validator.validateNumbers(ns);
+		
+		if (!lockIndex)
 		index = p.getIndex();
 		
 		float ret = v.getVar(Integer.parseInt(ns.get(0)));
@@ -566,6 +623,8 @@ public class LogicController {
 	public void soupStoreVar(int i, String cache) throws NumberFormatException, SoupVariableException, SoupSyntaxException {
 		ns = p.parse(i, cache);
 		Validator.validateNumbers(ns);
+		
+		if (!lockIndex)
 		index = p.getIndex();
 		
 		v.insertVar(lastResult, Integer.parseInt(ns.get(0)));
@@ -589,6 +648,7 @@ public class LogicController {
 		}
 		Validator.validateNumbers(validation);
 		
+		if (!lockIndex)
 		index = p.getIndex();
 		
 		IO.println(ns.get(0));
@@ -609,6 +669,8 @@ public class LogicController {
 	public void soupStoreSingle(int i, String cache) throws NumberFormatException, SoupVariableException, SoupSyntaxException {
 		ns = p.parse(i, cache);
 		Validator.validateNumbers(ns);
+		
+		if (!lockIndex)
 		index = p.getIndex();
 		
 		v.insertVar(Float.parseFloat(ns.get(0)), Integer.valueOf(ns.get(1)));
@@ -632,8 +694,9 @@ public class LogicController {
 		validation.remove(validation.size() - 1);
 		Validator.validateNumbers(validation);*/
 		
+		if (!lockIndex)
 		index = p.getIndex() + 1;
-		Looper.execNewForLoop(Integer.parseInt(ns.get(0)), Integer.parseInt(ns.get(1)), cache, " ");
+		Looper.execNewForLoop((int)Integer.valueOf((int) Float.parseFloat(Soup.logic.ns.get(0))), (int)Integer.valueOf((int) Float.parseFloat(Soup.logic.ns.get(1))), cache, " ");
 	}
 	
 	/**
@@ -647,7 +710,9 @@ public class LogicController {
 	public void soupWhileLoop(int i, String cache) throws SoupSyntaxException, NumberFormatException, SoupVariableException {
 		ns = p.parse(i, cache);
 		
+		if (!lockIndex)
 		index = p.getIndex();
+		
 		Looper.execNewWhileLoop(cache);
 	}
 	
@@ -663,6 +728,7 @@ public class LogicController {
 	public void soupRefreshNumbers(int i, String cache) throws NumberFormatException, SoupVariableException, SoupSyntaxException {
 		ns = p.parse(i, cache);
 		//Validator.validateNumbers(ns);
+		if (!lockIndex)
 		index = p.getIndex();
 	}
 	
@@ -686,7 +752,7 @@ public class LogicController {
 	 * Gets the current index
 	 * @return the current index
 	 */
-	public static int getIndex() {
+	public int getIndex() {
 		return index;
 	}
 	
@@ -694,7 +760,7 @@ public class LogicController {
 	 * Sets the current index
 	 * @param newIndex the new index
 	 */
-	public static void setIndex(int newIndex) {
+	public void setIndex(int newIndex) {
 		p.setIndex(newIndex);
 	}
 	
