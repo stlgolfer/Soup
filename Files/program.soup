@@ -1,2 +1,7 @@
-<{3,4}>. +{v0,1}:{0} ={v0,5};(X!P{statement is false,1})
-P{end of program,1}
+[{0,20}]. +{v0,1}:{0}.+{v0,4}:{1}.P{new point,1}.P{x ,0}.V{0}.P{y ,0}.V{1}
+
+I{Enter Number: ,100}
+H{Equations,Crunching f (x) = x + 4}
+
+//<{3,4}>. +{v0,1}:{0} ={v0,5};(X!P{statement is false,1})
+//P{end of program,1}

@@ -35,7 +35,7 @@ public class Looper {
 				//Soup.checkToken(i, cache, cache.charAt(i));
 			}
 			Soup.logic.setIndex(groundState);
-			e = (int) Soup.logic.v.getVar(1000);
+			//e = (int) Soup.logic.v.getVar(1000);
 			Soup.logic.v.insertVar((float) Float.valueOf(e), 1000);
 			if (isBreak) {
 				isBreak = false;

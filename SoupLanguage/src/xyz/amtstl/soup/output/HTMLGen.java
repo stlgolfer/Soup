@@ -74,7 +74,8 @@ public class HTMLGen {
 	 */
 	private static void writeVars(FileWriter j) throws IOException {
 		for (float a : VariableHandler.getVarStore()) {
-			j.write("<li>" + String.valueOf(a) + "</li>");
+			if (a != 0.0)
+				j.write("<li>" + String.valueOf(a) + "</li>");
 		}
 	}
 	

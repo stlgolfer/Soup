@@ -32,8 +32,8 @@ public class Soup {
 		
 		try {
 			//reader = new FileReader(System.getProperty("user.dir") + "/" + args[0].toString());
-			reader = new FileReader("C:/users/alex/desktop/github/soup/Files/program.soup");
-			//reader = new FileReader("C:/Users/amigala/Desktop/Github/Soup/Files/program.soup");
+			//reader = new FileReader("C:/users/alex/desktop/github/soup/Files/program.soup");
+			reader = new FileReader("C:/Users/amigala/Desktop/Github/Soup/Files/program.soup");
 			//reader = new FileReader("C:/Users/Alex/Desktop/Github/Soup/Files/program.soup");
 		}
 		catch (Exception ex) {
