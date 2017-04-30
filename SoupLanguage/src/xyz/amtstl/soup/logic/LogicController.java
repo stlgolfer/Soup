@@ -519,6 +519,50 @@ public class LogicController {
 		}
 	}
 	
+	public void soupIfLessThan(int i, String cache) throws NumberFormatException, SoupVariableException, SoupSyntaxException {
+		ns = p.parse(i, cache);
+		Validator.validateNumbers(ns);
+		
+		if (!lockIndex)
+		index = p.getIndex();
+		
+		//IO.println(numbers[0] + " " + numbers[1]);
+				
+		float n1 = Float.parseFloat(ns.get(0));
+		float n2 = Float.parseFloat(ns.get(1));
+		
+		if (n1 < n2) {
+			ifState = true;
+			IO.println("True");
+		}
+		else {
+			ifState = false;
+			IO.println("False");
+		}
+	}
+	
+	public void soupIfGreaterThan(int i, String cache) throws NumberFormatException, SoupVariableException, SoupSyntaxException {
+		ns = p.parse(i, cache);
+		Validator.validateNumbers(ns);
+		
+		if (!lockIndex)
+		index = p.getIndex();
+		
+		//IO.println(numbers[0] + " " + numbers[1]);
+				
+		float n1 = Float.parseFloat(ns.get(0));
+		float n2 = Float.parseFloat(ns.get(1));
+		
+		if (n1 > n2) {
+			ifState = true;
+			IO.println("True");
+		}
+		else {
+			ifState = false;
+			IO.println("False");
+		}
+	}
+	
 	/**
 	 * This is the handler that marshals the the HTML generator
 	 * @param i index to be passed to parser
@@ -653,9 +697,22 @@ public class LogicController {
 		
 		IO.println(ns.get(0));
 		Scanner s = new Scanner(System.in);
-		lastResult = s.nextFloat();
 		
-		v.insertVar(lastResult, Integer.parseInt(ns.get(1)));
+		if (s.hasNextFloat()) {
+			lastResult = s.nextFloat();
+			v.insertVar(lastResult, Integer.parseInt(ns.get(1)));
+		}
+		
+		else {
+			switch (s.nextLine()) {
+			case "`" :
+				v.insertVar(1, 100);
+				break;
+			case "." :
+				v.insertVar(1, 101);
+				break;
+			}
+		}
 	}
 	
 	/**
@@ -714,6 +771,15 @@ public class LogicController {
 		index = p.getIndex();
 		
 		Looper.execNewWhileLoop(cache);
+	}
+	
+	public void soupWhileNotLoop(int i, String cache) throws SoupSyntaxException, NumberFormatException, SoupVariableException {
+		ns = p.parse(i, cache);
+		
+		if (!lockIndex)
+		index = p.getIndex();
+		
+		Looper.execNewWhileNotLoop(cache);
 	}
 	
 	/**

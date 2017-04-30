@@ -12,6 +12,7 @@ import xyz.amtstl.soup.logic.LanguageDictionary;
 import xyz.amtstl.soup.logic.LogicController;
 import xyz.amtstl.soup.logic.Suppressor;
 import xyz.amtstl.soup.misc.IO;
+import xyz.amtstl.soup.output.FlagController;
 import xyz.amtstl.soup.output.HTMLGen;
 
 public class Soup {
@@ -31,10 +32,18 @@ public class Soup {
 		FileReader reader = null;
 		
 		try {
-			//reader = new FileReader(System.getProperty("user.dir") + "/" + args[0].toString());
+			reader = new FileReader(System.getProperty("user.dir") + "/" + args[0].toString());
 			//reader = new FileReader("C:/users/alex/desktop/github/soup/Files/program.soup");
-			reader = new FileReader("C:/Users/amigala/Desktop/Github/Soup/Files/program.soup");
+			//reader = new FileReader("C:/Users/amigala/Desktop/Github/Soup/Files/program.soup");
 			//reader = new FileReader("C:/Users/Alex/Desktop/Github/Soup/Files/program.soup");
+			
+			// pass flag
+			try {
+				FlagController.passFlag(args[1].toString().toLowerCase());
+			}
+			catch (Exception e) {
+				
+			}
 		}
 		catch (Exception ex) {
 			IO.println("File not found! Are you sure it is in this folder?");
@@ -57,7 +66,7 @@ public class Soup {
 						logic.soupAdd(i, cache);
 						i = logic.getIndex();
 						break;
-					case '-' : // subtract two numbers
+					case '_' : // subtract two numbers
 						logic.soupSubtract(i, cache);
 						i = logic.getIndex();
 						break;
@@ -143,14 +152,24 @@ public class Soup {
 						break;
 					case ']' :
 						break;
-					case '<' : // while loop
+					case 'W' : // while loop
 						logic.soupWhileLoop(i, cache);
 						i = logic.getIndex();
 						break;
-					case '>' :
+					case '<' : // less than if
+						logic.soupIfLessThan(i, cache);
+						i = logic.getIndex();
+						break;
+					case '>' : // gretaer than if
+						logic.soupIfGreaterThan(i, cache);
+						i = logic.getIndex();
 						break;
 					case 'X' : // breaks loop
 						logic.soupBreakLoop();
+						i = logic.getIndex();
+						break;
+					case 'N' : // while not
+						logic.soupWhileNotLoop(i, cache);
 						i = logic.getIndex();
 						break;
 					case '.' : // like a semicolon
@@ -159,8 +178,14 @@ public class Soup {
 						break;
 					case ')' :
 						break;
+					case '-' :
+						break;
 					default :
 						throw new SoupSyntaxException(cache.charAt(i), i+1, lineNumber);
+					}
+					
+					if (FlagController.getPrintIndex()) {
+						IO.println("Current Index: " + String.valueOf(i));
 					}
 				}
 			} catch (NullPointerException ex) {
@@ -185,7 +210,7 @@ public class Soup {
 		case '+' : // add two numbers
 			logic.soupAdd(i, cache);
 			break;
-		case '-' : // subtract two numbers
+		case '_' : // subtract two numbers
 			logic.soupSubtract(i, cache);
 			break;
 		case '*' : // multiply two numbers
@@ -254,13 +279,25 @@ public class Soup {
 		case 'P':
 			logic.soupPrint(i, cache);
 			break;
-		case '>' :
+		case '<' : // less than if
+			logic.soupIfLessThan(i, cache);
+			break;
+		case '>' : // gretaer than if
+			logic.soupIfGreaterThan(i, cache);
+			break;
+		case 'W' :
+			logic.soupWhileLoop(i, cache);
+			break;
+		case 'N' : // while not
+			logic.soupWhileNotLoop(i, cache);
 			break;
 		case 'X' : // breaks loop
 			logic.soupBreakLoop();
 			break;
 		case ')' :
 			break;
+		case '-' :
+		break;
 		default :
 			throw new SoupSyntaxException(cache.charAt(i), i+1, lineNumber);
 		}

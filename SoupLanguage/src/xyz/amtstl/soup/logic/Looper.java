@@ -76,4 +76,37 @@ public class Looper {
 			}
 		}
 	}
+	
+	public static void execNewWhileNotLoop(String cache) throws NumberFormatException, SoupVariableException, SoupSyntaxException {
+		groundState = Soup.logic.getIndex();
+		
+		int firstCondition = (int)Integer.valueOf((int) Float.parseFloat(Soup.logic.ns.get(0)));
+		int secondCondition = (int)Integer.valueOf((int) Float.parseFloat(Soup.logic.ns.get(1)));
+		
+		while ((float)firstCondition != (float)secondCondition) {
+			// parse the line
+			for (int i = groundState; i < cache.length(); i++) {
+				if (cache.charAt(i) == ';') {
+					Soup.checkToken(i, cache, cache.charAt(i));
+					i = Soup.logic.getIndex();
+				}
+				else {
+					Soup.checkToken(i, cache, cache.charAt(i));
+				}
+			}
+			
+			Soup.logic.setIndex(groundState);
+			Soup.logic.ns = Soup.logic.p.parse(0, cache);
+			firstCondition = (int)Integer.valueOf((int) Float.parseFloat(Soup.logic.ns.get(0)));
+			secondCondition = (int)Integer.valueOf((int) Float.parseFloat(Soup.logic.ns.get(1)));
+			
+			/*IO.printInt(firstCondition);
+			IO.printInt(secondCondition);*/
+			
+			if (isBreak) {
+				isBreak = false;
+				break;
+			}
+		}
+	}
 }

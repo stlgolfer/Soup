@@ -32,10 +32,13 @@ public class LanguageDictionary {
 		addToken('.');
 		addToken(' ');
 		addToken('>');
+		addToken('<');
+		addToken('W');
 		addToken('V');
 		addToken('P');
 		addToken('X');
 		addToken('=');
+		addToken('N');
 	}
 	
 	public static void addToken(char token) {

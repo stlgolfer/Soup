@@ -1,1 +1,0 @@
-java -jar "C:\Windows\System32\Soup.jar" %1
