@@ -23,6 +23,9 @@ public class InterVar {
 				catch (NumberFormatException ex) {
 					throw new SoupSyntaxException();
 				}
+				catch (StringIndexOutOfBoundsException ex) {
+					throw new SoupSyntaxException();
+				}
 			}
 			else {
 				temp.add(e);

@@ -10,7 +10,9 @@ import xyz.amtstl.soup.exceptions.SoupSyntaxException;
 import xyz.amtstl.soup.exceptions.SoupVariableException;
 import xyz.amtstl.soup.logic.LanguageDictionary;
 import xyz.amtstl.soup.logic.LogicController;
+import xyz.amtstl.soup.logic.Suppressor;
 import xyz.amtstl.soup.misc.IO;
+import xyz.amtstl.soup.output.FlagController;
 import xyz.amtstl.soup.output.HTMLGen;
 
 public class Soup {
@@ -31,9 +33,17 @@ public class Soup {
 		
 		try {
 			//reader = new FileReader(System.getProperty("user.dir") + "/" + args[0].toString());
-			//FileReader reader = new FileReader("C:/users/alex/desktop/github/soup/Files/program.soup");
+			//reader = new FileReader("C:/users/alex/desktop/github/soup/Files/program.soup");
 			reader = new FileReader("C:/Users/amigala/Desktop/Github/Soup/Files/program.soup");
 			//reader = new FileReader("C:/Users/Alex/Desktop/Github/Soup/Files/program.soup");
+			
+			// pass flag
+			try {
+				FlagController.passFlag(args[1].toString().toLowerCase());
+			}
+			catch (Exception e) {
+				
+			}
 		}
 		catch (Exception ex) {
 			IO.println("File not found! Are you sure it is in this folder?");
@@ -56,7 +66,7 @@ public class Soup {
 						logic.soupAdd(i, cache);
 						i = logic.getIndex();
 						break;
-					case '-' : // subtract two numbers
+					case '_' : // subtract two numbers
 						logic.soupSubtract(i, cache);
 						i = logic.getIndex();
 						break;
@@ -69,12 +79,16 @@ public class Soup {
 						i = logic.getIndex();
 						break;
 					case '^' : // pow one number
-						logic.soupPow(i, cache);	
+						logic.soupPow(i, cache);
 						i = logic.getIndex();
 						break;
 					case '#' : // base 10 logarithm
-						logic.soupLog(i, cache);	
+						logic.soupLog(i, cache);
 						i = logic.getIndex();
+						break;
+					case '@' : // break soup
+						IO.println("Soup exiting with code 2 (requested per program)");
+						System.exit(0);
 						break;
 					case 'A' : // area
 						logic.soupArea(i, cache);
@@ -140,14 +154,42 @@ public class Soup {
 						logic.soupForLoop(i, cache);
 						i = logic.getIndex();
 						break;
-					case '.' : // like a semicolon
-						break;
 					case ']' :
+						break;
+					case 'W' : // while loop
+						logic.soupWhileLoop(i, cache);
+						i = logic.getIndex();
+						break;
+					case '<' : // less than if
+						logic.soupIfLessThan(i, cache);
+						i = logic.getIndex();
+						break;
+					case '>' : // gretaer than if
+						logic.soupIfGreaterThan(i, cache);
+						i = logic.getIndex();
+						break;
+					case 'X' : // breaks loop
+						logic.soupBreakLoop();
+						i = logic.getIndex();
+						break;
+					case 'N' : // while not
+						logic.soupWhileNotLoop(i, cache);
+						i = logic.getIndex();
+						break;
+					case '.' : // like a semicolon
 						break;
 					case ' ': // space nullifier
 						break;
+					case ')' :
+						break;
+					case '-' :
+						break;
 					default :
 						throw new SoupSyntaxException(cache.charAt(i), i+1, lineNumber);
+					}
+					
+					if (FlagController.getPrintIndex()) {
+						IO.println("Current Index: " + String.valueOf(i));
 					}
 				}
 			} catch (NullPointerException ex) {
@@ -172,8 +214,12 @@ public class Soup {
 		case '+' : // add two numbers
 			logic.soupAdd(i, cache);
 			break;
-		case '-' : // subtract two numbers
+		case '_' : // subtract two numbers
 			logic.soupSubtract(i, cache);
+			break;
+		case '@' : // break soup
+			IO.println("Soup exiting with code 2 (requested per program)");
+			System.exit(0);
 			break;
 		case '*' : // multiply two numbers
 			logic.soupMultiply(i, cache);
@@ -241,6 +287,25 @@ public class Soup {
 		case 'P':
 			logic.soupPrint(i, cache);
 			break;
+		case '<' : // less than if
+			logic.soupIfLessThan(i, cache);
+			break;
+		case '>' : // gretaer than if
+			logic.soupIfGreaterThan(i, cache);
+			break;
+		case 'W' :
+			logic.soupWhileLoop(i, cache);
+			break;
+		case 'N' : // while not
+			logic.soupWhileNotLoop(i, cache);
+			break;
+		case 'X' : // breaks loop
+			logic.soupBreakLoop();
+			break;
+		case ')' :
+			break;
+		case '-' :
+		break;
 		default :
 			throw new SoupSyntaxException(cache.charAt(i), i+1, lineNumber);
 		}
@@ -260,6 +325,23 @@ public class Soup {
 			if (cache.charAt(i) == lang.languageTokens.get(e)) {
 				parseFunc(c, i, cache);
 				//indexCache = logic.getIndex();
+			}
+		}
+	}
+	
+	public static void checkToken(int i, String cache, char c, Suppressor s) throws NumberFormatException, SoupVariableException, SoupSyntaxException {
+		for (int e = 0; e < lang.languageTokens.size(); e++) {
+			if (cache.charAt(i) == lang.languageTokens.get(e)) {
+				if (!s.isSuppressed()) {
+					parseFunc(c, i, cache);
+				}
+				else if (s.isSuppressed() && i != s.getContinueIndex()) {
+					// do nothing
+				}
+				else if (s.isSuppressed() && i == s.getContinueIndex()) {
+					s.setSuppression(false);
+					parseFunc(c, i, cache);
+				}
 			}
 		}
 	}

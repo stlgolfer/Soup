@@ -44,9 +44,10 @@ public class HTMLGen {
 	 */
 	public static void generateOutputDocumentation(String title, String description) throws IOException {
 		try {
-		//FileWriter f = new FileWriter(System.getProperty("user.dir" + "/SoupNoodle.html"));
+		FileWriter f = new FileWriter(System.getProperty("user.dir") + "\\" + "SoupNoodle.html");
 		//FileWriter f = new FileWriter("c:/users/amigala/desktop/noodle.html");
-		FileWriter f = new FileWriter("c:/users/alex/desktop/noodle.html");
+		//FileWriter f = new FileWriter("c:/users/alex/desktop/noodle.html");
+		//IO.println(System.getProperty("user.dir" + "\\" + "SoupNoodle.html");
 		
 			f.write("<style>h1 {	color: blue;}p {	color: red;}div {	display: flex;	align-items: center;	justify-content: center;	flex-direction: column;}</style><title>");
 			f.write(title);
@@ -74,7 +75,8 @@ public class HTMLGen {
 	 */
 	private static void writeVars(FileWriter j) throws IOException {
 		for (float a : VariableHandler.getVarStore()) {
-			j.write("<li>" + String.valueOf(a) + "</li>");
+			if (a != 0.0)
+				j.write("<li>" + String.valueOf(a) + "</li>");
 		}
 	}
 	
