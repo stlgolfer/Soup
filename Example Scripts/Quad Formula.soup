@@ -1,0 +1,26 @@
+I{Enter A:,0}
+I{Enter B:,1}
+I{Enter C:,2}
+
+// discriminant (3)
+^{v1,2}:{3}
+*{4,v0,v2}:{4}
+_{v3,v4}:{3}
+&{v3}:{3}
+
+// 4a (4)
+*{4,v0}:{4}
+
+// -b (5)
+*{-1,v1}:{5}
+
+// master equation (6)
++{v5,v3}:{6}
+%{v6,2}:{6}
+
+// negative side equation (7)
+_{v5,v3}:{7}
+%{v7,2}:{7}
+
+P{Answer on the positive side is: ,0}.V{6}
+P{Answer on the negative side is: ,0}.V{7}
