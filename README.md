@@ -145,7 +145,7 @@ Token | Operation | Notes
 Soup can do for loops, while loops, and while not loops. To break a loop, use `X`
 
 ## For Loops
-For loops will increment the first argument until (about) the second argument is equal to it
+For loops will increment the first argument until (about) the second argument is equal to it. Now, like a regular for loop, you can access the current index in which the loop is on. The index is stored in variable position 1000. Remember, to recall: `V{1000}` for interpolation (example): `[{0,5}].+{v1000,4}` **however,** you can't set this variable, only access it 
 
 ### Example
 `[{0,3}].P{hello,1}` -> This will print the "hello" ~3 times
