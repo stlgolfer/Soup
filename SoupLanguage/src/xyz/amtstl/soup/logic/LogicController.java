@@ -11,6 +11,7 @@ import xyz.amtstl.soup.Parser;
 import xyz.amtstl.soup.Soup;
 import xyz.amtstl.soup.exceptions.SoupSyntaxException;
 import xyz.amtstl.soup.exceptions.SoupVariableException;
+import xyz.amtstl.soup.interpolation.FunctionInterpolator;
 import xyz.amtstl.soup.misc.IO;
 import xyz.amtstl.soup.output.HTMLGen;
 
@@ -519,6 +520,14 @@ public class LogicController {
 		}
 	}
 	
+	/**
+	 * Checks to see if the first number is less than the second number
+	 * @param i index to be passed to parser
+	 * @param cache line of code from main loop
+	 * @throws NumberFormatException
+	 * @throws SoupVariableException
+	 * @throws SoupSyntaxException
+	 */
 	public void soupIfLessThan(int i, String cache) throws NumberFormatException, SoupVariableException, SoupSyntaxException {
 		ns = p.parse(i, cache);
 		Validator.validateNumbers(ns);
@@ -541,6 +550,14 @@ public class LogicController {
 		}
 	}
 	
+	/**
+	 * Checks to see if the first number is greater than the second number
+	 * @param i index to be passed to parser
+	 * @param cache line of code from main loop
+	 * @throws NumberFormatException
+	 * @throws SoupVariableException
+	 * @throws SoupSyntaxException
+	 */
 	public void soupIfGreaterThan(int i, String cache) throws NumberFormatException, SoupVariableException, SoupSyntaxException {
 		ns = p.parse(i, cache);
 		Validator.validateNumbers(ns);
@@ -621,14 +638,10 @@ public class LogicController {
 		lockIndex = true;
 		
 		if (ifState) {
-			for (int e = 0; e < True.length(); e++) {
-				Soup.checkToken(e, True, True.charAt(e));
-			}
+			FunctionInterpolator.interpolateString(True);
 		}
 		else {
-			for (int e = 0; e < False.length(); e++) {
-				Soup.checkToken(e, False, False.charAt(e));
-			}
+			FunctionInterpolator.interpolateString(False);
 		}
 		
 		lockIndex = false;

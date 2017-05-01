@@ -32,9 +32,9 @@ public class Soup {
 		FileReader reader = null;
 		
 		try {
-			reader = new FileReader(System.getProperty("user.dir") + "/" + args[0].toString());
+			//reader = new FileReader(System.getProperty("user.dir") + "/" + args[0].toString());
 			//reader = new FileReader("C:/users/alex/desktop/github/soup/Files/program.soup");
-			//reader = new FileReader("C:/Users/amigala/Desktop/Github/Soup/Files/program.soup");
+			reader = new FileReader("C:/Users/amigala/Desktop/Github/Soup/Files/program.soup");
 			//reader = new FileReader("C:/Users/Alex/Desktop/Github/Soup/Files/program.soup");
 			
 			// pass flag
@@ -85,6 +85,10 @@ public class Soup {
 					case '#' : // base 10 logarithm
 						logic.soupLog(i, cache);
 						i = logic.getIndex();
+						break;
+					case '@' : // break soup
+						IO.println("Soup exiting with code 2 (requested per program)");
+						System.exit(0);
 						break;
 					case 'A' : // area
 						logic.soupArea(i, cache);
@@ -212,6 +216,10 @@ public class Soup {
 			break;
 		case '_' : // subtract two numbers
 			logic.soupSubtract(i, cache);
+			break;
+		case '@' : // break soup
+			IO.println("Soup exiting with code 2 (requested per program)");
+			System.exit(0);
 			break;
 		case '*' : // multiply two numbers
 			logic.soupMultiply(i, cache);
