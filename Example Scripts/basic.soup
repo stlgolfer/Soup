@@ -1,6 +1,6 @@
 +{3,3} // this will add the two numbers 3 and 3 to get six
 
--{6,5} // this will subtract 5 from 6
+_{6,5} // this will subtract 5 from 6
 
 %{5,5} // this will divide 5/5
 
@@ -9,5 +9,3 @@
 ^{2,3} // this will raise 2 by the exponent 3
 
 #{4,5} // logarithm exponent 4 base of 5
-
-@{1,2,3} // quadratic forumla (can't be stored) returns NaN if nonreal answer is found
