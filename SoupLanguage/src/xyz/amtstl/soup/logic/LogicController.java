@@ -335,7 +335,7 @@ public class LogicController {
 			lastResult = Float.parseFloat(ns.get(1)) * Float.parseFloat(ns.get(2));
 			IO.printFloat(lastResult);
 			break;
-		case "tri" : // traingle
+		case "tri" : // triangle
 			lastResult = Float.parseFloat(ns.get(1)) * Float.parseFloat(ns.get(2))/2;
 			IO.printFloat(lastResult);
 			break;

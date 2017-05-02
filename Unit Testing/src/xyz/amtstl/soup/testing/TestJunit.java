@@ -97,4 +97,26 @@ public class TestJunit {
 		 * ARC FUNCTIONS ARE BROKEN
 		 */
 	}
+	
+	@Test
+	public void testSoupArea() throws NumberFormatException, SoupVariableException, SoupSyntaxException {
+		soup.logic.soupArea(0, "A{s,4,5}");
+		
+		float square = soup.logic.getLastResult();
+		Assert.assertEquals(20.0, square, 0.0);
+		
+		// triangle
+		soup.logic.soupArea(0, "A{tri,4,5}");
+		
+		float triangle = soup.logic.getLastResult();
+		Assert.assertEquals(10.0, triangle, 0.0);
+		
+		
+		
+		// trapezoid
+		soup.logic.soupArea(0, "A{tra,4,6,7}");
+		
+		float trapezoid = soup.logic.getLastResult();
+		Assert.assertEquals(35.0, trapezoid, 0.0);
+	}
 }
