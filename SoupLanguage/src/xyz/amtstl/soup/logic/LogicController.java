@@ -340,7 +340,10 @@ public class LogicController {
 			IO.printFloat(lastResult);
 			break;
 		case "tra" : // trapezoid
-			lastResult = ((Float.parseFloat(ns.get(1)) + Float.parseFloat(ns.get(2))/2) * Float.parseFloat(ns.get(3)));
+			float n1 = Float.parseFloat(ns.get(1));
+			float n2 = Float.parseFloat(ns.get(2));
+			float n3 = Float.parseFloat(ns.get(3));
+			lastResult = ((n1 + n2)/2) * n3;			
 			IO.printFloat(lastResult);
 			break;
 		default :

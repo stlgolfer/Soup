@@ -111,12 +111,56 @@ public class TestJunit {
 		float triangle = soup.logic.getLastResult();
 		Assert.assertEquals(10.0, triangle, 0.0);
 		
-		
-		
 		// trapezoid
-		soup.logic.soupArea(0, "A{tra,4,6,7}");
+		soup.logic.soupArea(0, "A{tra,1,5,7}");
 		
 		float trapezoid = soup.logic.getLastResult();
-		Assert.assertEquals(35.0, trapezoid, 0.0);
+		Assert.assertEquals(21.0, trapezoid, 0.0);
+	}
+	
+	@Test
+	public void testSoupAbs() throws NumberFormatException, SoupVariableException, SoupSyntaxException {
+		soup.logic.soupAbs(0, "|{-347.4}");
+		
+		/*
+		 * note that abs is accurate to 0.1
+		 */
+		float abs = soup.logic.getLastResult();
+		Assert.assertEquals(347.4, abs, 0.1);
+	}
+	
+	@Test
+	public void testSoupRound() throws NumberFormatException, SoupVariableException, SoupSyntaxException {
+		soup.logic.soupRound(0, "?{5.6}");
+		
+		/*
+		 * 100 percent accuracy
+		 */
+		float round = soup.logic.getLastResult();
+		Assert.assertEquals(6, round, 0.0);
+	}
+	
+	@Test
+	public void testSoupSquareRoot() throws NumberFormatException, SoupVariableException, SoupSyntaxException {
+		soup.logic.soupSquareRoot(0, "&{5}");
+		
+		float squareroot = soup.logic.getLastResult();
+		
+		Assert.assertEquals(2.236067977, squareroot, 0.01);
+	}
+	
+	@Test
+	public void testSoupRandom() throws NumberFormatException, SoupVariableException, SoupSyntaxException {
+		soup.logic.soupRandomNum(0, "R{0,10}");
+		
+		float randnum = soup.logic.getLastResult();
+		boolean success = false;
+		
+		if (randnum < 10 && randnum > 0) {
+			IO.println("RANDNUM: " + String.valueOf(randnum));
+			success = true;
+		}
+		
+		Assert.assertTrue(success);
 	}
 }
