@@ -163,4 +163,17 @@ public class TestJunit {
 		
 		Assert.assertTrue(success);
 	}
+	
+	@Test
+	public void testSoupIf() throws NumberFormatException, SoupVariableException, SoupSyntaxException {
+		soup.logic.soupIf(0, "={4,4}");
+		
+		Assert.assertTrue(soup.logic.ifState);
+		
+		soup.logic.v.insertVar((float) 4.3, 10);
+		
+		soup.logic.soupIf(0, "={v10,3}");
+		
+		Assert.assertFalse(soup.logic.ifState);
+	}
 }
