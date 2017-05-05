@@ -3,6 +3,9 @@ package xyz.amtstl.soup.testing;
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
+
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -14,6 +17,13 @@ import xyz.amtstl.soup.misc.IO;
 
 public class TestJunit {
 	private static Soup soup = new Soup();
+	private static ByteArrayOutputStream stream;
+	private static PrintStream printingStream;
+	
+	public TestJunit() {
+		stream = new ByteArrayOutputStream();
+		printingStream = new PrintStream(stream);
+	}
 	
 	@Test
 	public void testSoupAdd() throws NumberFormatException, SoupVariableException, SoupSyntaxException {
@@ -175,5 +185,63 @@ public class TestJunit {
 		soup.logic.soupIf(0, "={v10,3}");
 		
 		Assert.assertFalse(soup.logic.ifState);
+	}
+	
+	@Test
+	public void soupTestIfLessThan() throws NumberFormatException, SoupVariableException, SoupSyntaxException {
+		soup.logic.soupIfLessThan(0, "<{3,5}");
+		
+		Assert.assertTrue(soup.logic.ifState);
+		
+		soup.logic.soupIfLessThan(0, "<{6,5}");
+		
+		Assert.assertFalse(soup.logic.ifState);
+	}
+	
+	@Test
+	public void soupTestIfGreaterThan() throws NumberFormatException, SoupVariableException, SoupSyntaxException {
+		soup.logic.soupIfGreaterThan(0, ">{5,4}");
+		
+		Assert.assertTrue(soup.logic.ifState);
+		
+		soup.logic.soupIfGreaterThan(0, ">{3,4}");
+		
+		Assert.assertFalse(soup.logic.ifState);
+	}
+	
+	@Test
+	public void testSoupIfDo() throws NumberFormatException, SoupVariableException, SoupSyntaxException {
+		soup.logic.ifState = true;
+		
+		soup.logic.soupIfDo(0, ";(+{5,6}!_{5,4})");
+		
+		Assert.assertEquals(11.0, soup.logic.getLastResult(), 0.0);
+		
+		soup.logic.ifState = false;
+		
+		soup.logic.soupIfDo(0, ";(+{5,6}!_{5,4})");
+		
+		Assert.assertEquals(1.0, soup.logic.getLastResult(), 0.0);
+	}
+	
+	@Test
+	public void soupRetrieveVar() throws NumberFormatException, SoupVariableException, SoupSyntaxException {
+		soup.logic.soupStoreSingle(0, "~{4,100}");
+		IO.println("Requested var is 4 at index:100");
+		IO.println("===Retrieved Var===");
+		soup.logic.soupRetrieveVar(0, "V{100}");
+	}
+	
+	@Test
+	public void soupStoreVar() throws NumberFormatException, SoupVariableException, SoupSyntaxException {
+		soup.logic.soupSubtract(0, "_{8,0.8}");
+		soup.logic.soupStoreVar(0, ":{200}");
+	}
+	
+	@Test
+	public void soupStoreSingle() throws NumberFormatException, SoupVariableException, SoupSyntaxException {
+		soup.logic.soupStoreSingle(0, "~{34.6,123}");
+		
+		Assert.assertEquals(34.6, soup.logic.v.getVar(123), 0.1);
 	}
 }
