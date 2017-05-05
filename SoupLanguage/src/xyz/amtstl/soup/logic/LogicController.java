@@ -814,6 +814,9 @@ public class LogicController {
 		index = p.getIndex();
 	}
 	
+	/**
+	 * Breaks a current loop
+	 */
 	public void soupBreakLoop() {
 		Looper.isBreak = true;
 		index += 1;
@@ -843,7 +846,8 @@ public class LogicController {
 	 * @param newIndex the new index
 	 */
 	public void setIndex(int newIndex) {
-		p.setIndex(newIndex);
+		// p.setIndex(newIndex);
+		index = newIndex;
 	}
 	
 	/**

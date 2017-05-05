@@ -13,6 +13,7 @@ import junit.framework.TestCase;
 import xyz.amtstl.soup.Soup;
 import xyz.amtstl.soup.exceptions.SoupSyntaxException;
 import xyz.amtstl.soup.exceptions.SoupVariableException;
+import xyz.amtstl.soup.logic.Looper;
 import xyz.amtstl.soup.misc.IO;
 
 public class TestJunit {
@@ -88,24 +89,32 @@ public class TestJunit {
 		// sine
 		soup.logic.soupTrig(0, "${s,3}");
 		float sine = soup.logic.getLastResult();
-		
 		Assert.assertEquals(0.1411200081, sine, 0.1000);
 		
 		// cosine
 		soup.logic.soupTrig(0, "${c,3}");
 		float cosine = soup.logic.getLastResult();
-		
 		Assert.assertEquals(-0.9899924966, cosine, 0.1000);
 		
 		// tangent
 		soup.logic.soupTrig(0, "${t,3}");
 		float tangent = soup.logic.getLastResult();
-				
 		Assert.assertEquals(-0.1425465431, tangent, 0.1000);
 		
-		/*
-		 * ARC FUNCTIONS ARE BROKEN
-		 */
+		// arcsine
+		soup.logic.soupTrig(0, "${arcs,0.3}");
+		float arcsine = soup.logic.getLastResult();
+		Assert.assertEquals(0.304692654, arcsine, 0.001);
+		
+		// arccosine
+		soup.logic.soupTrig(0, "${arcc,0.3}");
+		float arccosine = soup.logic.getLastResult();
+		Assert.assertEquals(1.266103673, arccosine, 0.001);
+		
+		// arctangent
+		soup.logic.soupTrig(0, "${arct,0.3}");
+		float arctangent = soup.logic.getLastResult();
+		Assert.assertEquals(0.2914567945, arctangent, 0.001);
 	}
 	
 	@Test
@@ -243,5 +252,61 @@ public class TestJunit {
 		soup.logic.soupStoreSingle(0, "~{34.6,123}");
 		
 		Assert.assertEquals(34.6, soup.logic.v.getVar(123), 0.1);
+	}
+	
+	/*
+	 * NEED TO TEST THE LOOPS
+	 */
+	
+	@Test
+	public void testSoupRefreshNumbers() throws NumberFormatException, SoupVariableException, SoupSyntaxException {
+		soup.logic.soupRefreshNumbers(0, "+{3,4,6,7,78,90,14300}");
+		
+		String[] reals = new String[] {"3","4","6","7","78","90","14300"};
+		
+		for (int e = 0; e < soup.logic.ns.size(); e++) {
+			Assert.assertEquals(reals[e], soup.logic.ns.get(e));
+		}
+	}
+	
+	@Test
+	public void testSoupBreakLoop() {
+		soup.logic.soupBreakLoop();
+		
+		Assert.assertTrue(Looper.isBreak);
+	}
+	
+	@Test
+	public void testSoupComment() throws NumberFormatException, SoupVariableException {
+		String test = "+{5,4} // this is a comment";
+		soup.logic.soupComment(0, test);
+		
+		Assert.assertEquals(test.length(), soup.logic.getIndex());
+	}
+	
+	@Test
+	public void testSetIndex() {
+		soup.logic.setIndex(0);
+		soup.logic.setIndex(5);
+		
+		Assert.assertEquals(5, soup.logic.getIndex());
+	}
+	
+	/*
+	 * Soup functions
+	 */
+	
+	@Test
+	public void testParseFunc() throws NumberFormatException, SoupVariableException, SoupSyntaxException {
+		soup.parseFunc('_', 0, "_{5.3,5.2}");
+		
+		Assert.assertEquals(0.1, soup.logic.getLastResult(), 0.1);
+	}
+	
+	@Test
+	public void checkToken() throws NumberFormatException, SoupVariableException, SoupSyntaxException {
+		soup.checkToken(0, "*{200,150}", '*');
+		
+		Assert.assertEquals(30000, soup.logic.getLastResult(), 0.0);
 	}
 }
