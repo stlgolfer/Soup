@@ -16,12 +16,12 @@ import xyz.amtstl.soup.exceptions.SoupVariableException;
 import xyz.amtstl.soup.logic.Looper;
 import xyz.amtstl.soup.misc.IO;
 
-public class TestJunit {
+public class TestLogicControllerSoup {
 	private static Soup soup = new Soup();
 	private static ByteArrayOutputStream stream;
 	private static PrintStream printingStream;
 	
-	public TestJunit() {
+	public TestLogicControllerSoup() {
 		stream = new ByteArrayOutputStream();
 		printingStream = new PrintStream(stream);
 	}
@@ -253,10 +253,6 @@ public class TestJunit {
 		
 		Assert.assertEquals(34.6, soup.logic.v.getVar(123), 0.1);
 	}
-	
-	/*
-	 * NEED TO TEST THE LOOPS
-	 */
 	
 	@Test
 	public void testSoupRefreshNumbers() throws NumberFormatException, SoupVariableException, SoupSyntaxException {
