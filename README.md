@@ -199,7 +199,7 @@ How to make and run a Soup file
 1) Make a new file with the .soup extension
 2) Write code in that file
 3) Open up a new Windows command line window in the same directory
-4) Type `soup {filename} {flags if you have them}`
+4) Type `soup {filename} {flags if you have them}` or `soup "{some soup code}"`
 
 ## Flags
 Flag table
