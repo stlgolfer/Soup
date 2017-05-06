@@ -10,7 +10,7 @@ public class LanguageDictionary {
 		languageTokens = new ArrayList<Character>();
 		
 		addToken('+');
-		addToken('-');
+		addToken('_');
 		addToken('*');
 		addToken('%');
 		addToken('^');

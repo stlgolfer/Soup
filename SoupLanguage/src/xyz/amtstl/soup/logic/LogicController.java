@@ -335,12 +335,15 @@ public class LogicController {
 			lastResult = Float.parseFloat(ns.get(1)) * Float.parseFloat(ns.get(2));
 			IO.printFloat(lastResult);
 			break;
-		case "tri" : // traingle
+		case "tri" : // triangle
 			lastResult = Float.parseFloat(ns.get(1)) * Float.parseFloat(ns.get(2))/2;
 			IO.printFloat(lastResult);
 			break;
 		case "tra" : // trapezoid
-			lastResult = ((Float.parseFloat(ns.get(1)) + Float.parseFloat(ns.get(2))/2) * Float.parseFloat(ns.get(3)));
+			float n1 = Float.parseFloat(ns.get(1));
+			float n2 = Float.parseFloat(ns.get(2));
+			float n3 = Float.parseFloat(ns.get(3));
+			lastResult = ((n1 + n2)/2) * n3;			
 			IO.printFloat(lastResult);
 			break;
 		default :
@@ -811,6 +814,9 @@ public class LogicController {
 		index = p.getIndex();
 	}
 	
+	/**
+	 * Breaks a current loop
+	 */
 	public void soupBreakLoop() {
 		Looper.isBreak = true;
 		index += 1;
@@ -840,7 +846,8 @@ public class LogicController {
 	 * @param newIndex the new index
 	 */
 	public void setIndex(int newIndex) {
-		p.setIndex(newIndex);
+		// p.setIndex(newIndex);
+		index = newIndex;
 	}
 	
 	/**

@@ -17,6 +17,7 @@ import xyz.amtstl.soup.output.HTMLGen;
 
 public class Soup {
 	public static int lineNumber = 1;
+	private static boolean isOneLine = false;
 	
 	// controllers
 	public static LogicController logic = new LogicController();
@@ -30,32 +31,48 @@ public class Soup {
 	 */
 	public static void main(String args[]) throws Exception {		
 		FileReader reader = null;
+		BufferedReader buff = null;
 		
-		try {
-			//reader = new FileReader(System.getProperty("user.dir") + "/" + args[0].toString());
-			//reader = new FileReader("C:/users/alex/desktop/github/soup/Files/program.soup");
-			reader = new FileReader("C:/Users/amigala/Desktop/Github/Soup/Files/program.soup");
-			//reader = new FileReader("C:/Users/Alex/Desktop/Github/Soup/Files/program.soup");
-			
-			// pass flag
+		if (args[0].contains(".soup")) {
+		
 			try {
-				FlagController.passFlag(args[1].toString().toLowerCase());
-			}
-			catch (Exception e) {
+				reader = new FileReader(System.getProperty("user.dir") + "/" + args[0].toString());
+				//reader = new FileReader("C:/users/alex/desktop/github/soup/Files/program.soup");
+				//reader = new FileReader("C:/Users/amigala/Desktop/Github/Soup/Files/program.soup");
+				//reader = new FileReader("C:/Users/Alex/Desktop/Github/Soup/Files/program.soup");
+			
+				// pass flag
+				try {
+					FlagController.passFlag(args[1].toString().toLowerCase());
+				}
+				catch (Exception e) {
 				
+				}
 			}
-		}
-		catch (Exception ex) {
-			IO.println("File not found! Are you sure it is in this folder?");
-			System.exit(0);
-		}
-		BufferedReader buff = new BufferedReader(reader);
+			catch (Exception ex) {
+				IO.println("File not found! Are you sure it is in this folder?");
+				System.exit(0);
+			}
+			buff = new BufferedReader(reader);
+			}
+			else {
+				FlagController.execSoup(args[0]);
+			
+				isOneLine = true;
+			
+				try {
+					FlagController.passFlag(args[1].toString().toLowerCase());
+				}
+				catch (Exception e) {
+				
+				}
+			}
 		
 		/*
 		 * ALWAYS USE BREAKS WHEN ADDING NEW TOKENS AND FUNCTIONS
 		 * 
 		 */
-		while (true) {
+		while (true && isOneLine == false) {
 			final String cache = buff.readLine();
 			
 			try {
