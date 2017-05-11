@@ -1,5 +1,5 @@
 # Soup
-*A Java Interpreted Langauge*
+*A language interpreted through Java to make computing easier and more efficient*
 
 # Basic Functions (Poly-Argumented Functions)
 Soup can do these basic math functions along with other functions. Functions will continuously calculate the arguments left to right.
@@ -106,7 +106,7 @@ For example:
 
 ```
 ~{3,0} // stores '3' in index 0
-+{v0,3} // v will substitute the recalled variable at index 0 and add it with 3 to get the answer. note that the interpolated 'v' is lowercase
++{v0,3} // v0 will substitute the recalled variable at index 0 and add it with 3 to get the answer. note that the interpolated 'v' is lowercase
 ```
 
 # Getting User Input
@@ -122,7 +122,7 @@ User's inputs can be indentified as wildcards
 
 Token | Result
 --- | ---
-{tilda key, but not holding tilday key} | sets variable in position 100 to 1
+{grave} | sets variable in position 100 to 1
 `.` | sets variable in position 101 to 1
 
 ### Applied meaning
@@ -199,7 +199,8 @@ How to make and run a Soup file
 1) Make a new file with the .soup extension
 2) Write code in that file
 3) Open up a new Windows command line window in the same directory
-4) Type `soup {filename} {flags if you have them}` or `soup "{some soup code}"`
+4) Type `soup {filename} {flags if you have them}` or `soup "{some soup code}"⁰`
+*⁰ passing soup functions this way is only designed as a quick test; some functions might not work properly this way*
 
 ## Flags
 Flag table
@@ -207,10 +208,11 @@ Flag table
 Flag | Function
 -- | --
 `-i` | prints the current index of the main loop (excludes loop functions)
+`""` | pass soup code from within the quotations to execute some Soup code
 
 # Important Things to Remember
 - Sometimes you can't always do everything in one function, so break it up and store the results
-- Soup doesn't like it when you have spaces between paramaters
+- Soup doesn't like it when you have spaces between paramaters (or extra commas)
 - Remember that variables can be interpolated with other functions, so use that to your advantage
 - Don't use caps unless you are using a function
 - Don't put soup function indentifiers inside of functions! Example `[{0,3}].P{Hello,1}` -> **THIS WILL CRASH**
