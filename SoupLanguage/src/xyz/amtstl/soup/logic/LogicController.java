@@ -9,6 +9,7 @@ import java.util.concurrent.ThreadLocalRandom;
 
 import xyz.amtstl.soup.Parser;
 import xyz.amtstl.soup.Soup;
+import xyz.amtstl.soup.engine.RandomEngine;
 import xyz.amtstl.soup.exceptions.SoupSyntaxException;
 import xyz.amtstl.soup.exceptions.SoupVariableException;
 import xyz.amtstl.soup.interpolation.FunctionInterpolator;
@@ -56,12 +57,18 @@ public class LogicController {
 	private static boolean lockIndex = false;
 	
 	/**
+	 * Current RandomEngine thread
+	 */
+	private static RandomEngine rnd;
+	
+	/**
 	 * Constructor takes no args
 	 */
 	public LogicController() {
 		p = new Parser();
 		v = new VariableHandler();
 		ns = new ArrayList<String>();
+		rnd = new RandomEngine();
 		VariableHandler.initiateVar();
 	}
 	
@@ -425,10 +432,12 @@ public class LogicController {
 		Validator.validateNumbers(ns);
 		
 		if (!lockIndex)
-		index = p.getIndex();
+			index = p.getIndex();
 		
-		Random rnd = new Random();
-		lastResult = ThreadLocalRandom.current().nextInt(Integer.valueOf((int) Float.parseFloat(ns.get(0))), Integer.valueOf((int) Float.parseFloat(ns.get(1))));
+		int param1 = Integer.parseInt(ns.get(0));
+		int param2 = Integer.parseInt(ns.get(1));
+		
+		lastResult = rnd.getNumberRange(param1, param2);
 		IO.printFloat(lastResult);
 		HTMLGen.getTotalOutputs().add(lastResult);
 	}
