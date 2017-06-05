@@ -5,6 +5,11 @@ import xyz.amtstl.soup.Soup;
 public class SoupSyntaxException extends Exception {
 	
 	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
 	 * Thrown when there is an issue with parameters
 	 */
 	public SoupSyntaxException() {

@@ -5,10 +5,10 @@ import java.util.List;
 
 import xyz.amtstl.soup.exceptions.SoupSyntaxException;
 import xyz.amtstl.soup.exceptions.SoupVariableException;
-import xyz.amtstl.soup.misc.IO;
 
 public class InterVar {
 	private static List<String> temp = new ArrayList<String>();
+	private static VariableHandler v = new VariableHandler();
 	
 	public static void parseInternalVar(String[] numbers) throws NumberFormatException, SoupVariableException, SoupSyntaxException {
 		temp = new ArrayList<String>();
@@ -18,7 +18,7 @@ public class InterVar {
 			if (e.charAt(0) == 'v') {
 				try {
 					int indexReq = Integer.parseInt(e.substring(1));
-					temp.add(String.valueOf(VariableHandler.getVar(indexReq)));
+					temp.add(String.valueOf(v.getVar(indexReq)));
 				}
 				catch (NumberFormatException ex) {
 					throw new SoupSyntaxException();

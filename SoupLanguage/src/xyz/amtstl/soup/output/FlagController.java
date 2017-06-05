@@ -25,7 +25,7 @@ public class FlagController {
 		for (int i = 0; i < cache.length(); i++) {
 			if (cache.charAt(i) == ';') {
 				Soup.checkToken(i, cache, cache.charAt(i));
-				i = Soup.logic.getIndex();
+				i = Soup.getMainLogic().getIndex();
 			}
 			else {
 				Soup.checkToken(i, cache, cache.charAt(i));

@@ -3,9 +3,7 @@ package xyz.amtstl.soup.logic;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 import java.util.Scanner;
-import java.util.concurrent.ThreadLocalRandom;
 
 import xyz.amtstl.soup.Parser;
 import xyz.amtstl.soup.Soup;
@@ -69,7 +67,7 @@ public class LogicController {
 		v = new VariableHandler();
 		ns = new ArrayList<String>();
 		rnd = new RandomEngine();
-		VariableHandler.initiateVar();
+		v.initiateVar();
 	}
 	
 	/*
@@ -778,7 +776,7 @@ public class LogicController {
 		
 		if (!lockIndex)
 		index = p.getIndex() + 1;
-		Looper.execNewForLoop((int)Integer.valueOf((int) Float.parseFloat(Soup.logic.ns.get(0))), (int)Integer.valueOf((int) Float.parseFloat(Soup.logic.ns.get(1))), cache, " ");
+		Looper.execNewForLoop((int)Integer.valueOf((int) Float.parseFloat(ns.get(0))), (int)Integer.valueOf((int) Float.parseFloat(ns.get(1))), cache, " ");
 	}
 	
 	/**

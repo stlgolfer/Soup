@@ -42,7 +42,11 @@ public class LanguageDictionary {
 		addToken('@');
 	}
 	
-	public static void addToken(char token) {
+	public void addToken(char token) {
 		languageTokens.add(token);
+	}
+	
+	public List<Character> getDictionary() {
+		return languageTokens;
 	}
 }

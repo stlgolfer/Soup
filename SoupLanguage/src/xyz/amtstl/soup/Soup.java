@@ -1,12 +1,8 @@
 package xyz.amtstl.soup;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.IOException;
-import java.util.List;
 
-import xyz.amtstl.soup.engine.RandomEngine;
 import xyz.amtstl.soup.exceptions.SoupSyntaxException;
 import xyz.amtstl.soup.exceptions.SoupVariableException;
 import xyz.amtstl.soup.logic.LanguageDictionary;
@@ -14,17 +10,15 @@ import xyz.amtstl.soup.logic.LogicController;
 import xyz.amtstl.soup.logic.Suppressor;
 import xyz.amtstl.soup.misc.IO;
 import xyz.amtstl.soup.output.FlagController;
-import xyz.amtstl.soup.output.HTMLGen;
 
 public class Soup {
 	public static int lineNumber = 1;
 	private static boolean isOneLine = false;
 	
 	// controllers
-	public static LogicController logic = new LogicController();
+	private static LogicController logic = new LogicController();
 	static LanguageDictionary lang = new LanguageDictionary();
 	
-	@SuppressWarnings("static-access")
 	/**
 	 * Main thread marshal
 	 * @param args args from user
@@ -362,5 +356,9 @@ public class Soup {
 				}
 			}
 		}
+	}
+	
+	public static LogicController getMainLogic() {
+		return logic;
 	}
 }
