@@ -4,6 +4,7 @@ import java.util.List;
 
 import xyz.amtstl.soup.exceptions.SoupSyntaxException;
 import xyz.amtstl.soup.exceptions.SoupVariableException;
+import xyz.amtstl.soup.logic.FilterSpace;
 import xyz.amtstl.soup.logic.InterVar;
 import xyz.amtstl.soup.logic.LanguageDictionary;
 //import xyz.amtstl.soup.logic.InterVar;
@@ -65,7 +66,9 @@ public class Parser {
 		
 		//String[] numbers = whole.split(",");
 		
-		InterVar.parseInternalVar(whole.split(","));
+		String spaces = FilterSpace.rejectSpaces(whole);
+		
+		InterVar.parseInternalVar(spaces.split(","));
 		return InterVar.getParsedNumbers();
 	}
 	
@@ -89,8 +92,9 @@ public class Parser {
 		whole = whole.substring(2, whole.length());
 		
 		//String[] numbers = whole.split(",");
+		String spaces = FilterSpace.rejectSpaces(whole);
 		
-		InterVar.parseInternalVar(whole.split("!"));
+		InterVar.parseInternalVar(spaces.split("!"));
 		return InterVar.getParsedNumbers();
 	}
 	
