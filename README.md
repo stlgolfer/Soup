@@ -212,7 +212,7 @@ Flag | Function
 
 # Important Things to Remember
 - Sometimes you can't always do everything in one function, so break it up and store the results
-- Soup doesn't like it when you have spaces between paramaters (or extra commas)
+- Soup will accept spaces in the params and/or arguments. But Please no extra commas
 - Remember that variables can be interpolated with other functions, so use that to your advantage
 - Don't use caps unless you are using a function
 - Don't put soup function indentifiers inside of functions! Example `[{0,3}].P{Hello,1}` -> **THIS WILL CRASH**
