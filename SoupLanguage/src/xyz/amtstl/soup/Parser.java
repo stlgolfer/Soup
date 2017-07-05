@@ -45,6 +45,15 @@ public class Parser {
 		return numbers;
 	}
 	
+	/**
+	 * General parser for soup
+	 * @param i
+	 * @param cache
+	 * @return
+	 * @throws NumberFormatException
+	 * @throws SoupVariableException
+	 * @throws SoupSyntaxException
+	 */
 	public static List<String> parse(int i, String cache) throws NumberFormatException, SoupVariableException, SoupSyntaxException {
 		String whole = "";
 		
@@ -66,12 +75,21 @@ public class Parser {
 		
 		//String[] numbers = whole.split(",");
 		
-		String spaces = FilterSpace.rejectSpaces(whole);
+		// String spaces = FilterSpace.rejectSpaces(whole);
 		
-		InterVar.parseInternalVar(spaces.split(","));
+		InterVar.parseInternalVar(whole.split(","));
 		return InterVar.getParsedNumbers();
 	}
 	
+	/**
+	 * Parser for special functions that don't use the bracket delimiter
+	 * @param i
+	 * @param cache
+	 * @return
+	 * @throws NumberFormatException
+	 * @throws SoupVariableException
+	 * @throws SoupSyntaxException
+	 */
 	public static List<String> parseInternalFunctions(int i, String cache) throws NumberFormatException, SoupVariableException, SoupSyntaxException {
 		String whole = "";
 		
@@ -92,9 +110,9 @@ public class Parser {
 		whole = whole.substring(2, whole.length());
 		
 		//String[] numbers = whole.split(",");
-		String spaces = FilterSpace.rejectSpaces(whole);
+		//String spaces = FilterSpace.rejectSpaces(whole);
 		
-		InterVar.parseInternalVar(spaces.split("!"));
+		InterVar.parseInternalVar(whole.split("!"));
 		return InterVar.getParsedNumbers();
 	}
 	

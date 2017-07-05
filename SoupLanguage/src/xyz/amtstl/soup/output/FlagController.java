@@ -1,6 +1,7 @@
 package xyz.amtstl.soup.output;
 
 import xyz.amtstl.soup.Soup;
+import xyz.amtstl.soup.exceptions.SoupFunctionNotDeclaredException;
 import xyz.amtstl.soup.exceptions.SoupSyntaxException;
 import xyz.amtstl.soup.exceptions.SoupVariableException;
 
@@ -21,7 +22,7 @@ public class FlagController {
 		return printIndex;
 	}
 	
-	public static void execSoup(String cache) throws NumberFormatException, SoupVariableException, SoupSyntaxException {
+	public static void execSoup(String cache) throws NumberFormatException, SoupVariableException, SoupSyntaxException, SoupFunctionNotDeclaredException {
 		for (int i = 0; i < cache.length(); i++) {
 			if (cache.charAt(i) == ';') {
 				Soup.checkToken(i, cache, cache.charAt(i));

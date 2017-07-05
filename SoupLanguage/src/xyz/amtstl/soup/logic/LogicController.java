@@ -10,6 +10,7 @@ import java.util.concurrent.ThreadLocalRandom;
 import xyz.amtstl.soup.Parser;
 import xyz.amtstl.soup.Soup;
 import xyz.amtstl.soup.engine.RandomEngine;
+import xyz.amtstl.soup.exceptions.SoupFunctionNotDeclaredException;
 import xyz.amtstl.soup.exceptions.SoupSyntaxException;
 import xyz.amtstl.soup.exceptions.SoupVariableException;
 import xyz.amtstl.soup.interpolation.FunctionInterpolator;
@@ -620,8 +621,9 @@ public class LogicController {
 	 * @throws NumberFormatException
 	 * @throws SoupVariableException
 	 * @throws SoupSyntaxException 
+	 * @throws SoupFunctionNotDeclaredException 
 	 */
-	public void soupIfDo(int i, String cache) throws NumberFormatException, SoupVariableException, SoupSyntaxException {
+	public void soupIfDo(int i, String cache) throws NumberFormatException, SoupVariableException, SoupSyntaxException, SoupFunctionNotDeclaredException {
 		ns = p.parseInternalFunctions(i, cache);
 		index = p.getIndex();
 		
@@ -765,8 +767,9 @@ public class LogicController {
 	 * @throws NumberFormatException
 	 * @throws SoupVariableException
 	 * @throws SoupSyntaxException
+	 * @throws SoupFunctionNotDeclaredException 
 	 */
-	public void soupForLoop(int i, String cache) throws NumberFormatException, SoupVariableException, SoupSyntaxException {
+	public void soupForLoop(int i, String cache) throws NumberFormatException, SoupVariableException, SoupSyntaxException, SoupFunctionNotDeclaredException {
 		ns = p.parse(i, cache);
 		
 		/*List<String> validation = new ArrayList<String>();
@@ -788,8 +791,9 @@ public class LogicController {
 	 * @throws SoupSyntaxException
 	 * @throws NumberFormatException
 	 * @throws SoupVariableException
+	 * @throws SoupFunctionNotDeclaredException 
 	 */
-	public void soupWhileLoop(int i, String cache) throws SoupSyntaxException, NumberFormatException, SoupVariableException {
+	public void soupWhileLoop(int i, String cache) throws SoupSyntaxException, NumberFormatException, SoupVariableException, SoupFunctionNotDeclaredException {
 		ns = p.parse(i, cache);
 		
 		if (!lockIndex)
@@ -798,7 +802,7 @@ public class LogicController {
 		Looper.execNewWhileLoop(cache);
 	}
 	
-	public void soupWhileNotLoop(int i, String cache) throws SoupSyntaxException, NumberFormatException, SoupVariableException {
+	public void soupWhileNotLoop(int i, String cache) throws SoupSyntaxException, NumberFormatException, SoupVariableException, SoupFunctionNotDeclaredException {
 		ns = p.parse(i, cache);
 		
 		if (!lockIndex)
@@ -821,6 +825,44 @@ public class LogicController {
 		//Validator.validateNumbers(ns);
 		if (!lockIndex)
 		index = p.getIndex();
+	}
+	
+	/**
+	 * Stores a function
+	 * @param i index to be passed to parser
+	 * @param cache line of code from main loop
+	 * @throws NumberFormatException
+	 * @throws SoupVariableException
+	 * @throws SoupSyntaxException
+	 */
+	public void soupStoreFunction(int i, String cache) throws NumberFormatException, SoupVariableException, SoupSyntaxException {
+		ns = p.parseInternalFunctions(i, cache);
+		
+		if (!lockIndex) {
+			index = p.getIndex();
+		}
+		
+		String function = ns.get(0);
+		int point = Integer.valueOf(ns.get(1));
+		
+		v.getStrings().set(point, function);
+	}
+	
+	public void soupGetFunction(int i, String cache) throws NumberFormatException, SoupVariableException, SoupSyntaxException, SoupFunctionNotDeclaredException {
+		ns = p.parse(i, cache);
+		
+		if (!lockIndex) {
+			index = p.getIndex();
+		}
+		
+		int point = Integer.valueOf(ns.get(0));
+		
+		if (v.getStrings().get(point) == "") {
+			throw new SoupFunctionNotDeclaredException(point);
+		}
+		else {
+			FunctionInterpolator.interpolateString(v.getStrings().get(point));
+		}
 	}
 	
 	/**

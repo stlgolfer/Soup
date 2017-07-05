@@ -40,6 +40,8 @@ public class LanguageDictionary {
 		addToken('=');
 		addToken('N');
 		addToken('@');
+		addToken('S');
+		addToken('F');
 	}
 	
 	public static void addToken(char token) {

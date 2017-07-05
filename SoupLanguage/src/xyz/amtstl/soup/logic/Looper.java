@@ -1,6 +1,7 @@
 package xyz.amtstl.soup.logic;
 
 import xyz.amtstl.soup.Soup;
+import xyz.amtstl.soup.exceptions.SoupFunctionNotDeclaredException;
 import xyz.amtstl.soup.exceptions.SoupSyntaxException;
 import xyz.amtstl.soup.exceptions.SoupVariableException;
 import xyz.amtstl.soup.misc.IO;
@@ -17,10 +18,11 @@ public class Looper {
 	 * @throws NumberFormatException
 	 * @throws SoupVariableException
 	 * @throws SoupSyntaxException
+	 * @throws SoupFunctionNotDeclaredException 
 	 */
-	public static void execNewForLoop(int minBound, int maxBound, String cache, String direction) throws NumberFormatException, SoupVariableException, SoupSyntaxException {
+	public static void execNewForLoop(int minBound, int maxBound, String cache, String direction) throws NumberFormatException, SoupVariableException, SoupSyntaxException, SoupFunctionNotDeclaredException {
 		groundState = Soup.logic.getIndex();
-		for (int e = minBound; e < maxBound + 1; e++) {
+		for (int e = minBound; e < maxBound; e++) {
 			//IO.printFloat(Soup.logic.v.getVar(1000));
 			
 			for (int i = groundState; i < cache.length(); i++) {
@@ -44,7 +46,7 @@ public class Looper {
 		}
 	}
 	
-	public static void execNewWhileLoop(String cache) throws NumberFormatException, SoupVariableException, SoupSyntaxException {
+	public static void execNewWhileLoop(String cache) throws NumberFormatException, SoupVariableException, SoupSyntaxException, SoupFunctionNotDeclaredException {
 		groundState = Soup.logic.getIndex();
 		
 		int firstCondition = (int)Integer.valueOf((int) Float.parseFloat(Soup.logic.ns.get(0)));
@@ -77,7 +79,7 @@ public class Looper {
 		}
 	}
 	
-	public static void execNewWhileNotLoop(String cache) throws NumberFormatException, SoupVariableException, SoupSyntaxException {
+	public static void execNewWhileNotLoop(String cache) throws NumberFormatException, SoupVariableException, SoupSyntaxException, SoupFunctionNotDeclaredException {
 		groundState = Soup.logic.getIndex();
 		
 		int firstCondition = (int)Integer.valueOf((int) Float.parseFloat(Soup.logic.ns.get(0)));
