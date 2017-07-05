@@ -46,7 +46,7 @@ public class RandomEngine {
 	 */
 	private static void updateNumbers(int count) {
 		for (int f = 0; f <= count; f++) {
-			int tempnum = rnd.nextInt(100);
+			int tempnum = rnd.nextInt(1000);
 			
 			numbers.add(tempnum);
 		}

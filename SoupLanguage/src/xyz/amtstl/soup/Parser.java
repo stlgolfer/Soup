@@ -6,8 +6,6 @@ import xyz.amtstl.soup.exceptions.SoupSyntaxException;
 import xyz.amtstl.soup.exceptions.SoupVariableException;
 import xyz.amtstl.soup.logic.FilterSpace;
 import xyz.amtstl.soup.logic.InterVar;
-import xyz.amtstl.soup.logic.LanguageDictionary;
-//import xyz.amtstl.soup.logic.InterVar;
 import xyz.amtstl.soup.misc.IO;
 
 public class Parser {
@@ -22,7 +20,7 @@ public class Parser {
 	 * @throws SoupVariableException
 	 * @deprecated use the new Parser (it's integrated with InterVar)
 	 */
-	public static String[] parseNumbers(int i, String cache) throws NumberFormatException, SoupVariableException {
+	public String[] parseNumbers(int i, String cache) throws NumberFormatException, SoupVariableException {
 		String whole = "";
 		
 		int index = 0;
@@ -45,7 +43,7 @@ public class Parser {
 		return numbers;
 	}
 	
-	public static List<String> parse(int i, String cache) throws NumberFormatException, SoupVariableException, SoupSyntaxException {
+	public List<String> parse(int i, String cache) throws NumberFormatException, SoupVariableException, SoupSyntaxException {
 		String whole = "";
 		
 		int index = 0;
@@ -72,7 +70,7 @@ public class Parser {
 		return InterVar.getParsedNumbers();
 	}
 	
-	public static List<String> parseInternalFunctions(int i, String cache) throws NumberFormatException, SoupVariableException, SoupSyntaxException {
+	public List<String> parseInternalFunctions(int i, String cache) throws NumberFormatException, SoupVariableException, SoupSyntaxException {
 		String whole = "";
 		
 		int index = 0;
@@ -127,11 +125,11 @@ public class Parser {
 		return whole;
 	}
 	
-	public static int getIndex() {
+	public int getIndex() {
 		return inx;
 	}
 	
-	public static void setIndex(int newIndex) {
+	public void setIndex(int newIndex) {
 		inx = newIndex;
 	}
 }

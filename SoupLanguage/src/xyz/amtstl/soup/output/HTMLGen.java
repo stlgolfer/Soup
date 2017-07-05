@@ -36,6 +36,8 @@ public class HTMLGen {
 		return questionStrings;
 	}
 	
+	private static VariableHandler v = new VariableHandler();
+	
 	/**
 	 * Generates HTML documentation for the Soup session
 	 * @param title title on the window
@@ -74,7 +76,7 @@ public class HTMLGen {
 	 * @throws IOException throws if error storing file
 	 */
 	private static void writeVars(FileWriter j) throws IOException {
-		for (float a : VariableHandler.getVarStore()) {
+		for (float a : v.getVarStore()) {
 			if (a != 0.0)
 				j.write("<li>" + String.valueOf(a) + "</li>");
 		}

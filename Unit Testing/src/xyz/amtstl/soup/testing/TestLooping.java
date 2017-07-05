@@ -16,14 +16,14 @@ public class TestLooping {
 	public void testForLoop() throws NumberFormatException, SoupVariableException, SoupSyntaxException {
 		Looper.execNewForLoop(0, 3, "+{3,4}", " ");
 		
-		Assert.assertEquals(3.0, soup.logic.v.getVar(1000), 0.0);
+		Assert.assertEquals(3.0, soup.getMainLogic().v.getVar(1000), 0.0);
 	}
 	
 	@Test
 	public void testWhileLoop() throws NumberFormatException, SoupVariableException, SoupSyntaxException {
-		soup.logic.soupWhileLoop(0, "W{1,0}._{9,4}");
+		soup.getMainLogic().soupWhileLoop(0, "W{1,0}._{9,4}");
 		
-		IO.printFloat(soup.logic.getLastResult());
+		IO.printFloat(soup.getMainLogic().getLastResult());
 		
 		//Assert.assertEquals(5.0, soup.logic.getLastResult(), 0.0);
 	}

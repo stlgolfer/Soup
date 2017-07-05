@@ -11,6 +11,7 @@ import xyz.amtstl.soup.Soup;
 import xyz.amtstl.soup.exceptions.SoupSyntaxException;
 import xyz.amtstl.soup.exceptions.SoupVariableException;
 import xyz.amtstl.soup.interpolation.FunctionInterpolator;
+import xyz.amtstl.soup.logic.Validator;
 import xyz.amtstl.soup.logic.InterVar;
 import xyz.amtstl.soup.logic.Validator;
 import xyz.amtstl.soup.misc.IO;
@@ -22,8 +23,8 @@ public class TestLowLevel {
 	public void testFunctionInterpolation() throws NumberFormatException, SoupVariableException, SoupSyntaxException {
 		FunctionInterpolator.interpolateString("+{5,5.7}");
 		
-		IO.printFloat(soup.logic.getLastResult());
-		Assert.assertEquals(10.7, soup.logic.getLastResult(), 0.1);
+		IO.printFloat(soup.getMainLogic().getLastResult());
+		Assert.assertEquals(10.7, soup.getMainLogic().getLastResult(), 0.1);
 	}
 	
 	@Test(expected=SoupSyntaxException.class)
@@ -38,16 +39,16 @@ public class TestLowLevel {
 	
 	@Test
 	public void testBasicParser() throws NumberFormatException, SoupVariableException, SoupSyntaxException {
-		soup.logic.soupAdd(0, "+{4.6,7,1}");
+		soup.getMainLogic().soupAdd(0, "+{4.6,7,1}");
 		
-		Assert.assertEquals(4.6, Float.parseFloat(soup.logic.ns.get(0)), 0.1);
-		Assert.assertEquals(7.0, Float.parseFloat(soup.logic.ns.get(1)), 0.1);
-		Assert.assertEquals(1.0, Float.parseFloat(soup.logic.ns.get(2)), 0.1);
+		Assert.assertEquals(4.6, Float.parseFloat(soup.getMainLogic().ns.get(0)), 0.1);
+		Assert.assertEquals(7.0, Float.parseFloat(soup.getMainLogic().ns.get(1)), 0.1);
+		Assert.assertEquals(1.0, Float.parseFloat(soup.getMainLogic().ns.get(2)), 0.1);
 	}
 	
 	@Test
 	public void testInterVar() throws NumberFormatException, SoupVariableException, SoupSyntaxException {
-		soup.logic.soupStoreSingle(0, "~{45.2,100}");
+		soup.getMainLogic().soupStoreSingle(0, "~{45.2,100}");
 		InterVar.parseInternalVar(new String[] {"v100"});
 		Assert.assertEquals(45.2, Float.parseFloat(InterVar.getParsedNumbers().get(0)), 0.1);
 	}

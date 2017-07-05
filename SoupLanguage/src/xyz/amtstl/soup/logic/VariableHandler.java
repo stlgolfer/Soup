@@ -20,7 +20,7 @@ public class VariableHandler {
 		intVars.set(point, v);
 	}
 	
-	public static float getVar(int i) throws SoupVariableException {
+	public float getVar(int i) throws SoupVariableException {
 		try {
 			return intVars.get(i);
 		} catch (IndexOutOfBoundsException ex) {
@@ -28,11 +28,11 @@ public class VariableHandler {
 		}
 	}
 	
-	public static List<Float> getVarStore() {
+	public List<Float> getVarStore() {
 		return intVars;
 	}
 	
-	public static void initiateVar() {
+	public void initiateVar() {
 		for (int i = 0; i <= 10000; i++) {
 			intVars.add((float) 0);
 		}
