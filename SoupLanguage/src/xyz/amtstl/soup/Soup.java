@@ -2,7 +2,8 @@ package xyz.amtstl.soup;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
-
+import xyz.amtstl.soup.engine.RandomEngine;
+import xyz.amtstl.soup.exceptions.SoupFunctionNotDeclaredException;
 import xyz.amtstl.soup.exceptions.SoupSyntaxException;
 import xyz.amtstl.soup.exceptions.SoupVariableException;
 import xyz.amtstl.soup.logic.LanguageDictionary;
@@ -31,8 +32,8 @@ public class Soup {
 		if (args[0].contains(".soup")) {
 		
 			try {
-				reader = new FileReader(System.getProperty("user.dir") + "/" + args[0].toString());
-				//reader = new FileReader("C:/users/alex/desktop/github/soup/Files/program.soup");
+				//reader = new FileReader(System.getProperty("user.dir") + "/" + args[0].toString());
+				reader = new FileReader("C:/users/alex/desktop/github/soup/Files/program.soup");
 				//reader = new FileReader("C:/Users/amigala/Desktop/Github/Soup/Files/program.soup");
 				//reader = new FileReader("C:/Users/Alex/Desktop/Github/Soup/Files/program.soup");
 			
@@ -188,6 +189,14 @@ public class Soup {
 						logic.soupWhileNotLoop(i, cache);
 						i = logic.getIndex();
 						break;
+					case 'S' : // store a function
+						logic.soupStoreFunction(i, cache);
+						i  = logic.getIndex();
+						break;
+					case 'F' :
+						logic.soupGetFunction(i, cache);
+						i = logic.getIndex();
+						break;
 					case '.' : // like a semicolon
 						break;
 					case ' ': // space nullifier
@@ -220,8 +229,9 @@ public class Soup {
 	 * @throws NumberFormatException
 	 * @throws SoupVariableException
 	 * @throws SoupSyntaxException
+	 * @throws SoupFunctionNotDeclaredException 
 	 */
-	public static void parseFunc(char c, int i, String cache) throws NumberFormatException, SoupVariableException, SoupSyntaxException {
+	public static void parseFunc(char c, int i, String cache) throws NumberFormatException, SoupVariableException, SoupSyntaxException, SoupFunctionNotDeclaredException {
 		switch (c) {
 		case '+' : // add two numbers
 			logic.soupAdd(i, cache);
@@ -317,7 +327,13 @@ public class Soup {
 		case ')' :
 			break;
 		case '-' :
-		break;
+			break;
+		case 'S' : // store a function
+			logic.soupStoreFunction(i, cache);
+			break;
+		case 'F' :
+			logic.soupGetFunction(i, cache);
+			break;
 		default :
 			throw new SoupSyntaxException(cache.charAt(i), i+1, lineNumber);
 		}
@@ -331,8 +347,9 @@ public class Soup {
 	 * @throws NumberFormatException
 	 * @throws SoupVariableException
 	 * @throws SoupSyntaxException
+	 * @throws SoupFunctionNotDeclaredException 
 	 */
-	public static void checkToken(int i, String cache, char c) throws NumberFormatException, SoupVariableException, SoupSyntaxException {
+	public static void checkToken(int i, String cache, char c) throws NumberFormatException, SoupVariableException, SoupSyntaxException, SoupFunctionNotDeclaredException {
 		for (int e = 0; e < lang.languageTokens.size(); e++) {
 			if (cache.charAt(i) == lang.languageTokens.get(e)) {
 				parseFunc(c, i, cache);
@@ -341,7 +358,7 @@ public class Soup {
 		}
 	}
 	
-	public static void checkToken(int i, String cache, char c, Suppressor s) throws NumberFormatException, SoupVariableException, SoupSyntaxException {
+	public static void checkToken(int i, String cache, char c, Suppressor s) throws NumberFormatException, SoupVariableException, SoupSyntaxException, SoupFunctionNotDeclaredException {
 		for (int e = 0; e < lang.languageTokens.size(); e++) {
 			if (cache.charAt(i) == lang.languageTokens.get(e)) {
 				if (!s.isSuppressed()) {

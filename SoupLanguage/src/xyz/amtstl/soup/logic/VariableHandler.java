@@ -12,6 +12,11 @@ public class VariableHandler {
 	protected static List<Float> intVars = new ArrayList<Float>();
 	
 	/**
+	 * List of String variables
+	 */
+	protected static List<String> stringVars = new ArrayList<String>();
+	
+	/**
 	 * Inserts a variable into the list
 	 * @param v
 	 * @param point
@@ -20,7 +25,11 @@ public class VariableHandler {
 		intVars.set(point, v);
 	}
 	
-	public float getVar(int i) throws SoupVariableException {
+	public List<String> getStrings() {
+		return stringVars;
+	}
+	
+	public static float getVar(int i) throws SoupVariableException {
 		try {
 			return intVars.get(i);
 		} catch (IndexOutOfBoundsException ex) {
@@ -35,6 +44,7 @@ public class VariableHandler {
 	public void initiateVar() {
 		for (int i = 0; i <= 10000; i++) {
 			intVars.add((float) 0);
+			stringVars.add("");
 		}
 	}
 }

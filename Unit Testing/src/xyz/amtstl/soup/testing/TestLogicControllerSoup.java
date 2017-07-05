@@ -11,6 +11,7 @@ import org.junit.Test;
 
 import junit.framework.TestCase;
 import xyz.amtstl.soup.Soup;
+import xyz.amtstl.soup.exceptions.SoupFunctionNotDeclaredException;
 import xyz.amtstl.soup.exceptions.SoupSyntaxException;
 import xyz.amtstl.soup.exceptions.SoupVariableException;
 import xyz.amtstl.soup.logic.Looper;
@@ -220,7 +221,7 @@ public class TestLogicControllerSoup {
 	}
 	
 	@Test
-	public void testSoupIfDo() throws NumberFormatException, SoupVariableException, SoupSyntaxException {
+	public void testSoupIfDo() throws NumberFormatException, SoupVariableException, SoupSyntaxException, SoupFunctionNotDeclaredException {
 		soup.getMainLogic().ifState = true;
 		
 		soup.getMainLogic().soupIfDo(0, ";(+{5,6}!_{5,4})");
@@ -294,14 +295,14 @@ public class TestLogicControllerSoup {
 	 */
 	
 	@Test
-	public void testParseFunc() throws NumberFormatException, SoupVariableException, SoupSyntaxException {
+	public void testParseFunc() throws NumberFormatException, SoupVariableException, SoupSyntaxException, SoupFunctionNotDeclaredException {
 		soup.parseFunc('_', 0, "_{5.3,5.2}");
 		
 		Assert.assertEquals(0.1, soup.getMainLogic().getLastResult(), 0.1);
 	}
 	
 	@Test
-	public void checkToken() throws NumberFormatException, SoupVariableException, SoupSyntaxException {
+	public void checkToken() throws NumberFormatException, SoupVariableException, SoupSyntaxException, SoupFunctionNotDeclaredException {
 		soup.checkToken(0, "*{200,150}", '*');
 		
 		Assert.assertEquals(30000, soup.getMainLogic().getLastResult(), 0.0);

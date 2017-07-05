@@ -8,6 +8,7 @@ import org.junit.Test;
 import junit.framework.Assert;
 import xyz.amtstl.soup.Parser;
 import xyz.amtstl.soup.Soup;
+import xyz.amtstl.soup.exceptions.SoupFunctionNotDeclaredException;
 import xyz.amtstl.soup.exceptions.SoupSyntaxException;
 import xyz.amtstl.soup.exceptions.SoupVariableException;
 import xyz.amtstl.soup.interpolation.FunctionInterpolator;
@@ -20,7 +21,7 @@ public class TestLowLevel {
 	private static Soup soup = new Soup();
 	
 	@Test
-	public void testFunctionInterpolation() throws NumberFormatException, SoupVariableException, SoupSyntaxException {
+	public void testFunctionInterpolation() throws NumberFormatException, SoupVariableException, SoupSyntaxException, SoupFunctionNotDeclaredException {
 		FunctionInterpolator.interpolateString("+{5,5.7}");
 		
 		IO.printFloat(soup.getMainLogic().getLastResult());
