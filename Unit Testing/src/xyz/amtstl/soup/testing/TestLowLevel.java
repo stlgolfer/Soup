@@ -53,4 +53,14 @@ public class TestLowLevel {
 		InterVar.parseInternalVar(new String[] {"v100"});
 		Assert.assertEquals(45.2, Float.parseFloat(InterVar.getParsedNumbers().get(0)), 0.1);
 	}
+	
+	@Test
+	public void testParseInternalFunctions() throws NumberFormatException, SoupVariableException, SoupSyntaxException {
+		List<String> test = soup.getMainLogic().p.parseInternalFunctions(0, "S(P{hello world,1}!0)");
+		
+		for (String f : test) {
+			IO.println(f);
+		}
+		Assert.assertEquals("P{hello world,1}", test.get(0));
+	}
 }

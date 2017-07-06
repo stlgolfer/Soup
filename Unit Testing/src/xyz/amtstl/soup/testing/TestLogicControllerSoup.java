@@ -199,7 +199,7 @@ public class TestLogicControllerSoup {
 	}
 	
 	@Test
-	public void soupTestIfLessThan() throws NumberFormatException, SoupVariableException, SoupSyntaxException {
+	public void testSoupTestIfLessThan() throws NumberFormatException, SoupVariableException, SoupSyntaxException {
 		soup.getMainLogic().soupIfLessThan(0, "<{3,5}");
 		
 		Assert.assertTrue(soup.getMainLogic().ifState);
@@ -210,7 +210,7 @@ public class TestLogicControllerSoup {
 	}
 	
 	@Test
-	public void soupTestIfGreaterThan() throws NumberFormatException, SoupVariableException, SoupSyntaxException {
+	public void testSoupIfGreaterThan() throws NumberFormatException, SoupVariableException, SoupSyntaxException {
 		soup.getMainLogic().soupIfGreaterThan(0, ">{5,4}");
 		
 		Assert.assertTrue(soup.getMainLogic().ifState);
@@ -236,7 +236,7 @@ public class TestLogicControllerSoup {
 	}
 	
 	@Test
-	public void soupRetrieveVar() throws NumberFormatException, SoupVariableException, SoupSyntaxException {
+	public void testSoupRetrieveVar() throws NumberFormatException, SoupVariableException, SoupSyntaxException {
 		soup.getMainLogic().soupStoreSingle(0, "~{4,100}");
 		IO.println("Requested var is 4 at index:100");
 		IO.println("===Retrieved Var===");
@@ -244,16 +244,24 @@ public class TestLogicControllerSoup {
 	}
 	
 	@Test
-	public void soupStoreVar() throws NumberFormatException, SoupVariableException, SoupSyntaxException {
+	public void testSoupStoreVar() throws NumberFormatException, SoupVariableException, SoupSyntaxException {
 		soup.getMainLogic().soupSubtract(0, "_{8,0.8}");
 		soup.getMainLogic().soupStoreVar(0, ":{200}");
+		Assert.assertEquals(7.2, soup.getMainLogic().getLastResult(), 0.1);
 	}
 	
 	@Test
-	public void soupStoreSingle() throws NumberFormatException, SoupVariableException, SoupSyntaxException {
+	public void testSoupStoreSingle() throws NumberFormatException, SoupVariableException, SoupSyntaxException {
 		soup.getMainLogic().soupStoreSingle(0, "~{34.6,123}");
 		
 		Assert.assertEquals(34.6, soup.getMainLogic().v.getVar(123), 0.1);
+	}
+	
+	@Test
+	public void testSoupStoreGetFunction() throws NumberFormatException, SoupVariableException, SoupSyntaxException, SoupFunctionNotDeclaredException {
+		soup.getMainLogic().soupStoreFunction(0, "S(+{3,3}:{5}!0)");
+		soup.getMainLogic().soupGetFunction(0, "F{0}");
+		Assert.assertEquals(6, soup.getMainLogic().getLastResult(), 0.0);
 	}
 	
 	@Test
@@ -302,7 +310,7 @@ public class TestLogicControllerSoup {
 	}
 	
 	@Test
-	public void checkToken() throws NumberFormatException, SoupVariableException, SoupSyntaxException, SoupFunctionNotDeclaredException {
+	public void testCheckToken() throws NumberFormatException, SoupVariableException, SoupSyntaxException, SoupFunctionNotDeclaredException {
 		soup.checkToken(0, "*{200,150}", '*');
 		
 		Assert.assertEquals(30000, soup.getMainLogic().getLastResult(), 0.0);

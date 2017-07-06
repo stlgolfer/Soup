@@ -846,6 +846,15 @@ public class LogicController {
 		v.getStrings().set(point, function);
 	}
 	
+	/**
+	 * Gets a function and executes it
+	 * @param i index to be passed to parser
+	 * @param cache line of code from main loop
+	 * @throws NumberFormatException
+	 * @throws SoupVariableException
+	 * @throws SoupSyntaxException
+	 * @throws SoupFunctionNotDeclaredException
+	 */
 	public void soupGetFunction(int i, String cache) throws NumberFormatException, SoupVariableException, SoupSyntaxException, SoupFunctionNotDeclaredException {
 		ns = p.parse(i, cache);
 		
