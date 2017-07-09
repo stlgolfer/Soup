@@ -441,14 +441,6 @@ public class LogicController {
 		HTMLGen.getTotalOutputs().add(lastResult);
 	}
 	
-	/*public void soupSummation(int i, String cache) throws NumberFormatException, SoupVariableException {
-		ns = p.parse(i, cache);
-		index = p.getIndex();
-		
-		for (int e = Integer.parseInt(ns.get(0)); e <= Integer.parseInt(ns.get(1)); e++) {
-		}
-	}*/
-	
 	/*
 	 * FUNCTIONALITY CONTROLS
 	 * 
@@ -625,26 +617,6 @@ public class LogicController {
 		ns = p.parseInternalFunctions(i, cache);
 		index = p.getIndex();
 		
-		/*boolean isStore = false;
-		try {
-			String makeorbreak = ns.get(2);
-			isStore = true;
-		}
-		catch (Exception ex) {
-			isStore = false;
-		}
-		
-		if (ifState == true) {
-			IO.println(String.valueOf(ns.get(0)));
-			if (isStore)
-			v.insertVar(Float.parseFloat(ns.get(0)), Integer.parseInt(ns.get(2)));
-		}
-		else {
-			IO.println(String.valueOf(ns.get(1)));
-			if (isStore)
-			v.insertVar(Float.parseFloat(ns.get(1)), Integer.parseInt(ns.get(2)));
-		}*/
-		
 		String True = ns.get(0);
 		String False = ns.get(1);
 		lockIndex = true;
@@ -659,7 +631,6 @@ public class LogicController {
 		lockIndex = false;
 		
 		ifState = false;
-		//isStore = false;
 	}
 	
 	/**
@@ -770,18 +741,20 @@ public class LogicController {
 	public void soupForLoop(int i, String cache) throws NumberFormatException, SoupVariableException, SoupSyntaxException, SoupFunctionNotDeclaredException {
 		ns = p.parse(i, cache);
 		
-		/*List<String> validation = new ArrayList<String>();
-		for (String f : ns) {
-			validation.add(f);
-		}
-		validation.remove(validation.size() - 1);
-		Validator.validateNumbers(validation);*/
-		
 		if (!lockIndex)
 		index = p.getIndex() + 1;
 		Looper.execNewForLoop((int)Integer.valueOf((int) Float.parseFloat(ns.get(0))), (int)Integer.valueOf((int) Float.parseFloat(ns.get(1))), cache, " ");
 	}
 	
+	/**
+	 * Decrementing For Loop
+	 * @param i index to be passed to parser
+	 * @param cache line of code from main loop
+	 * @throws NumberFormatException
+	 * @throws SoupVariableException
+	 * @throws SoupSyntaxException
+	 * @throws SoupFunctionNotDeclaredException
+	 */
 	public void soupForLoopDecre(int i, String cache) throws NumberFormatException, SoupVariableException, SoupSyntaxException, SoupFunctionNotDeclaredException {
 		ns = p.parse(i, cache);
 		
@@ -809,6 +782,15 @@ public class LogicController {
 		Looper.execNewWhileLoop(cache);
 	}
 	
+	/**
+	 * Does a while not loop
+	 * @param i index to be passed to parser
+	 * @param cache line of code from main loop
+	 * @throws SoupSyntaxException
+	 * @throws NumberFormatException
+	 * @throws SoupVariableException
+	 * @throws SoupFunctionNotDeclaredException
+	 */
 	public void soupWhileNotLoop(int i, String cache) throws SoupSyntaxException, NumberFormatException, SoupVariableException, SoupFunctionNotDeclaredException {
 		ns = p.parse(i, cache);
 		
@@ -913,7 +895,6 @@ public class LogicController {
 	 * @param newIndex the new index
 	 */
 	public void setIndex(int newIndex) {
-		// p.setIndex(newIndex);
 		index = newIndex;
 	}
 	

@@ -22,10 +22,8 @@ public class Looper {
 	public static void execNewForLoop(int minBound, int maxBound, String cache, String direction) throws NumberFormatException, SoupVariableException, SoupSyntaxException, SoupFunctionNotDeclaredException {
 		groundState = Soup.getMainLogic().getIndex();
 		for (int e = minBound; e < maxBound; e++) {
-			//IO.printFloat(Soup.logic.v.getVar(1000));
 			
 			for (int i = groundState; i < cache.length(); i++) {
-				//IO.printInt(i);
 				if (cache.charAt(i) == ';') {
 					Soup.checkToken(i, cache, cache.charAt(i));
 					i = Soup.getMainLogic().getIndex();
@@ -33,11 +31,9 @@ public class Looper {
 				else {
 					Soup.checkToken(i, cache, cache.charAt(i));
 				}
-				//Soup.checkToken(i, cache, cache.charAt(i));
 			}
 			Soup.getMainLogic().setIndex(groundState);
 			Soup.getMainLogic();
-			//e = (int) Soup.logic.v.getVar(1000);
 			LogicController.v.insertVar((float) Float.valueOf(e), 1000);
 			if (isBreak) {
 				isBreak = false;
@@ -46,13 +42,22 @@ public class Looper {
 		}
 	}
 	
+	/**
+	 * Function for doing a decrementing for loop
+	 * @param maxBound max bound
+	 * @param minBound min bound
+	 * @param cache
+	 * @param direction depreciated
+	 * @throws NumberFormatException
+	 * @throws SoupVariableException
+	 * @throws SoupSyntaxException
+	 * @throws SoupFunctionNotDeclaredException
+	 */
 	public static void execNewForLoopDecre(int maxBound, int minBound, String cache, String direction) throws NumberFormatException, SoupVariableException, SoupSyntaxException, SoupFunctionNotDeclaredException {
 		groundState = Soup.getMainLogic().getIndex();
 		for (int e = maxBound; e > minBound; e--) {
-			//IO.printFloat(Soup.logic.v.getVar(1000));
 			
 			for (int i = groundState; i < cache.length(); i++) {
-				//IO.printInt(i);
 				if (cache.charAt(i) == ';') {
 					Soup.checkToken(i, cache, cache.charAt(i));
 					i = Soup.getMainLogic().getIndex();
@@ -60,11 +65,9 @@ public class Looper {
 				else {
 					Soup.checkToken(i, cache, cache.charAt(i));
 				}
-				//Soup.checkToken(i, cache, cache.charAt(i));
 			}
 			Soup.getMainLogic().setIndex(groundState);
 			Soup.getMainLogic();
-			//e = (int) Soup.logic.v.getVar(1000);
 			LogicController.v.insertVar((float) Float.valueOf(e), 1000);
 			if (isBreak) {
 				isBreak = false;
@@ -95,10 +98,6 @@ public class Looper {
 			LogicController.ns = LogicController.p.parse(0, cache);
 			firstCondition = (int)Integer.valueOf((int) Float.parseFloat(LogicController.ns.get(0)));
 			secondCondition = (int)Integer.valueOf((int) Float.parseFloat(LogicController.ns.get(1)));
-			
-			/*IO.printInt(firstCondition);
-			IO.printInt(secondCondition);*/
-			
 			if (isBreak) {
 				isBreak = false;
 				break;
@@ -128,10 +127,6 @@ public class Looper {
 			LogicController.ns = LogicController.p.parse(0, cache);
 			firstCondition = (int)Integer.valueOf((int) Float.parseFloat(LogicController.ns.get(0)));
 			secondCondition = (int)Integer.valueOf((int) Float.parseFloat(LogicController.ns.get(1)));
-			
-			/*IO.printInt(firstCondition);
-			IO.printInt(secondCondition);*/
-			
 			if (isBreak) {
 				isBreak = false;
 				break;

@@ -12,6 +12,11 @@ import xyz.amtstl.soup.logic.Suppressor;
 import xyz.amtstl.soup.misc.IO;
 import xyz.amtstl.soup.output.FlagController;
 
+/**
+ * Soup Coding Language
+ * @author Alexander Christian Migala
+ *
+ */
 public class Soup {
 	public static int lineNumber = 1;
 	private static boolean isOneLine = false;
@@ -33,9 +38,6 @@ public class Soup {
 		
 			try {
 				reader = new FileReader(System.getProperty("user.dir") + "/" + args[0].toString());
-				//reader = new FileReader("C:/users/alex/desktop/github/soup/Files/program.soup");
-				//reader = new FileReader("C:/Users/amigala/Desktop/Github/Soup/Files/program.soup");
-				//reader = new FileReader("C:/Users/Alex/Desktop/Github/Soup/Files/program.soup");
 			
 				// pass flag
 				try {
