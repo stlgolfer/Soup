@@ -41,7 +41,7 @@ N{1,0}.+{v0,1}:{0}.={v0,3};(X!.)
 P{requested var is 6 at index 0,1}
 V{0}
 
-/I{this is input,1}
+I{this is input,1}
 V{1}
 
 // Trigonometric functions

@@ -766,6 +766,10 @@ public class LogicController {
 		if (!lockIndex)
 			index = p.getIndex() + 1;
 		
+		
+		if (isBreak) {
+			isBreak = false;
+		}
 		Looper.execNewForLoopDecre((int)Integer.valueOf((int) Float.parseFloat(ns.get(0))), (int)Integer.valueOf((int) Float.parseFloat(ns.get(1))), cache, " ");
 	}
 	
