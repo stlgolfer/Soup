@@ -4,10 +4,10 @@ import xyz.amtstl.soup.Soup;
 import xyz.amtstl.soup.exceptions.SoupFunctionNotDeclaredException;
 import xyz.amtstl.soup.exceptions.SoupSyntaxException;
 import xyz.amtstl.soup.exceptions.SoupVariableException;
+import xyz.amtstl.soup.misc.IO;
 
 public class Looper {
 	private static int groundState = 0;
-	public static boolean isBreak = false;
 	
 	/**
 	 * Executes a new loop sequence
@@ -35,8 +35,9 @@ public class Looper {
 			Soup.getMainLogic().setIndex(groundState);
 			Soup.getMainLogic();
 			LogicController.v.insertVar((float) Float.valueOf(e), 1000);
-			if (isBreak) {
-				isBreak = false;
+			
+			if (LogicController.isBreak) {
+				LogicController.setBreak(false);
 				break;
 			}
 		}
@@ -67,15 +68,22 @@ public class Looper {
 				}
 			}
 			Soup.getMainLogic().setIndex(groundState);
-			Soup.getMainLogic();
 			LogicController.v.insertVar((float) Float.valueOf(e), 1000);
-			if (isBreak) {
-				isBreak = false;
+			if (LogicController.isBreak) {
+				LogicController.isBreak = false;
 				break;
 			}
 		}
 	}
 	
+	/**
+	 * Executes a new while loop
+	 * @param cache
+	 * @throws NumberFormatException
+	 * @throws SoupVariableException
+	 * @throws SoupSyntaxException
+	 * @throws SoupFunctionNotDeclaredException
+	 */
 	public static void execNewWhileLoop(String cache) throws NumberFormatException, SoupVariableException, SoupSyntaxException, SoupFunctionNotDeclaredException {
 		groundState = Soup.getMainLogic().getIndex();
 		
@@ -98,13 +106,21 @@ public class Looper {
 			LogicController.ns = LogicController.p.parse(0, cache);
 			firstCondition = (int)Integer.valueOf((int) Float.parseFloat(LogicController.ns.get(0)));
 			secondCondition = (int)Integer.valueOf((int) Float.parseFloat(LogicController.ns.get(1)));
-			if (isBreak) {
-				isBreak = false;
+			if (Soup.getMainLogic().isBreak) {
+				Soup.getMainLogic().isBreak = false;
 				break;
 			}
 		}
 	}
 	
+	/**
+	 * Executes a new new while not loop
+	 * @param cache
+	 * @throws NumberFormatException
+	 * @throws SoupVariableException
+	 * @throws SoupSyntaxException
+	 * @throws SoupFunctionNotDeclaredException
+	 */
 	public static void execNewWhileNotLoop(String cache) throws NumberFormatException, SoupVariableException, SoupSyntaxException, SoupFunctionNotDeclaredException {
 		groundState = Soup.getMainLogic().getIndex();
 		
@@ -127,8 +143,8 @@ public class Looper {
 			LogicController.ns = LogicController.p.parse(0, cache);
 			firstCondition = (int)Integer.valueOf((int) Float.parseFloat(LogicController.ns.get(0)));
 			secondCondition = (int)Integer.valueOf((int) Float.parseFloat(LogicController.ns.get(1)));
-			if (isBreak) {
-				isBreak = false;
+			if (Soup.getMainLogic().isBreak) {
+				Soup.getMainLogic().isBreak = false;
 				break;
 			}
 		}

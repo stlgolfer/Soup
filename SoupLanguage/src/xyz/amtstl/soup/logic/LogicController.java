@@ -61,6 +61,11 @@ public class LogicController {
 	private static RandomEngine rnd;
 	
 	/**
+	 * Breaker thread
+	 */
+	public static boolean isBreak = false;
+	
+	/**
 	 * Constructor takes no args
 	 */
 	public LogicController() {
@@ -867,8 +872,17 @@ public class LogicController {
 	 * Breaks a current loop
 	 */
 	public void soupBreakLoop() {
-		Looper.isBreak = true;
-		index += 1;
+		if (isBreak == false) {
+			isBreak = true;
+			index += 1;
+		}
+		else {
+			isBreak = false;
+		}
+	}
+	
+	public static void setBreak(boolean condition) {
+		isBreak = condition;
 	}
 	
 	/**

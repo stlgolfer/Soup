@@ -16,10 +16,13 @@ A{tra,4,2,2}
 P{now looping,1}
 [{1,3}].V{1000}
 P{now looping with break,1}
-[{1,3}].V{1000}.X
+[{1,3}].X.V{1000}.
+
+X
 
 P{decrementing for loop,1}
-D{5,1}.V{1000}.
+D{5,1}.P{hello,1}
+
 P{now decrementing for loop with break,1}
 D{5,1}.X.
 
@@ -31,14 +34,14 @@ P{while not loop,1}
 N{1,1}.P{once,1}
 N{1,0}.+{v0,1}:{0}.={v0,3};(X!.)
 
-={3,3};(P{true,1}!P{false,1})
-={3,4};(P{true,1}!P{false,1})
+={3,3};(P{do true,1}!P{do false,1})
+={3,4};(P{do true,1}!P{do false,1})
 
 +{3,3}:{0}.
 P{requested var is 6 at index 0,1}
 V{0}
 
-I{this is input,1}
+/I{this is input,1}
 V{1}
 
 // Trigonometric functions
