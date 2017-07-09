@@ -782,6 +782,15 @@ public class LogicController {
 		Looper.execNewForLoop((int)Integer.valueOf((int) Float.parseFloat(ns.get(0))), (int)Integer.valueOf((int) Float.parseFloat(ns.get(1))), cache, " ");
 	}
 	
+	public void soupForLoopDecre(int i, String cache) throws NumberFormatException, SoupVariableException, SoupSyntaxException, SoupFunctionNotDeclaredException {
+		ns = p.parse(i, cache);
+		
+		if (!lockIndex)
+			index = p.getIndex() + 1;
+		
+		Looper.execNewForLoopDecre((int)Integer.valueOf((int) Float.parseFloat(ns.get(0))), (int)Integer.valueOf((int) Float.parseFloat(ns.get(1))), cache, " ");
+	}
+	
 	/**
 	 * Does a while loop
 	 * @param i index to be passed to parser

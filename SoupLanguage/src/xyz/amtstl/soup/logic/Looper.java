@@ -46,6 +46,33 @@ public class Looper {
 		}
 	}
 	
+	public static void execNewForLoopDecre(int maxBound, int minBound, String cache, String direction) throws NumberFormatException, SoupVariableException, SoupSyntaxException, SoupFunctionNotDeclaredException {
+		groundState = Soup.getMainLogic().getIndex();
+		for (int e = maxBound; e > minBound; e--) {
+			//IO.printFloat(Soup.logic.v.getVar(1000));
+			
+			for (int i = groundState; i < cache.length(); i++) {
+				//IO.printInt(i);
+				if (cache.charAt(i) == ';') {
+					Soup.checkToken(i, cache, cache.charAt(i));
+					i = Soup.getMainLogic().getIndex();
+				}
+				else {
+					Soup.checkToken(i, cache, cache.charAt(i));
+				}
+				//Soup.checkToken(i, cache, cache.charAt(i));
+			}
+			Soup.getMainLogic().setIndex(groundState);
+			Soup.getMainLogic();
+			//e = (int) Soup.logic.v.getVar(1000);
+			LogicController.v.insertVar((float) Float.valueOf(e), 1000);
+			if (isBreak) {
+				isBreak = false;
+				break;
+			}
+		}
+	}
+	
 	public static void execNewWhileLoop(String cache) throws NumberFormatException, SoupVariableException, SoupSyntaxException, SoupFunctionNotDeclaredException {
 		groundState = Soup.getMainLogic().getIndex();
 		

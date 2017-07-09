@@ -21,6 +21,15 @@ public class TestLowLevel {
 	private static Soup soup = new Soup();
 	
 	@Test
+	public void testBasicParser() throws NumberFormatException, SoupVariableException, SoupSyntaxException {
+		soup.getMainLogic().soupAdd(0, "+{4.6,7,1}");
+		
+		Assert.assertEquals(4.6, Float.parseFloat(soup.getMainLogic().ns.get(0)), 0.1);
+		Assert.assertEquals(7.0, Float.parseFloat(soup.getMainLogic().ns.get(1)), 0.1);
+		Assert.assertEquals(1.0, Float.parseFloat(soup.getMainLogic().ns.get(2)), 0.1);
+	}
+	
+	@Test
 	public void testFunctionInterpolation() throws NumberFormatException, SoupVariableException, SoupSyntaxException, SoupFunctionNotDeclaredException {
 		FunctionInterpolator.interpolateString("+{5,5.7}");
 		
@@ -36,15 +45,6 @@ public class TestLowLevel {
 		validation.add("e");
 		
 		Validator.validateNumbers(validation);
-	}
-	
-	@Test
-	public void testBasicParser() throws NumberFormatException, SoupVariableException, SoupSyntaxException {
-		soup.getMainLogic().soupAdd(0, "+{4.6,7,1}");
-		
-		Assert.assertEquals(4.6, Float.parseFloat(soup.getMainLogic().ns.get(0)), 0.1);
-		Assert.assertEquals(7.0, Float.parseFloat(soup.getMainLogic().ns.get(1)), 0.1);
-		Assert.assertEquals(1.0, Float.parseFloat(soup.getMainLogic().ns.get(2)), 0.1);
 	}
 	
 	@Test

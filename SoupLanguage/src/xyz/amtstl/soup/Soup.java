@@ -32,8 +32,8 @@ public class Soup {
 		if (args[0].contains(".soup")) {
 		
 			try {
-				//reader = new FileReader(System.getProperty("user.dir") + "/" + args[0].toString());
-				reader = new FileReader("C:/users/alex/desktop/github/soup/Files/program.soup");
+				reader = new FileReader(System.getProperty("user.dir") + "/" + args[0].toString());
+				//reader = new FileReader("C:/users/alex/desktop/github/soup/Files/program.soup");
 				//reader = new FileReader("C:/Users/amigala/Desktop/Github/Soup/Files/program.soup");
 				//reader = new FileReader("C:/Users/Alex/Desktop/Github/Soup/Files/program.soup");
 			
@@ -173,11 +173,15 @@ public class Soup {
 						logic.soupWhileLoop(i, cache);
 						i = logic.getIndex();
 						break;
+					case 'D' : // for decrement
+						logic.soupForLoopDecre(i, cache);
+						i = logic.getIndex();
+						break;
 					case '<' : // less than if
 						logic.soupIfLessThan(i, cache);
 						i = logic.getIndex();
 						break;
-					case '>' : // gretaer than if
+					case '>' : // greater than if
 						logic.soupIfGreaterThan(i, cache);
 						i = logic.getIndex();
 						break;
@@ -301,6 +305,9 @@ public class Soup {
 			logic.soupForLoop(i, cache);
 			break;
 		case '.' : // like a semicolon
+			break;
+		case 'D' : // for decrement
+			logic.soupForLoopDecre(i, cache);
 			break;
 		case ']' :
 			break;
