@@ -1,6 +1,5 @@
 package xyz.amtstl.soup.logic;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -12,7 +11,6 @@ import xyz.amtstl.soup.exceptions.SoupFunctionNotDeclaredException;
 import xyz.amtstl.soup.exceptions.SoupSyntaxException;
 import xyz.amtstl.soup.exceptions.SoupVariableException;
 import xyz.amtstl.soup.interpolation.FunctionInterpolator;
-import xyz.amtstl.soup.misc.IO;
 import xyz.amtstl.soup.output.HTMLGen;
 
 /**
@@ -77,7 +75,7 @@ public class LogicController {
 	}
 	
 	/*
-	 * MATH OPERATIONS AND CONTROLS
+	 * MATH OPERATSystem.outNS AND CONTROLS
 	 * 
 	 */
 	
@@ -91,11 +89,6 @@ public class LogicController {
 	 * @throws SoupSyntaxException 
 	 */
 	public void soupAdd(int i, String cache) throws NumberFormatException, SoupVariableException, SoupSyntaxException {
-		/*numbers = p.parseNumbers(i, cache);
-		index = p.getIndex();
-		IO.printFloat(Float.parseFloat(numbers[0]) + Float.parseFloat(numbers[1]));
-		lastResult = Float.parseFloat(numbers[0]) + Float.parseFloat(numbers[1]);*/
-		
 		ns = p.parse(i, cache);
 		Validator.validateNumbers(ns);
 		
@@ -108,10 +101,8 @@ public class LogicController {
 		}
 		
 		lastResult = out;
-		IO.printFloat(lastResult);
+		System.out.println(lastResult);
 		HTMLGen.getTotalOutputs().add(lastResult);
-		//IO.printFloat(Float.parseFloat(ns.get(0)) + Float.parseFloat(ns.get(1)));
-		//lastResult = Float.parseFloat(ns.get(0)) + Float.parseFloat(ns.get(1));
 	}
 	
 	/**
@@ -135,7 +126,7 @@ public class LogicController {
 		}
 		
 		lastResult = out;
-		IO.printFloat(lastResult);
+		System.out.println(lastResult);
 		HTMLGen.getTotalOutputs().add(lastResult);
 	}
 	
@@ -160,7 +151,7 @@ public class LogicController {
 		}
 		
 		lastResult = out;
-		IO.printFloat(lastResult);
+		System.out.println(lastResult);
 		HTMLGen.getTotalOutputs().add(lastResult);
 	}
 	
@@ -185,7 +176,7 @@ public class LogicController {
 		}
 		
 		lastResult = out;
-		IO.printFloat(lastResult);
+		System.out.println(lastResult);
 		HTMLGen.getTotalOutputs().add(lastResult);
 	}
 	
@@ -204,7 +195,7 @@ public class LogicController {
 		if (!lockIndex)
 		index = p.getIndex();
 		
-		IO.printFloat((float)Math.pow(Float.parseFloat(ns.get(0)), Float.parseFloat(ns.get(1))));
+		System.out.println((float)Math.pow(Float.parseFloat(ns.get(0)), Float.parseFloat(ns.get(1))));
 		lastResult = (float)Math.pow(Float.parseFloat(ns.get(0)), Float.parseFloat(ns.get(1)));
 		HTMLGen.getTotalOutputs().add(lastResult);
 	}
@@ -227,40 +218,10 @@ public class LogicController {
 		double ex = Double.parseDouble(ns.get(0));
 		/*double base = Double.parseDouble(ns.get(1));*/
 		
-		/*IO.println(String.valueOf((Math.log(ex)/(Math.log(base)))));*/
+		/*System.out.println(String.valueOf((Math.log(ex)/(Math.log(base)))));*/
 		lastResult = (float)(Math.log10(ex));
-		IO.printFloat(lastResult);
+		System.out.println(lastResult);
 		HTMLGen.getTotalOutputs().add(lastResult);
-	}
-	
-	/**
-	 * Applies the Quadratic formula
-	 * @deprecated
-	 * @param i index to be passed to parser
-	 * @param cache line of code from main loop
-	 * @throws NumberFormatException
-	 * @throws SoupVariableException
-	 * @throws SoupSyntaxException 
-	 */
-	public void soupQuad(int i, String cache) throws NumberFormatException, SoupVariableException, SoupSyntaxException {
-		ns = p.parse(i, cache);
-		Validator.validateNumbers(ns);
-		
-		if (!lockIndex)
-		index = p.getIndex();
-		
-		float a = Float.parseFloat(ns.get(0));
-		float b = Float.parseFloat(ns.get(1));
-		float c = Float.parseFloat(ns.get(2));
-		
-		//String[] varPoints = numbers[3].split("#");
-		
-		float pos = (float)((b*-1)+Math.sqrt((Math.pow(b, 2))-(4*a*c)));
-		float neg = (float)((b*-1)+Math.sqrt((Math.pow(b, 2))+(4*a*c)));
-		
-		/*v.insertVar((int)pos, Integer.parseInt(varPoints[0]));
-		v.insertVar((int)neg, Integer.parseInt(varPoints[1]));*/
-		IO.println("X=" + String.valueOf(pos) + "\n" + "X=" + String.valueOf(neg));
 	}
 	
 	/**
@@ -290,28 +251,28 @@ public class LogicController {
 		 */
 		switch (condition) {
 		case "s" : // sine
-			IO.printFloat(Float.valueOf((float)(Math.sin(Double.parseDouble(ns.get(1))))));
+			System.out.println(Float.valueOf((float)(Math.sin(Double.parseDouble(ns.get(1))))));
 			lastResult = (float)(Math.sin(Double.parseDouble(ns.get(1))));
 			break;
 		case "c" : // cosine
-			IO.printFloat(Float.valueOf((float)(Math.cos(Double.parseDouble(ns.get(1))))));
+			System.out.println(Float.valueOf((float)(Math.cos(Double.parseDouble(ns.get(1))))));
 			lastResult = (float)(Math.cos(Double.parseDouble(ns.get(1))));
 			break;
 		case "t" : // tangent
-			IO.printFloat(Float.valueOf((float)(Math.tan(Double.parseDouble(ns.get(1))))));
+			System.out.println(Float.valueOf((float)(Math.tan(Double.parseDouble(ns.get(1))))));
 			lastResult = (float)(Math.tan(Double.parseDouble(ns.get(1))));
 			break;
 		case "arcs" : // arcsine
 			lastResult = (float)(Math.asin(Double.parseDouble(ns.get(1))));
-			IO.printFloat(lastResult);
+			System.out.println(lastResult);
 			break;
 		case "arcc" : // arccosine
 			lastResult = (float)(Math.acos(Double.parseDouble(ns.get(1))));
-			IO.printFloat(lastResult);
+			System.out.println(lastResult);
 			break;
 		case "arct" : // arctangent
 			lastResult = (float)(Math.atan(Double.parseDouble(ns.get(1))));
-			IO.printFloat(lastResult);
+			System.out.println(lastResult);
 			break;
 		default :
 			throw new SoupSyntaxException(cache.charAt(i+2), i);
@@ -344,18 +305,18 @@ public class LogicController {
 		switch (condition) {
 		case "s" : // square
 			lastResult = Float.parseFloat(ns.get(1)) * Float.parseFloat(ns.get(2));
-			IO.printFloat(lastResult);
+			System.out.println(lastResult);
 			break;
 		case "tri" : // triangle
 			lastResult = Float.parseFloat(ns.get(1)) * Float.parseFloat(ns.get(2))/2;
-			IO.printFloat(lastResult);
+			System.out.println(lastResult);
 			break;
 		case "tra" : // trapezoid
 			float n1 = Float.parseFloat(ns.get(1));
 			float n2 = Float.parseFloat(ns.get(2));
 			float n3 = Float.parseFloat(ns.get(3));
 			lastResult = ((n1 + n2)/2) * n3;			
-			IO.printFloat(lastResult);
+			System.out.println(lastResult);
 			break;
 		default :
 			throw new SoupSyntaxException(cache.charAt(i+2), i);
@@ -379,7 +340,7 @@ public class LogicController {
 		index = p.getIndex();
 		
 		lastResult = Math.abs(Float.parseFloat(ns.get(0)));
-		IO.println(String.valueOf(lastResult));
+		System.out.println(String.valueOf(lastResult));
 		HTMLGen.getTotalOutputs().add(lastResult);
 	}
 	
@@ -399,7 +360,7 @@ public class LogicController {
 		index = p.getIndex();
 		
 		lastResult = (float)Math.round(Float.valueOf(ns.get(0)));
-		IO.printFloat(lastResult);
+		System.out.println(lastResult);
 		HTMLGen.getTotalOutputs().add(lastResult);
 	}
 	
@@ -419,7 +380,7 @@ public class LogicController {
 		index = p.getIndex();
 		
 		lastResult = (float)Math.sqrt(Double.parseDouble(ns.get(0)));
-		IO.printFloat(lastResult);
+		System.out.println(lastResult);
 		HTMLGen.getTotalOutputs().add(lastResult);
 	}
 	
@@ -442,12 +403,12 @@ public class LogicController {
 		int param2 = Integer.parseInt(ns.get(1));
 		
 		lastResult = rnd.getNumberRange(param1, param2);
-		IO.printFloat(lastResult);
+		System.out.println(lastResult);
 		HTMLGen.getTotalOutputs().add(lastResult);
 	}
 	
 	/*
-	 * FUNCTIONALITY CONTROLS
+	 * FUNCTSystem.outNALITY CONTROLS
 	 * 
 	 */
 	
@@ -473,10 +434,10 @@ public class LogicController {
 		
 		switch (ns.get(1)) {
 		case "0" :
-			IO.print(ns.get(0));
+			System.out.print(ns.get(0));
 			break;
 		case "1" :
-			IO.println(ns.get(0));
+			System.out.println(ns.get(0));
 			break;
 		}
 	}
@@ -495,7 +456,7 @@ public class LogicController {
 		
 		if (!lockIndex)
 		index = p.getIndex();
-		IO.println(ns.get(0));
+		System.out.println(ns.get(0));
 	}
 	
 	/**
@@ -513,18 +474,18 @@ public class LogicController {
 		if (!lockIndex)
 		index = p.getIndex();
 		
-		//IO.println(numbers[0] + " " + numbers[1]);
+		//System.out.println(numbers[0] + " " + numbers[1]);
 				
 		float n1 = Float.parseFloat(ns.get(0));
 		float n2 = Float.parseFloat(ns.get(1));
 		
 		if (n1 == n2) {
 			ifState = true;
-			IO.println("True");
+			System.out.println("True");
 		}
 		else {
 			ifState = false;
-			IO.println("False");
+			System.out.println("False");
 		}
 	}
 	
@@ -543,18 +504,18 @@ public class LogicController {
 		if (!lockIndex)
 		index = p.getIndex();
 		
-		//IO.println(numbers[0] + " " + numbers[1]);
+		//System.out.println(numbers[0] + " " + numbers[1]);
 				
 		float n1 = Float.parseFloat(ns.get(0));
 		float n2 = Float.parseFloat(ns.get(1));
 		
 		if (n1 < n2) {
 			ifState = true;
-			IO.println("True");
+			System.out.println("True");
 		}
 		else {
 			ifState = false;
-			IO.println("False");
+			System.out.println("False");
 		}
 	}
 	
@@ -573,18 +534,18 @@ public class LogicController {
 		if (!lockIndex)
 		index = p.getIndex();
 		
-		//IO.println(numbers[0] + " " + numbers[1]);
+		//System.out.println(numbers[0] + " " + numbers[1]);
 				
 		float n1 = Float.parseFloat(ns.get(0));
 		float n2 = Float.parseFloat(ns.get(1));
 		
 		if (n1 > n2) {
 			ifState = true;
-			IO.println("True");
+			System.out.println("True");
 		}
 		else {
 			ifState = false;
-			IO.println("False");
+			System.out.println("False");
 		}
 	}
 	
@@ -603,7 +564,7 @@ public class LogicController {
 		index = p.getIndex();
 		try {
 			HTMLGen.generateOutputDocumentation(ns.get(0), ns.get(1));
-		} catch (IOException e) {
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -654,7 +615,7 @@ public class LogicController {
 		index = p.getIndex();
 		
 		float ret = v.getVar(Integer.parseInt(ns.get(0)));
-		IO.printFloat(ret);
+		System.out.println(ret);
 	}
 	
 	/**
@@ -696,7 +657,7 @@ public class LogicController {
 		if (!lockIndex)
 		index = p.getIndex();
 		
-		IO.println(ns.get(0));
+		System.out.println(ns.get(0));
 		Scanner s = new Scanner(System.in);
 		
 		if (s.hasNextFloat()) {

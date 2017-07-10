@@ -6,7 +6,6 @@ import xyz.amtstl.soup.exceptions.SoupSyntaxException;
 import xyz.amtstl.soup.exceptions.SoupVariableException;
 import xyz.amtstl.soup.logic.FilterSpace;
 import xyz.amtstl.soup.logic.InterVar;
-import xyz.amtstl.soup.misc.IO;
 
 public class Parser {
 	private static int inx;
@@ -71,10 +70,6 @@ public class Parser {
 		
 		whole = whole.substring(2, whole.length());
 		
-		//String[] numbers = whole.split(",");
-		
-		// String spaces = FilterSpace.rejectSpaces(whole);
-		
 		InterVar.parseInternalVar(whole.split(","));
 		return InterVar.getParsedNumbers();
 	}
@@ -107,9 +102,6 @@ public class Parser {
 		
 		whole = whole.substring(2, whole.length());
 		
-		//String[] numbers = whole.split(",");
-		//String spaces = FilterSpace.rejectSpaces(whole);
-		
 		InterVar.parseInternalVar(whole.split("!"));
 		return InterVar.getParsedNumbers();
 	}
@@ -134,11 +126,10 @@ public class Parser {
 			else if(cache.charAt(e) != '}') {
 				whole+=cache.charAt(e);
 			}
-		}
-		
+		}		
 		
 		inx = index;
-		IO.println(String.valueOf(whole.charAt(2)));
+		System.out.println(String.valueOf(whole.charAt(2)));
 		whole = whole.substring(2, whole.length());
 		return whole;
 	}

@@ -7,7 +7,6 @@ import xyz.amtstl.soup.Soup;
 import xyz.amtstl.soup.exceptions.SoupFunctionNotDeclaredException;
 import xyz.amtstl.soup.exceptions.SoupSyntaxException;
 import xyz.amtstl.soup.exceptions.SoupVariableException;
-import xyz.amtstl.soup.misc.IO;
 
 public class TestSoupExceptions {
 	@Test
@@ -27,7 +26,7 @@ public class TestSoupExceptions {
 		}
 		catch (SoupFunctionNotDeclaredException ex) {
 			Assert.assertTrue(true);
-			IO.println(ex.getMessage());
+			System.out.println(ex.getMessage());
 		}
 	}
 	
@@ -43,7 +42,7 @@ public class TestSoupExceptions {
 			Soup.parseFunc('V', 0, "V{0}");
 		}
 		catch (Exception ex) {
-			IO.println(ex.getMessage());
+			System.out.println(ex.getMessage());
 		}
 	}
 }

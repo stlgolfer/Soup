@@ -4,7 +4,6 @@ import xyz.amtstl.soup.Soup;
 import xyz.amtstl.soup.exceptions.SoupFunctionNotDeclaredException;
 import xyz.amtstl.soup.exceptions.SoupSyntaxException;
 import xyz.amtstl.soup.exceptions.SoupVariableException;
-import xyz.amtstl.soup.misc.IO;
 
 public class Looper {
 	private static int groundState = 0;

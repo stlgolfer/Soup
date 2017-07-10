@@ -10,7 +10,6 @@ public class RandomEngine {
 	
 	public RandomEngine() {		
 		updateNumbers(1500);
-		//iterateNumbers();
 	}
 	
 	/**

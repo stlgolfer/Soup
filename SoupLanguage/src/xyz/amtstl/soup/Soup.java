@@ -8,14 +8,11 @@ import xyz.amtstl.soup.exceptions.SoupSyntaxException;
 import xyz.amtstl.soup.exceptions.SoupVariableException;
 import xyz.amtstl.soup.logic.LanguageDictionary;
 import xyz.amtstl.soup.logic.LogicController;
-import xyz.amtstl.soup.logic.Suppressor;
-import xyz.amtstl.soup.misc.IO;
 import xyz.amtstl.soup.output.FlagController;
 
 /**
- * Soup Coding Language
+ * Soup
  * @author Alexander Christian Migala
- *
  */
 public class Soup {
 	public static int lineNumber = 1;
@@ -37,8 +34,7 @@ public class Soup {
 		if (args[0].contains(".soup")) {
 		
 			try {
-				//reader = new FileReader(System.getProperty("user.dir") + "/" + args[0].toString());
-				reader = new FileReader("c:/users/alex/desktop/github/soup/files/Soup Unit Test.soup");
+				reader = new FileReader(System.getProperty("user.dir") + "/" + args[0].toString());
 			
 				// pass flag
 				try {
@@ -49,7 +45,7 @@ public class Soup {
 				}
 			}
 			catch (Exception ex) {
-				IO.println("File not found! Are you sure it is in this folder?");
+				System.out.println("File not found! Are you sure it is in this folder?");
 				System.exit(0);
 			}
 			buff = new BufferedReader(reader);
@@ -68,7 +64,7 @@ public class Soup {
 			}
 		
 		/*
-		 * ALWAYS USE BREAKS WHEN ADDING NEW TOKENS AND FUNCTIONS
+		 * ALWAYS USE BREAKS WHEN ADDING NEW TOKENS AND FUNCTSystem.outNS
 		 * 
 		 */
 		while (true && isOneLine == false) {
@@ -103,7 +99,7 @@ public class Soup {
 						i = logic.getIndex();
 						break;
 					case '@' : // break soup
-						IO.println("Soup exiting with code 2 (requested per program)");
+						System.out.println("Soup exiting with code 2 (requested per program)");
 						System.exit(0);
 						break;
 					case 'A' : // area
@@ -217,7 +213,7 @@ public class Soup {
 					}
 					
 					if (FlagController.getPrintIndex()) {
-						IO.println("Current Index: " + String.valueOf(i));
+						System.out.println("Current Index: " + String.valueOf(i));
 					}
 				}
 			} catch (NullPointerException ex) {
@@ -247,17 +243,17 @@ public class Soup {
 			logic.soupSubtract(i, cache);
 			break;
 		case '@' : // break soup
-			IO.println("Soup exiting with code 2 (requested per program)");
+			System.out.println("Soup exiting with code 2 (requested per program)");
 			System.exit(0);
 			break;
 		case '*' : // multiply two numbers
 			logic.soupMultiply(i, cache);
 			break;
 		case '%' : // divide two numbers
-			logic.soupDivide(i, cache);		
+			logic.soupDivide(i, cache);
 			break;
 		case '^' : // pow one number
-			logic.soupPow(i, cache);	
+			logic.soupPow(i, cache);
 			break;
 		case '#' : // basic logarithm
 			logic.soupLog(i, cache);	
@@ -363,24 +359,6 @@ public class Soup {
 		for (int e = 0; e < lang.languageTokens.size(); e++) {
 			if (cache.charAt(i) == lang.languageTokens.get(e)) {
 				parseFunc(c, i, cache);
-				//indexCache = logic.getIndex();
-			}
-		}
-	}
-	
-	public static void checkToken(int i, String cache, char c, Suppressor s) throws NumberFormatException, SoupVariableException, SoupSyntaxException, SoupFunctionNotDeclaredException {
-		for (int e = 0; e < lang.languageTokens.size(); e++) {
-			if (cache.charAt(i) == lang.languageTokens.get(e)) {
-				if (!s.isSuppressed()) {
-					parseFunc(c, i, cache);
-				}
-				else if (s.isSuppressed() && i != s.getContinueIndex()) {
-					// do nothing
-				}
-				else if (s.isSuppressed() && i == s.getContinueIndex()) {
-					s.setSuppression(false);
-					parseFunc(c, i, cache);
-				}
 			}
 		}
 	}

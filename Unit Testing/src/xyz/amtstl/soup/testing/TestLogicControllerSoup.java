@@ -16,7 +16,6 @@ import xyz.amtstl.soup.exceptions.SoupSyntaxException;
 import xyz.amtstl.soup.exceptions.SoupVariableException;
 import xyz.amtstl.soup.logic.Looper;
 import xyz.amtstl.soup.logic.Looper;
-import xyz.amtstl.soup.misc.IO;
 
 public class TestLogicControllerSoup {
 	private static Soup soup = new Soup();
@@ -178,7 +177,7 @@ public class TestLogicControllerSoup {
 		boolean success = false;
 		
 		if (randnum < 10 && randnum > 0) {
-			IO.println("RANDNUM: " + String.valueOf(randnum));
+			System.out.println("RANDNUM: " + String.valueOf(randnum));
 			success = true;
 		}
 		
@@ -238,8 +237,8 @@ public class TestLogicControllerSoup {
 	@Test
 	public void testSoupRetrieveVar() throws NumberFormatException, SoupVariableException, SoupSyntaxException {
 		soup.getMainLogic().soupStoreSingle(0, "~{4,100}");
-		IO.println("Requested var is 4 at index:100");
-		IO.println("===Retrieved Var===");
+		System.out.println("Requested var is 4 at index:100");
+		System.out.println("===Retrieved Var===");
 		soup.getMainLogic().soupRetrieveVar(0, "V{100}");
 	}
 	
@@ -279,7 +278,7 @@ public class TestLogicControllerSoup {
 	public void testSoupBreakLoop() {
 		soup.getMainLogic().soupBreakLoop();
 		
-		Assert.assertTrue(Looper.isBreak);
+		Assert.assertTrue(soup.getMainLogic().isBreak);
 	}
 	
 	@Test

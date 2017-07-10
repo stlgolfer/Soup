@@ -3,10 +3,6 @@ package xyz.amtstl.soup.exceptions;
 import xyz.amtstl.soup.Soup;
 
 public class SoupSyntaxException extends Exception {
-	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	/**

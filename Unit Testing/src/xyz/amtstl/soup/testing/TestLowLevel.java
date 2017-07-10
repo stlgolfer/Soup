@@ -15,7 +15,6 @@ import xyz.amtstl.soup.interpolation.FunctionInterpolator;
 import xyz.amtstl.soup.logic.Validator;
 import xyz.amtstl.soup.logic.InterVar;
 import xyz.amtstl.soup.logic.Validator;
-import xyz.amtstl.soup.misc.IO;
 
 public class TestLowLevel {
 	private static Soup soup = new Soup();
@@ -33,7 +32,7 @@ public class TestLowLevel {
 	public void testFunctionInterpolation() throws NumberFormatException, SoupVariableException, SoupSyntaxException, SoupFunctionNotDeclaredException {
 		FunctionInterpolator.interpolateString("+{5,5.7}");
 		
-		IO.printFloat(soup.getMainLogic().getLastResult());
+		System.out.println(soup.getMainLogic().getLastResult());
 		Assert.assertEquals(10.7, soup.getMainLogic().getLastResult(), 0.1);
 	}
 	
@@ -59,7 +58,7 @@ public class TestLowLevel {
 		List<String> test = soup.getMainLogic().p.parseInternalFunctions(0, "S(P{hello world,1}!0)");
 		
 		for (String f : test) {
-			IO.println(f);
+			System.out.println(f);
 		}
 		Assert.assertEquals("P{hello world,1}", test.get(0));
 	}

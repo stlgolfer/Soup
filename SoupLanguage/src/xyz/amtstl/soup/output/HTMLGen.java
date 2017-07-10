@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import xyz.amtstl.soup.logic.VariableHandler;
-import xyz.amtstl.soup.misc.IO;
 
 public class HTMLGen {
 	/**
@@ -60,10 +59,10 @@ public class HTMLGen {
 			writeQuestions(f);
 			f.write("</ul></div>");
 			f.close();
-			IO.println("Output Generated at " + System.getProperty("user.dir") + "\\" + "SoupNoodle.html");
+			System.out.println("Output Generated at " + System.getProperty("user.dir") + "\\" + "SoupNoodle.html");
 		}
 		catch (IOException ex) {
-			IO.println("Error storing output documentation at " + System.getProperty("user.dir") + "\\" + "SoupNoodle.html");
+			System.out.println("Error storing output documentation at " + System.getProperty("user.dir") + "\\" + "SoupNoodle.html");
 		}
 	}
 	
