@@ -4,6 +4,7 @@ import xyz.amtstl.soup.Soup;
 import xyz.amtstl.soup.exceptions.SoupFunctionNotDeclaredException;
 import xyz.amtstl.soup.exceptions.SoupSyntaxException;
 import xyz.amtstl.soup.exceptions.SoupVariableException;
+import xyz.amtstl.soup.logic.LogicController;
 
 public class FlagController {
 	private static boolean printIndex = false;
@@ -26,7 +27,7 @@ public class FlagController {
 		for (int i = 0; i < cache.length(); i++) {
 			if (cache.charAt(i) == ';') {
 				Soup.checkToken(i, cache, cache.charAt(i));
-				i = Soup.getMainLogic().getIndex();
+				i = LogicController.getIndex();
 			}
 			else {
 				Soup.checkToken(i, cache, cache.charAt(i));

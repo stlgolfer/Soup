@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Scanner;
 
 import xyz.amtstl.soup.Parser;
-import xyz.amtstl.soup.Soup;
 import xyz.amtstl.soup.engine.RandomEngine;
 import xyz.amtstl.soup.exceptions.SoupFunctionNotDeclaredException;
 import xyz.amtstl.soup.exceptions.SoupSyntaxException;
@@ -20,16 +19,6 @@ import xyz.amtstl.soup.output.HTMLGen;
  *
  */
 public class LogicController {
-	
-	/**
-	 * Parser Variable
-	 */
-	public static Parser p;
-	
-	/**
-	 * VariableHandler global var
-	 */
-	public static VariableHandler v;
 	
 	/**
 	 * Main variable where the parsed data is
@@ -67,11 +56,9 @@ public class LogicController {
 	 * Constructor takes no args
 	 */
 	public LogicController() {
-		p = new Parser();
-		v = new VariableHandler();
 		ns = new ArrayList<String>();
 		rnd = new RandomEngine();
-		v.initiateVar();
+		VariableHandler.initiateVar();
 	}
 	
 	/*
@@ -88,12 +75,12 @@ public class LogicController {
 	 * @throws SoupVariableException
 	 * @throws SoupSyntaxException 
 	 */
-	public void soupAdd(int i, String cache) throws NumberFormatException, SoupVariableException, SoupSyntaxException {
-		ns = p.parse(i, cache);
+	public static void soupAdd(int i, String cache) throws NumberFormatException, SoupVariableException, SoupSyntaxException {
+		ns = Parser.parse(i, cache);
 		Validator.validateNumbers(ns);
 		
 		if (!lockIndex)
-		index = p.getIndex();
+		index = Parser.getIndex();
 		
 		float out = Float.parseFloat(ns.get(0));
 		for (int e = 1; e < ns.size(); e++) {
@@ -113,12 +100,12 @@ public class LogicController {
 	 * @throws SoupVariableException
 	 * @throws SoupSyntaxException 
 	 */
-	public void soupSubtract(int i, String cache) throws NumberFormatException, SoupVariableException, SoupSyntaxException {
-		ns = p.parse(i, cache);
+	public static void soupSubtract(int i, String cache) throws NumberFormatException, SoupVariableException, SoupSyntaxException {
+		ns = Parser.parse(i, cache);
 		Validator.validateNumbers(ns);
 		
 		if (!lockIndex)
-		index = p.getIndex();
+		index = Parser.getIndex();
 		
 		float out = Float.parseFloat(ns.get(0));
 		for (int e = 1; e < ns.size(); e++) {
@@ -138,12 +125,12 @@ public class LogicController {
 	 * @throws SoupVariableException
 	 * @throws SoupSyntaxException 
 	 */
-	public void soupMultiply(int i, String cache) throws NumberFormatException, SoupVariableException, SoupSyntaxException {
-		ns = p.parse(i, cache);
+	public static void soupMultiply(int i, String cache) throws NumberFormatException, SoupVariableException, SoupSyntaxException {
+		ns = Parser.parse(i, cache);
 		Validator.validateNumbers(ns);
 		
 		if (!lockIndex)
-		index = p.getIndex();
+		index = Parser.getIndex();
 		
 		float out = Float.parseFloat(ns.get(0));
 		for (int e = 1; e < ns.size(); e++) {
@@ -163,12 +150,12 @@ public class LogicController {
 	 * @throws SoupVariableException
 	 * @throws SoupSyntaxException 
 	 */
-	public void soupDivide(int i, String cache) throws NumberFormatException, SoupVariableException, SoupSyntaxException {
-		ns = p.parse(i, cache);
+	public static void soupDivide(int i, String cache) throws NumberFormatException, SoupVariableException, SoupSyntaxException {
+		ns = Parser.parse(i, cache);
 		Validator.validateNumbers(ns);
 		
 		if (!lockIndex)
-		index = p.getIndex();
+		index = Parser.getIndex();
 		
 		float out = Float.parseFloat(ns.get(0));
 		for (int e = 1; e < ns.size(); e++) {
@@ -188,12 +175,12 @@ public class LogicController {
 	 * @throws SoupVariableException
 	 * @throws SoupSyntaxException 
 	 */
-	public void soupPow(int i, String cache) throws NumberFormatException, SoupVariableException, SoupSyntaxException {
-		ns = p.parse(i, cache);
+	public static void soupPow(int i, String cache) throws NumberFormatException, SoupVariableException, SoupSyntaxException {
+		ns = Parser.parse(i, cache);
 		Validator.validateNumbers(ns);
 		
 		if (!lockIndex)
-		index = p.getIndex();
+		index = Parser.getIndex();
 		
 		System.out.println((float)Math.pow(Float.parseFloat(ns.get(0)), Float.parseFloat(ns.get(1))));
 		lastResult = (float)Math.pow(Float.parseFloat(ns.get(0)), Float.parseFloat(ns.get(1)));
@@ -208,12 +195,12 @@ public class LogicController {
 	 * @throws SoupVariableException
 	 * @throws SoupSyntaxException 
 	 */
-	public void soupLog(int i, String cache) throws NumberFormatException, SoupVariableException, SoupSyntaxException {
-		ns = p.parse(i, cache);
+	public static void soupLog(int i, String cache) throws NumberFormatException, SoupVariableException, SoupSyntaxException {
+		ns = Parser.parse(i, cache);
 		Validator.validateNumbers(ns);
 		
 		if (!lockIndex)
-		index = p.getIndex();
+		index = Parser.getIndex();
 		
 		double ex = Double.parseDouble(ns.get(0));
 		/*double base = Double.parseDouble(ns.get(1));*/
@@ -232,8 +219,8 @@ public class LogicController {
 	 * @throws SoupVariableException
 	 * @throws SoupSyntaxException 
 	 */
-	public void soupTrig(int i, String cache) throws NumberFormatException, SoupVariableException, SoupSyntaxException {
-		ns = p.parse(i, cache);
+	public static void soupTrig(int i, String cache) throws NumberFormatException, SoupVariableException, SoupSyntaxException {
+		ns = Parser.parse(i, cache);
 		
 		List<String> validation = new ArrayList<String>();
 		for (int e = 1; e < ns.size(); e++) {
@@ -242,7 +229,7 @@ public class LogicController {
 		Validator.validateNumbers(validation);
 		
 		if (!lockIndex)
-		index = p.getIndex();
+		index = Parser.getIndex();
 		
 		String condition = ns.get(0);
 		
@@ -288,8 +275,8 @@ public class LogicController {
 	 * @throws SoupVariableException
 	 * @throws SoupSyntaxException
 	 */
-	public void soupArea(int i, String cache) throws NumberFormatException, SoupVariableException, SoupSyntaxException {
-		ns = p.parse(i, cache);
+	public static void soupArea(int i, String cache) throws NumberFormatException, SoupVariableException, SoupSyntaxException {
+		ns = Parser.parse(i, cache);
 		
 		List<String> validation = new ArrayList<String>();
 		for (int e = 1; e < ns.size(); e++) {
@@ -298,7 +285,7 @@ public class LogicController {
 		Validator.validateNumbers(validation);
 		
 		if (!lockIndex)
-		index = p.getIndex();
+		index = Parser.getIndex();
 		
 		String condition = ns.get(0);
 		
@@ -332,12 +319,12 @@ public class LogicController {
 	 * @throws SoupVariableException
 	 * @throws SoupSyntaxException 
 	 */
-	public void soupAbs(int i, String cache) throws NumberFormatException, SoupVariableException, SoupSyntaxException {
-		ns = p.parse(i, cache);
+	public static void soupAbs(int i, String cache) throws NumberFormatException, SoupVariableException, SoupSyntaxException {
+		ns = Parser.parse(i, cache);
 		Validator.validateNumbers(ns);
 		
 		if (!lockIndex)
-		index = p.getIndex();
+		index = Parser.getIndex();
 		
 		lastResult = Math.abs(Float.parseFloat(ns.get(0)));
 		System.out.println(String.valueOf(lastResult));
@@ -352,12 +339,12 @@ public class LogicController {
 	 * @throws SoupVariableException
 	 * @throws SoupSyntaxException 
 	 */
-	public void soupRound(int i, String cache) throws NumberFormatException, SoupVariableException, SoupSyntaxException {
-		ns = p.parse(i, cache);
+	public static void soupRound(int i, String cache) throws NumberFormatException, SoupVariableException, SoupSyntaxException {
+		ns = Parser.parse(i, cache);
 		Validator.validateNumbers(ns);
 		
 		if (!lockIndex)
-		index = p.getIndex();
+		index = Parser.getIndex();
 		
 		lastResult = (float)Math.round(Float.valueOf(ns.get(0)));
 		System.out.println(lastResult);
@@ -372,12 +359,12 @@ public class LogicController {
 	 * @throws SoupVariableException
 	 * @throws SoupSyntaxException 
 	 */
-	public void soupSquareRoot(int i, String cache) throws NumberFormatException, SoupVariableException, SoupSyntaxException {
-		ns = p.parse(i, cache);
+	public static void soupSquareRoot(int i, String cache) throws NumberFormatException, SoupVariableException, SoupSyntaxException {
+		ns = Parser.parse(i, cache);
 		Validator.validateNumbers(ns);
 		
 		if (!lockIndex)
-		index = p.getIndex();
+		index = Parser.getIndex();
 		
 		lastResult = (float)Math.sqrt(Double.parseDouble(ns.get(0)));
 		System.out.println(lastResult);
@@ -392,12 +379,12 @@ public class LogicController {
 	 * @throws SoupVariableException
 	 * @throws SoupSyntaxException
 	 */
-	public void soupRandomNum(int i, String cache) throws NumberFormatException, SoupVariableException, SoupSyntaxException {
-		ns = p.parse(i, cache);
+	public static void soupRandomNum(int i, String cache) throws NumberFormatException, SoupVariableException, SoupSyntaxException {
+		ns = Parser.parse(i, cache);
 		Validator.validateNumbers(ns);
 		
 		if (!lockIndex)
-			index = p.getIndex();
+			index = Parser.getIndex();
 		
 		int param1 = Integer.parseInt(ns.get(0));
 		int param2 = Integer.parseInt(ns.get(1));
@@ -420,11 +407,11 @@ public class LogicController {
 	 * @throws SoupVariableException
 	 * @throws SoupSyntaxException 
 	 */
-	public void soupPrint(int i, String cache) throws NumberFormatException, SoupVariableException, SoupSyntaxException {
-		ns = p.parse(i, cache);
+	public static void soupPrint(int i, String cache) throws NumberFormatException, SoupVariableException, SoupSyntaxException {
+		ns = Parser.parse(i, cache);
 		
 		if (!lockIndex)
-		index = p.getIndex();
+		index = Parser.getIndex();
 		
 		List<String> validation = new ArrayList<String>();
 		for (int e = 1; e < ns.size(); e++) {
@@ -451,11 +438,11 @@ public class LogicController {
 	 * @throws SoupVariableException
 	 * @throws SoupSyntaxException
 	 */
-	public void soupPrintLine(int i, String cache) throws NumberFormatException, SoupVariableException, SoupSyntaxException {
-		ns = p.parse(i, cache);
+	public static void soupPrintLine(int i, String cache) throws NumberFormatException, SoupVariableException, SoupSyntaxException {
+		ns = Parser.parse(i, cache);
 		
 		if (!lockIndex)
-		index = p.getIndex();
+		index = Parser.getIndex();
 		System.out.println(ns.get(0));
 	}
 	
@@ -467,12 +454,12 @@ public class LogicController {
 	 * @throws SoupVariableException
 	 * @throws SoupSyntaxException 
 	 */
-	public void soupIf(int i, String cache) throws NumberFormatException, SoupVariableException, SoupSyntaxException {
-		ns = p.parse(i, cache);
+	public static void soupIf(int i, String cache) throws NumberFormatException, SoupVariableException, SoupSyntaxException {
+		ns = Parser.parse(i, cache);
 		Validator.validateNumbers(ns);
 		
 		if (!lockIndex)
-		index = p.getIndex();
+		index = Parser.getIndex();
 		
 		//System.out.println(numbers[0] + " " + numbers[1]);
 				
@@ -497,12 +484,12 @@ public class LogicController {
 	 * @throws SoupVariableException
 	 * @throws SoupSyntaxException
 	 */
-	public void soupIfLessThan(int i, String cache) throws NumberFormatException, SoupVariableException, SoupSyntaxException {
-		ns = p.parse(i, cache);
+	public static void soupIfLessThan(int i, String cache) throws NumberFormatException, SoupVariableException, SoupSyntaxException {
+		ns = Parser.parse(i, cache);
 		Validator.validateNumbers(ns);
 		
 		if (!lockIndex)
-		index = p.getIndex();
+		index = Parser.getIndex();
 		
 		//System.out.println(numbers[0] + " " + numbers[1]);
 				
@@ -527,12 +514,12 @@ public class LogicController {
 	 * @throws SoupVariableException
 	 * @throws SoupSyntaxException
 	 */
-	public void soupIfGreaterThan(int i, String cache) throws NumberFormatException, SoupVariableException, SoupSyntaxException {
-		ns = p.parse(i, cache);
+	public static void soupIfGreaterThan(int i, String cache) throws NumberFormatException, SoupVariableException, SoupSyntaxException {
+		ns = Parser.parse(i, cache);
 		Validator.validateNumbers(ns);
 		
 		if (!lockIndex)
-		index = p.getIndex();
+		index = Parser.getIndex();
 		
 		//System.out.println(numbers[0] + " " + numbers[1]);
 				
@@ -557,11 +544,11 @@ public class LogicController {
 	 * @throws SoupVariableException
 	 * @throws SoupSyntaxException
 	 */
-	public void soupHTMLHandler(int i, String cache) throws NumberFormatException, SoupVariableException, SoupSyntaxException {
-		ns = p.parse(i, cache);
+	public static void soupHTMLHandler(int i, String cache) throws NumberFormatException, SoupVariableException, SoupSyntaxException {
+		ns = Parser.parse(i, cache);
 		
 		if (!lockIndex)
-		index = p.getIndex();
+		index = Parser.getIndex();
 		try {
 			HTMLGen.generateOutputDocumentation(ns.get(0), ns.get(1));
 		} catch (Exception e) {
@@ -579,9 +566,9 @@ public class LogicController {
 	 * @throws SoupSyntaxException 
 	 * @throws SoupFunctionNotDeclaredException 
 	 */
-	public void soupIfDo(int i, String cache) throws NumberFormatException, SoupVariableException, SoupSyntaxException, SoupFunctionNotDeclaredException {
-		ns = p.parseInternalFunctions(i, cache);
-		index = p.getIndex();
+	public static void soupIfDo(int i, String cache) throws NumberFormatException, SoupVariableException, SoupSyntaxException, SoupFunctionNotDeclaredException {
+		ns = Parser.parseInternalFunctions(i, cache);
+		index = Parser.getIndex();
 		
 		String True = ns.get(0);
 		String False = ns.get(1);
@@ -607,14 +594,14 @@ public class LogicController {
 	 * @throws SoupVariableException
 	 * @throws SoupSyntaxException 
 	 */
-	public void soupRetrieveVar(int i, String cache) throws NumberFormatException, SoupVariableException, SoupSyntaxException {
-		ns = p.parse(i, cache);
+	public static void soupRetrieveVar(int i, String cache) throws NumberFormatException, SoupVariableException, SoupSyntaxException {
+		ns = Parser.parse(i, cache);
 		Validator.validateNumbers(ns);
 		
 		if (!lockIndex)
-		index = p.getIndex();
+		index = Parser.getIndex();
 		
-		float ret = v.getVar(Integer.parseInt(ns.get(0)));
+		float ret = VariableHandler.getVar(Integer.parseInt(ns.get(0)));
 		System.out.println(ret);
 	}
 	
@@ -626,14 +613,14 @@ public class LogicController {
 	 * @throws SoupVariableException
 	 * @throws SoupSyntaxException 
 	 */
-	public void soupStoreVar(int i, String cache) throws NumberFormatException, SoupVariableException, SoupSyntaxException {
-		ns = p.parse(i, cache);
+	public static void soupStoreVar(int i, String cache) throws NumberFormatException, SoupVariableException, SoupSyntaxException {
+		ns = Parser.parse(i, cache);
 		Validator.validateNumbers(ns);
 		
 		if (!lockIndex)
-		index = p.getIndex();
+		index = Parser.getIndex();
 		
-		v.insertVar(lastResult, Integer.parseInt(ns.get(0)));
+		VariableHandler.insertVar(lastResult, Integer.parseInt(ns.get(0)));
 	}
 	
 	/**
@@ -644,8 +631,8 @@ public class LogicController {
 	 * @throws SoupVariableException
 	 * @throws SoupSyntaxException 
 	 */
-	public void soupStoreUserIn(int i, String cache) throws NumberFormatException, SoupVariableException, SoupSyntaxException {
-		ns = p.parse(i, cache);
+	public static void soupStoreUserIn(int i, String cache) throws NumberFormatException, SoupVariableException, SoupSyntaxException {
+		ns = Parser.parse(i, cache);
 		
 		HTMLGen.getQuestionStrings().add(ns.get(0));
 		List<String> validation = new ArrayList<String>();
@@ -655,23 +642,23 @@ public class LogicController {
 		Validator.validateNumbers(validation);
 		
 		if (!lockIndex)
-		index = p.getIndex();
+		index = Parser.getIndex();
 		
 		System.out.println(ns.get(0));
 		Scanner s = new Scanner(System.in);
 		
 		if (s.hasNextFloat()) {
 			lastResult = s.nextFloat();
-			v.insertVar(lastResult, Integer.parseInt(ns.get(1)));
+			VariableHandler.insertVar(lastResult, Integer.parseInt(ns.get(1)));
 		}
 		
 		else {
 			switch (s.nextLine()) {
 			case "`" :
-				v.insertVar(1, 100);
+				VariableHandler.insertVar(1, 100);
 				break;
 			case "." :
-				v.insertVar(1, 101);
+				VariableHandler.insertVar(1, 101);
 				break;
 			}
 		}
@@ -685,14 +672,14 @@ public class LogicController {
 	 * @throws SoupVariableException
 	 * @throws SoupSyntaxException 
 	 */
-	public void soupStoreSingle(int i, String cache) throws NumberFormatException, SoupVariableException, SoupSyntaxException {
-		ns = p.parse(i, cache);
+	public static void soupStoreSingle(int i, String cache) throws NumberFormatException, SoupVariableException, SoupSyntaxException {
+		ns = Parser.parse(i, cache);
 		Validator.validateNumbers(ns);
 		
 		if (!lockIndex)
-		index = p.getIndex();
+		index = Parser.getIndex();
 		
-		v.insertVar(Float.parseFloat(ns.get(0)), Integer.valueOf(ns.get(1)));
+		VariableHandler.insertVar(Float.parseFloat(ns.get(0)), Integer.valueOf(ns.get(1)));
 	}
 	
 	/**
@@ -704,11 +691,11 @@ public class LogicController {
 	 * @throws SoupSyntaxException
 	 * @throws SoupFunctionNotDeclaredException 
 	 */
-	public void soupForLoop(int i, String cache) throws NumberFormatException, SoupVariableException, SoupSyntaxException, SoupFunctionNotDeclaredException {
-		ns = p.parse(i, cache);
+	public static void soupForLoop(int i, String cache) throws NumberFormatException, SoupVariableException, SoupSyntaxException, SoupFunctionNotDeclaredException {
+		ns = Parser.parse(i, cache);
 		
 		if (!lockIndex)
-		index = p.getIndex() + 1;
+		index = Parser.getIndex() + 1;
 		Looper.execNewForLoop((int)Integer.valueOf((int) Float.parseFloat(ns.get(0))), (int)Integer.valueOf((int) Float.parseFloat(ns.get(1))), cache, " ");
 	}
 	
@@ -721,11 +708,11 @@ public class LogicController {
 	 * @throws SoupSyntaxException
 	 * @throws SoupFunctionNotDeclaredException
 	 */
-	public void soupForLoopDecre(int i, String cache) throws NumberFormatException, SoupVariableException, SoupSyntaxException, SoupFunctionNotDeclaredException {
-		ns = p.parse(i, cache);
+	public static void soupForLoopDecre(int i, String cache) throws NumberFormatException, SoupVariableException, SoupSyntaxException, SoupFunctionNotDeclaredException {
+		ns = Parser.parse(i, cache);
 		
 		if (!lockIndex)
-			index = p.getIndex() + 1;
+			index = Parser.getIndex() + 1;
 		
 		
 		if (isBreak) {
@@ -743,11 +730,11 @@ public class LogicController {
 	 * @throws SoupVariableException
 	 * @throws SoupFunctionNotDeclaredException 
 	 */
-	public void soupWhileLoop(int i, String cache) throws SoupSyntaxException, NumberFormatException, SoupVariableException, SoupFunctionNotDeclaredException {
-		ns = p.parse(i, cache);
+	public static void soupWhileLoop(int i, String cache) throws SoupSyntaxException, NumberFormatException, SoupVariableException, SoupFunctionNotDeclaredException {
+		ns = Parser.parse(i, cache);
 		
 		if (!lockIndex)
-		index = p.getIndex();
+		index = Parser.getIndex();
 		
 		Looper.execNewWhileLoop(cache);
 	}
@@ -761,11 +748,11 @@ public class LogicController {
 	 * @throws SoupVariableException
 	 * @throws SoupFunctionNotDeclaredException
 	 */
-	public void soupWhileNotLoop(int i, String cache) throws SoupSyntaxException, NumberFormatException, SoupVariableException, SoupFunctionNotDeclaredException {
-		ns = p.parse(i, cache);
+	public static void soupWhileNotLoop(int i, String cache) throws SoupSyntaxException, NumberFormatException, SoupVariableException, SoupFunctionNotDeclaredException {
+		ns = Parser.parse(i, cache);
 		
 		if (!lockIndex)
-		index = p.getIndex();
+		index = Parser.getIndex();
 		
 		Looper.execNewWhileNotLoop(cache);
 	}
@@ -779,11 +766,11 @@ public class LogicController {
 	 * @throws SoupVariableException
 	 * @throws SoupSyntaxException
 	 */
-	public void soupRefreshNumbers(int i, String cache) throws NumberFormatException, SoupVariableException, SoupSyntaxException {
-		ns = p.parse(i, cache);
+	public static void soupRefreshNumbers(int i, String cache) throws NumberFormatException, SoupVariableException, SoupSyntaxException {
+		ns = Parser.parse(i, cache);
 		//Validator.validateNumbers(ns);
 		if (!lockIndex)
-		index = p.getIndex();
+		index = Parser.getIndex();
 	}
 	
 	/**
@@ -794,17 +781,17 @@ public class LogicController {
 	 * @throws SoupVariableException
 	 * @throws SoupSyntaxException
 	 */
-	public void soupStoreFunction(int i, String cache) throws NumberFormatException, SoupVariableException, SoupSyntaxException {
-		ns = p.parseInternalFunctions(i, cache);
+	public static void soupStoreFunction(int i, String cache) throws NumberFormatException, SoupVariableException, SoupSyntaxException {
+		ns = Parser.parseInternalFunctions(i, cache);
 		
 		if (!lockIndex) {
-			index = p.getIndex();
+			index = Parser.getIndex();
 		}
 		
 		String function = ns.get(0);
 		int point = Integer.valueOf(ns.get(1));
 		
-		v.getStrings().set(point, function);
+		VariableHandler.getStrings().set(point, function);
 	}
 	
 	/**
@@ -816,27 +803,27 @@ public class LogicController {
 	 * @throws SoupSyntaxException
 	 * @throws SoupFunctionNotDeclaredException
 	 */
-	public void soupGetFunction(int i, String cache) throws NumberFormatException, SoupVariableException, SoupSyntaxException, SoupFunctionNotDeclaredException {
-		ns = p.parse(i, cache);
+	public static void soupGetFunction(int i, String cache) throws NumberFormatException, SoupVariableException, SoupSyntaxException, SoupFunctionNotDeclaredException {
+		ns = Parser.parse(i, cache);
 		
 		if (!lockIndex) {
-			index = p.getIndex();
+			index = Parser.getIndex();
 		}
 		
 		int point = Integer.valueOf(ns.get(0));
 		
-		if (v.getStrings().get(point) == "") {
+		if (VariableHandler.getStrings().get(point) == "") {
 			throw new SoupFunctionNotDeclaredException(point);
 		}
 		else {
-			FunctionInterpolator.interpolateString(v.getStrings().get(point));
+			FunctionInterpolator.interpolateString(VariableHandler.getStrings().get(point));
 		}
 	}
 	
 	/**
 	 * Breaks a current loop
 	 */
-	public void soupBreakLoop() {
+	public static void soupBreakLoop() {
 		if (isBreak == false) {
 			isBreak = true;
 			index += 1;
@@ -857,7 +844,7 @@ public class LogicController {
 	 * @throws NumberFormatException
 	 * @throws SoupVariableException
 	 */
-	public void soupComment(int i, String cache) throws NumberFormatException, SoupVariableException {
+	public static void soupComment(int i, String cache) throws NumberFormatException, SoupVariableException {
 		index = cache.length();
 	}
 	
@@ -865,7 +852,7 @@ public class LogicController {
 	 * Gets the current index
 	 * @return the current index
 	 */
-	public int getIndex() {
+	public static int getIndex() {
 		return index;
 	}
 	
@@ -873,7 +860,7 @@ public class LogicController {
 	 * Sets the current index
 	 * @param newIndex the new index
 	 */
-	public void setIndex(int newIndex) {
+	public static void setIndex(int newIndex) {
 		index = newIndex;
 	}
 	

@@ -4,7 +4,6 @@ import java.util.List;
 
 import xyz.amtstl.soup.exceptions.SoupSyntaxException;
 import xyz.amtstl.soup.exceptions.SoupVariableException;
-import xyz.amtstl.soup.logic.FilterSpace;
 import xyz.amtstl.soup.logic.InterVar;
 
 public class Parser {
@@ -19,7 +18,7 @@ public class Parser {
 	 * @throws SoupVariableException
 	 * @deprecated use the new Parser (it's integrated with InterVar)
 	 */
-	public String[] parseNumbers(int i, String cache) throws NumberFormatException, SoupVariableException {
+	public static String[] parseNumbers(int i, String cache) throws NumberFormatException, SoupVariableException {
 		String whole = "";
 		
 		int index = 0;
@@ -134,7 +133,7 @@ public class Parser {
 		return whole;
 	}
 	
-	public int getIndex() {
+	public static int getIndex() {
 		return inx;
 	}
 	

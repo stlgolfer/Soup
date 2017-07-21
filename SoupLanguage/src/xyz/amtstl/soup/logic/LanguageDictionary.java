@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LanguageDictionary {
-	public static List<Character> languageTokens;
+	private List<Character> languageTokens;
 	
 	public LanguageDictionary() {
 		languageTokens = new ArrayList<Character>();

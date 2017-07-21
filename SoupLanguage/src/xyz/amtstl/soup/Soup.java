@@ -2,7 +2,7 @@ package xyz.amtstl.soup;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
-import xyz.amtstl.soup.engine.RandomEngine;
+
 import xyz.amtstl.soup.exceptions.SoupFunctionNotDeclaredException;
 import xyz.amtstl.soup.exceptions.SoupSyntaxException;
 import xyz.amtstl.soup.exceptions.SoupVariableException;
@@ -16,11 +16,11 @@ import xyz.amtstl.soup.output.FlagController;
  */
 public class Soup {
 	public static int lineNumber = 1;
-	private static boolean isOneLine = false;
+	public static boolean isOneLine = false;
 	
 	// controllers
-	private static LogicController logic = new LogicController();
-	static LanguageDictionary lang = new LanguageDictionary();
+	public static LogicController logic = new LogicController();
+	public static LanguageDictionary lang = new LanguageDictionary();
 	
 	/**
 	 * Main thread marshal
@@ -35,6 +35,7 @@ public class Soup {
 		
 			try {
 				reader = new FileReader(System.getProperty("user.dir") + "/" + args[0].toString());
+				//reader = new FileReader("c:/users/alex/desktop/github/soup/files/Soup Unit Test.soup");
 			
 				// pass flag
 				try {
@@ -76,27 +77,27 @@ public class Soup {
 					switch (c) {
 					case '+' : // add two numbers
 						logic.soupAdd(i, cache);
-						i = logic.getIndex();
+						i = LogicController.getIndex();
 						break;
 					case '_' : // subtract two numbers
 						logic.soupSubtract(i, cache);
-						i = logic.getIndex();
+						i = LogicController.getIndex();
 						break;
 					case '*' : // multiply two numbers
 						logic.soupMultiply(i, cache);
-						i = logic.getIndex();
+						i = LogicController.getIndex();
 						break;
 					case '%' : // divide two numbers
 						logic.soupDivide(i, cache);		
-						i = logic.getIndex();
+						i = LogicController.getIndex();
 						break;
 					case '^' : // pow one number
 						logic.soupPow(i, cache);
-						i = logic.getIndex();
+						i = LogicController.getIndex();
 						break;
 					case '#' : // base 10 logarithm
 						logic.soupLog(i, cache);
-						i = logic.getIndex();
+						i = LogicController.getIndex();
 						break;
 					case '@' : // break soup
 						System.out.println("Soup exiting with code 2 (requested per program)");
@@ -104,101 +105,101 @@ public class Soup {
 						break;
 					case 'A' : // area
 						logic.soupArea(i, cache);
-						i = logic.getIndex();
+						i = LogicController.getIndex();
 						break;
 					case '=' : // basic if statement
 						logic.soupIf(i, cache);
-						i = logic.getIndex();
+						i = LogicController.getIndex();
 						break;
 					case 'P' : // print line
 						logic.soupPrint(i, cache);
-						i = logic.getIndex();
+						i = LogicController.getIndex();
 						break;						
 					case ';' : // extension of if
 						logic.soupIfDo(i, cache);
-						i = logic.getIndex();
+						i = LogicController.getIndex();
 						break;
 					case ':' : // stores last result
 						logic.soupStoreVar(i, cache);
-						i = logic.getIndex();
+						i = LogicController.getIndex();
 						break;
 					case 'V': // gets a variable
 						logic.soupRetrieveVar(i, cache);
-						i = logic.getIndex();
+						i = LogicController.getIndex();
 						break;
 					case 'I': // gets var from user and stores it
 						logic.soupStoreUserIn(i, cache);
-						i = logic.getIndex();
+						i = LogicController.getIndex();
 						break;
 					case '$' : // trigonometric functions
 						logic.soupTrig(i, cache);
-						i = logic.getIndex();
+						i = LogicController.getIndex();
 						break;
 					case '|' : // absolute value
 						logic.soupAbs(i, cache);
-						i = logic.getIndex();
+						i = LogicController.getIndex();
 						break;
 					case '?' : // round number to int
 						logic.soupRound(i, cache);
-						i = logic.getIndex();
+						i = LogicController.getIndex();
 						break;
 					case '&' : // square root
 						logic.soupSquareRoot(i, cache);
-						i = logic.getIndex();
+						i = LogicController.getIndex();
 						break;
 					case 'R' : // random number generator
 						logic.soupRandomNum(i, cache);
-						i = logic.getIndex();
+						i = LogicController.getIndex();
 						break;
 					case 'H' : // html generator
 						logic.soupHTMLHandler(i, cache);
-						i = logic.getIndex();
+						i = LogicController.getIndex();
 						break;
 					case '~': // stores a single variable
 						logic.soupStoreSingle(i, cache);
-						i = logic.getIndex();
+						i = LogicController.getIndex();
 						break;
 					case '/': // comments
 						logic.soupComment(i, cache);
-						i = logic.getIndex();
+						i = LogicController.getIndex();
 						break;
 					case '[' : // loop
 						logic.soupForLoop(i, cache);
-						i = logic.getIndex();
+						i = LogicController.getIndex();
 						break;
 					case ']' :
 						break;
 					case 'W' : // while loop
 						logic.soupWhileLoop(i, cache);
-						i = logic.getIndex();
+						i = LogicController.getIndex();
 						break;
 					case 'D' : // for decrement
 						logic.soupForLoopDecre(i, cache);
-						i = logic.getIndex();
+						i = LogicController.getIndex();
 						break;
 					case '<' : // less than if
 						logic.soupIfLessThan(i, cache);
-						i = logic.getIndex();
+						i = LogicController.getIndex();
 						break;
 					case '>' : // greater than if
 						logic.soupIfGreaterThan(i, cache);
-						i = logic.getIndex();
+						i = LogicController.getIndex();
 						break;
 					case 'X' : // breaks loop
 						logic.soupBreakLoop();
-						i = logic.getIndex();
+						i = LogicController.getIndex();
 						break;
 					case 'N' : // while not
 						logic.soupWhileNotLoop(i, cache);
-						i = logic.getIndex();
+						i = LogicController.getIndex();
 						break;
 					case 'S' : // store a function
 						logic.soupStoreFunction(i, cache);
-						i  = logic.getIndex();
+						i  = LogicController.getIndex();
 						break;
 					case 'F' :
 						logic.soupGetFunction(i, cache);
-						i = logic.getIndex();
+						i = LogicController.getIndex();
 						break;
 					case '.' : // like a semicolon
 						break;
@@ -220,7 +221,7 @@ public class Soup {
 				System.exit(0);
 			}
 			lineNumber++;
-			logic.setIndex(0);
+			LogicController.setIndex(0);
 		}
 	}
 	
@@ -356,14 +357,10 @@ public class Soup {
 	 * @throws SoupFunctionNotDeclaredException 
 	 */
 	public static void checkToken(int i, String cache, char c) throws NumberFormatException, SoupVariableException, SoupSyntaxException, SoupFunctionNotDeclaredException {
-		for (int e = 0; e < lang.languageTokens.size(); e++) {
-			if (cache.charAt(i) == lang.languageTokens.get(e)) {
+		for (int e = 0; e < lang.getDictionary().size(); e++) {
+			if (cache.charAt(i) == lang.getDictionary().get(e)) {
 				parseFunc(c, i, cache);
 			}
 		}
-	}
-	
-	public static LogicController getMainLogic() {
-		return logic;
 	}
 }

@@ -17,19 +17,19 @@ public class TestSoup {
 	public void testParseFunc() throws NumberFormatException, SoupVariableException, SoupSyntaxException, SoupFunctionNotDeclaredException {
 		soup.parseFunc('+', 0, "+{4,4}");
 		
-		Assert.assertEquals(8.0, soup.getMainLogic().getLastResult(), 0.0);
+		Assert.assertEquals(8.0, LogicController.getLastResult(), 0.0);
 	}
 	
 	@Test
 	public void checkToken() throws NumberFormatException, SoupVariableException, SoupSyntaxException, SoupFunctionNotDeclaredException {
 		soup.checkToken(0, "+{5,6}", '+');
 		
-		Assert.assertEquals(11.0, soup.getMainLogic().getLastResult(), 0.0);
+		Assert.assertEquals(11.0, LogicController.getLastResult(), 0.0);
 	}
 	
 	@Test
 	public void getMainLogic() {
-		if (soup.getMainLogic() instanceof LogicController) {
+		if (soup.logic instanceof LogicController) {
 			Assert.assertTrue(true);
 		}
 		else {

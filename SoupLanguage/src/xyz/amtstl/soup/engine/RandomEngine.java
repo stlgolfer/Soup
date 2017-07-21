@@ -5,9 +5,12 @@ import java.util.List;
 import java.util.Random;
 
 public class RandomEngine {
-	private static List<Integer> numbers = new ArrayList<Integer>();
-	private static Random rnd = new Random();
+	private List<Integer> numbers = new ArrayList<Integer>();
+	private Random rnd = new Random();
 	
+	/**
+	 * Default constructor
+	 */
 	public RandomEngine() {		
 		updateNumbers(1500);
 	}
@@ -43,11 +46,11 @@ public class RandomEngine {
 	 * Updates number collection
 	 * @param count the maximum index value
 	 */
-	private static void updateNumbers(int count) {
+	private void updateNumbers(int count) {
 		for (int f = 0; f <= count; f++) {
 			int tempnum = rnd.nextInt(1000);
 			
-			numbers.add(tempnum);
+			this.numbers.add(tempnum);
 		}
 	}
 	
