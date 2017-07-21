@@ -21,6 +21,7 @@ public class Soup {
 	// controllers
 	public static LogicController logic = new LogicController();
 	public static LanguageDictionary lang = new LanguageDictionary();
+	public static FlagController flags = new FlagController();
 	
 	/**
 	 * Main thread marshal
@@ -34,8 +35,7 @@ public class Soup {
 		if (args[0].contains(".soup")) {
 		
 			try {
-				//reader = new FileReader(System.getProperty("user.dir") + "/" + args[0].toString());
-				reader = new FileReader("c:/users/alex/desktop/github/soup/files/Soup Unit Test.soup");
+				reader = new FileReader(System.getProperty("user.dir") + "/" + args[0].toString());
 			
 				// pass flag
 				try {
@@ -65,7 +65,7 @@ public class Soup {
 			}
 		
 		/*
-		 * ALWAYS USE BREAKS WHEN ADDING NEW TOKENS AND FUNCTSystem.outNS
+		 * ALWAYS USE BREAKS WHEN ADDING NEW TOKENS AND FUNCTIONS
 		 * 
 		 */
 		while (true && isOneLine == false) {
@@ -357,8 +357,8 @@ public class Soup {
 	 * @throws SoupFunctionNotDeclaredException 
 	 */
 	public static void checkToken(int i, String cache, char c) throws NumberFormatException, SoupVariableException, SoupSyntaxException, SoupFunctionNotDeclaredException {
-		for (int e = 0; e < lang.languageTokens.size(); e++) {
-			if (cache.charAt(i) == lang.languageTokens.get(e)) {
+		for (int e = 0; e < LanguageDictionary.languageTokens.size(); e++) {
+			if (cache.charAt(i) == LanguageDictionary.languageTokens.get(e)) {
 				parseFunc(c, i, cache);
 			}
 		}

@@ -14,8 +14,8 @@ public class FlagController {
 		case "-i" : // print index
 			printIndex = true;
 			break;
-			default :
-				break;
+		default :
+			break;
 		}
 	}
 	
