@@ -1,5 +1,6 @@
 package xyz.amtstl.soup.logic;
 
+import xyz.amtstl.soup.Parser;
 import xyz.amtstl.soup.Soup;
 import xyz.amtstl.soup.exceptions.SoupFunctionNotDeclaredException;
 import xyz.amtstl.soup.exceptions.SoupSyntaxException;
@@ -19,21 +20,20 @@ public class Looper {
 	 * @throws SoupFunctionNotDeclaredException 
 	 */
 	public static void execNewForLoop(int minBound, int maxBound, String cache, String direction) throws NumberFormatException, SoupVariableException, SoupSyntaxException, SoupFunctionNotDeclaredException {
-		groundState = Soup.getMainLogic().getIndex();
+		groundState = LogicController.index;
 		for (int e = minBound; e < maxBound; e++) {
 			
 			for (int i = groundState; i < cache.length(); i++) {
 				if (cache.charAt(i) == ';') {
 					Soup.checkToken(i, cache, cache.charAt(i));
-					i = Soup.getMainLogic().getIndex();
+					i = LogicController.index;
 				}
 				else {
 					Soup.checkToken(i, cache, cache.charAt(i));
 				}
 			}
-			Soup.getMainLogic().setIndex(groundState);
-			Soup.getMainLogic();
-			LogicController.v.insertVar((float) Float.valueOf(e), 1000);
+			LogicController.index = groundState;
+			VariableHandler.insertVar((float) Float.valueOf(e), 1000);
 			
 			if (LogicController.isBreak) {
 				LogicController.setBreak(false);
@@ -54,20 +54,20 @@ public class Looper {
 	 * @throws SoupFunctionNotDeclaredException
 	 */
 	public static void execNewForLoopDecre(int maxBound, int minBound, String cache, String direction) throws NumberFormatException, SoupVariableException, SoupSyntaxException, SoupFunctionNotDeclaredException {
-		groundState = Soup.getMainLogic().getIndex();
+		groundState = LogicController.index;
 		for (int e = maxBound; e > minBound; e--) {
 			
 			for (int i = groundState; i < cache.length(); i++) {
 				if (cache.charAt(i) == ';') {
 					Soup.checkToken(i, cache, cache.charAt(i));
-					i = Soup.getMainLogic().getIndex();
+					i = LogicController.index;
 				}
 				else {
 					Soup.checkToken(i, cache, cache.charAt(i));
 				}
 			}
-			Soup.getMainLogic().setIndex(groundState);
-			LogicController.v.insertVar((float) Float.valueOf(e), 1000);
+			LogicController.index = groundState;
+			VariableHandler.insertVar((float) Float.valueOf(e), 1000);
 			if (LogicController.isBreak) {
 				LogicController.isBreak = false;
 				break;
@@ -84,7 +84,7 @@ public class Looper {
 	 * @throws SoupFunctionNotDeclaredException
 	 */
 	public static void execNewWhileLoop(String cache) throws NumberFormatException, SoupVariableException, SoupSyntaxException, SoupFunctionNotDeclaredException {
-		groundState = Soup.getMainLogic().getIndex();
+		groundState = LogicController.index;
 		
 		int firstCondition = (int)Integer.valueOf((int) Float.parseFloat(LogicController.ns.get(0)));
 		int secondCondition = (int)Integer.valueOf((int) Float.parseFloat(LogicController.ns.get(1)));
@@ -94,19 +94,19 @@ public class Looper {
 			for (int i = groundState; i < cache.length(); i++) {
 				if (cache.charAt(i) == ';') {
 					Soup.checkToken(i, cache, cache.charAt(i));
-					i = Soup.getMainLogic().getIndex();
+					i = LogicController.index;
 				}
 				else {
 					Soup.checkToken(i, cache, cache.charAt(i));
 				}
 			}
 			
-			Soup.getMainLogic().setIndex(groundState);
-			LogicController.ns = LogicController.p.parse(0, cache);
+			LogicController.index = groundState;
+			LogicController.ns = Parser.parse(0, cache);
 			firstCondition = (int)Integer.valueOf((int) Float.parseFloat(LogicController.ns.get(0)));
 			secondCondition = (int)Integer.valueOf((int) Float.parseFloat(LogicController.ns.get(1)));
-			if (Soup.getMainLogic().isBreak) {
-				Soup.getMainLogic().isBreak = false;
+			if (LogicController.isBreak) {
+				LogicController.isBreak = false;
 				break;
 			}
 		}
@@ -121,7 +121,7 @@ public class Looper {
 	 * @throws SoupFunctionNotDeclaredException
 	 */
 	public static void execNewWhileNotLoop(String cache) throws NumberFormatException, SoupVariableException, SoupSyntaxException, SoupFunctionNotDeclaredException {
-		groundState = Soup.getMainLogic().getIndex();
+		groundState = LogicController.index;
 		
 		int firstCondition = (int)Integer.valueOf((int) Float.parseFloat(LogicController.ns.get(0)));
 		int secondCondition = (int)Integer.valueOf((int) Float.parseFloat(LogicController.ns.get(1)));
@@ -131,19 +131,19 @@ public class Looper {
 			for (int i = groundState; i < cache.length(); i++) {
 				if (cache.charAt(i) == ';') {
 					Soup.checkToken(i, cache, cache.charAt(i));
-					i = Soup.getMainLogic().getIndex();
+					i = LogicController.index;
 				}
 				else {
 					Soup.checkToken(i, cache, cache.charAt(i));
 				}
 			}
 			
-			Soup.getMainLogic().setIndex(groundState);
-			LogicController.ns = LogicController.p.parse(0, cache);
+			LogicController.index = groundState;
+			LogicController.ns = Parser.parse(0, cache);
 			firstCondition = (int)Integer.valueOf((int) Float.parseFloat(LogicController.ns.get(0)));
 			secondCondition = (int)Integer.valueOf((int) Float.parseFloat(LogicController.ns.get(1)));
-			if (Soup.getMainLogic().isBreak) {
-				Soup.getMainLogic().isBreak = false;
+			if (LogicController.isBreak) {
+				LogicController.isBreak = false;
 				break;
 			}
 		}

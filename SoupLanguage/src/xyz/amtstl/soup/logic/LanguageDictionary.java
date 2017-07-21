@@ -45,11 +45,7 @@ public class LanguageDictionary {
 		addToken('D');
 	}
 	
-	public void addToken(char token) {
+	private static void addToken(char token) {
 		languageTokens.add(token);
-	}
-	
-	public List<Character> getDictionary() {
-		return languageTokens;
 	}
 }

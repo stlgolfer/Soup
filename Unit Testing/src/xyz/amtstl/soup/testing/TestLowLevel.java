@@ -14,6 +14,7 @@ import xyz.amtstl.soup.exceptions.SoupVariableException;
 import xyz.amtstl.soup.interpolation.FunctionInterpolator;
 import xyz.amtstl.soup.logic.Validator;
 import xyz.amtstl.soup.logic.InterVar;
+import xyz.amtstl.soup.logic.LogicController;
 import xyz.amtstl.soup.logic.Validator;
 
 public class TestLowLevel {
@@ -21,19 +22,19 @@ public class TestLowLevel {
 	
 	@Test
 	public void testBasicParser() throws NumberFormatException, SoupVariableException, SoupSyntaxException {
-		soup.getMainLogic().soupAdd(0, "+{4.6,7,1}");
+		soup.logic.soupAdd(0, "+{4.6,7,1}");
 		
-		Assert.assertEquals(4.6, Float.parseFloat(soup.getMainLogic().ns.get(0)), 0.1);
-		Assert.assertEquals(7.0, Float.parseFloat(soup.getMainLogic().ns.get(1)), 0.1);
-		Assert.assertEquals(1.0, Float.parseFloat(soup.getMainLogic().ns.get(2)), 0.1);
+		Assert.assertEquals(4.6, Float.parseFloat(LogicController.ns.get(0)), 0.1);
+		Assert.assertEquals(7.0, Float.parseFloat(LogicController.ns.get(1)), 0.1);
+		Assert.assertEquals(1.0, Float.parseFloat(LogicController.ns.get(2)), 0.1);
 	}
 	
 	@Test
 	public void testFunctionInterpolation() throws NumberFormatException, SoupVariableException, SoupSyntaxException, SoupFunctionNotDeclaredException {
 		FunctionInterpolator.interpolateString("+{5,5.7}");
 		
-		System.out.println(soup.getMainLogic().getLastResult());
-		Assert.assertEquals(10.7, soup.getMainLogic().getLastResult(), 0.1);
+		System.out.println(LogicController.lastResult);
+		Assert.assertEquals(10.7, LogicController.lastResult, 0.1);
 	}
 	
 	@Test(expected=SoupSyntaxException.class)
@@ -48,14 +49,14 @@ public class TestLowLevel {
 	
 	@Test
 	public void testInterVar() throws NumberFormatException, SoupVariableException, SoupSyntaxException {
-		soup.getMainLogic().soupStoreSingle(0, "~{45.2,100}");
+		soup.logic.soupStoreSingle(0, "~{45.2,100}");
 		InterVar.parseInternalVar(new String[] {"v100"});
-		Assert.assertEquals(45.2, Float.parseFloat(InterVar.getParsedNumbers().get(0)), 0.1);
+		Assert.assertEquals(45.2, Float.parseFloat(InterVar.parsedNumbers.get(0)), 0.1);
 	}
 	
 	@Test
 	public void testParseInternalFunctions() throws NumberFormatException, SoupVariableException, SoupSyntaxException {
-		List<String> test = soup.getMainLogic().p.parseInternalFunctions(0, "S(P{hello world,1}!0)");
+		List<String> test = Parser.parseInternalFunctions(0, "S(P{hello world,1}!0)");
 		
 		for (String f : test) {
 			System.out.println(f);

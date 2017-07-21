@@ -4,11 +4,10 @@ import java.util.List;
 
 import xyz.amtstl.soup.exceptions.SoupSyntaxException;
 import xyz.amtstl.soup.exceptions.SoupVariableException;
-import xyz.amtstl.soup.logic.FilterSpace;
 import xyz.amtstl.soup.logic.InterVar;
 
 public class Parser {
-	private static int inx;
+	public static int inx;
 	
 	/**
 	 * Parser that gets the numbers
@@ -19,7 +18,7 @@ public class Parser {
 	 * @throws SoupVariableException
 	 * @deprecated use the new Parser (it's integrated with InterVar)
 	 */
-	public String[] parseNumbers(int i, String cache) throws NumberFormatException, SoupVariableException {
+	public static String[] parseNumbers(int i, String cache) throws NumberFormatException, SoupVariableException {
 		String whole = "";
 		
 		int index = 0;
@@ -71,7 +70,7 @@ public class Parser {
 		whole = whole.substring(2, whole.length());
 		
 		InterVar.parseInternalVar(whole.split(","));
-		return InterVar.getParsedNumbers();
+		return InterVar.parsedNumbers;
 	}
 	
 	/**
@@ -103,7 +102,7 @@ public class Parser {
 		whole = whole.substring(2, whole.length());
 		
 		InterVar.parseInternalVar(whole.split("!"));
-		return InterVar.getParsedNumbers();
+		return InterVar.parsedNumbers;
 	}
 	
 	/**
@@ -132,13 +131,5 @@ public class Parser {
 		System.out.println(String.valueOf(whole.charAt(2)));
 		whole = whole.substring(2, whole.length());
 		return whole;
-	}
-	
-	public int getIndex() {
-		return inx;
-	}
-	
-	public void setIndex(int newIndex) {
-		inx = newIndex;
 	}
 }

@@ -9,24 +9,20 @@ public class VariableHandler {
 	/**
 	 * List of integer variables
 	 */
-	protected static List<Float> intVars = new ArrayList<Float>();
+	public static List<Float> intVars = new ArrayList<Float>();
 	
 	/**
 	 * List of String variables
 	 */
-	protected static List<String> stringVars = new ArrayList<String>();
+	public static List<String> stringVars = new ArrayList<String>();
 	
 	/**
 	 * Inserts a variable into the list
 	 * @param v
 	 * @param point
 	 */
-	public void insertVar(float v, int point) {
+	public static void insertVar(float v, int point) {
 		intVars.set(point, v);
-	}
-	
-	public List<String> getStrings() {
-		return stringVars;
 	}
 	
 	public static float getVar(int i) throws SoupVariableException {
@@ -37,11 +33,7 @@ public class VariableHandler {
 		}
 	}
 	
-	public List<Float> getVarStore() {
-		return intVars;
-	}
-	
-	public void initiateVar() {
+	public static void initiateVar() {
 		for (int i = 0; i <= 10000; i++) {
 			intVars.add((float) 0);
 			stringVars.add("");
