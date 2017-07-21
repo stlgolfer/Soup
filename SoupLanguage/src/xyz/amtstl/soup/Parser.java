@@ -7,7 +7,7 @@ import xyz.amtstl.soup.exceptions.SoupVariableException;
 import xyz.amtstl.soup.logic.InterVar;
 
 public class Parser {
-	private static int inx;
+	public static int inx;
 	
 	/**
 	 * Parser that gets the numbers
@@ -70,7 +70,7 @@ public class Parser {
 		whole = whole.substring(2, whole.length());
 		
 		InterVar.parseInternalVar(whole.split(","));
-		return InterVar.getParsedNumbers();
+		return InterVar.parsedNumbers;
 	}
 	
 	/**
@@ -102,7 +102,7 @@ public class Parser {
 		whole = whole.substring(2, whole.length());
 		
 		InterVar.parseInternalVar(whole.split("!"));
-		return InterVar.getParsedNumbers();
+		return InterVar.parsedNumbers;
 	}
 	
 	/**
@@ -131,13 +131,5 @@ public class Parser {
 		System.out.println(String.valueOf(whole.charAt(2)));
 		whole = whole.substring(2, whole.length());
 		return whole;
-	}
-	
-	public static int getIndex() {
-		return inx;
-	}
-	
-	public void setIndex(int newIndex) {
-		inx = newIndex;
 	}
 }

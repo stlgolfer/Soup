@@ -30,12 +30,12 @@ public class LogicController {
 	/**
 	 * Last result outputted by applicable functions. This gets used by the store function
 	 */
-	private static float lastResult = 0;
+	public static float lastResult = 0;
 	
 	/**
 	 * Index cache for the main loop
 	 */
-	private static int index;
+	public static int index;
 	
 	/**
 	 * Variable that locks the index
@@ -80,7 +80,7 @@ public class LogicController {
 		Validator.validateNumbers(ns);
 		
 		if (!lockIndex)
-		index = Parser.getIndex();
+		index = Parser.inx;
 		
 		float out = Float.parseFloat(ns.get(0));
 		for (int e = 1; e < ns.size(); e++) {
@@ -89,7 +89,7 @@ public class LogicController {
 		
 		lastResult = out;
 		System.out.println(lastResult);
-		HTMLGen.getTotalOutputs().add(lastResult);
+		HTMLGen.totalOutputs.add(lastResult);
 	}
 	
 	/**
@@ -105,7 +105,7 @@ public class LogicController {
 		Validator.validateNumbers(ns);
 		
 		if (!lockIndex)
-		index = Parser.getIndex();
+		index = Parser.inx;
 		
 		float out = Float.parseFloat(ns.get(0));
 		for (int e = 1; e < ns.size(); e++) {
@@ -114,7 +114,7 @@ public class LogicController {
 		
 		lastResult = out;
 		System.out.println(lastResult);
-		HTMLGen.getTotalOutputs().add(lastResult);
+		HTMLGen.totalOutputs.add(lastResult);
 	}
 	
 	/**
@@ -130,7 +130,7 @@ public class LogicController {
 		Validator.validateNumbers(ns);
 		
 		if (!lockIndex)
-		index = Parser.getIndex();
+		index = Parser.inx;
 		
 		float out = Float.parseFloat(ns.get(0));
 		for (int e = 1; e < ns.size(); e++) {
@@ -139,7 +139,7 @@ public class LogicController {
 		
 		lastResult = out;
 		System.out.println(lastResult);
-		HTMLGen.getTotalOutputs().add(lastResult);
+		HTMLGen.totalOutputs.add(lastResult);
 	}
 	
 	/**
@@ -155,7 +155,7 @@ public class LogicController {
 		Validator.validateNumbers(ns);
 		
 		if (!lockIndex)
-		index = Parser.getIndex();
+		index = Parser.inx;
 		
 		float out = Float.parseFloat(ns.get(0));
 		for (int e = 1; e < ns.size(); e++) {
@@ -164,7 +164,7 @@ public class LogicController {
 		
 		lastResult = out;
 		System.out.println(lastResult);
-		HTMLGen.getTotalOutputs().add(lastResult);
+		HTMLGen.totalOutputs.add(lastResult);
 	}
 	
 	/**
@@ -180,11 +180,11 @@ public class LogicController {
 		Validator.validateNumbers(ns);
 		
 		if (!lockIndex)
-		index = Parser.getIndex();
+		index = Parser.inx;
 		
 		System.out.println((float)Math.pow(Float.parseFloat(ns.get(0)), Float.parseFloat(ns.get(1))));
 		lastResult = (float)Math.pow(Float.parseFloat(ns.get(0)), Float.parseFloat(ns.get(1)));
-		HTMLGen.getTotalOutputs().add(lastResult);
+		HTMLGen.totalOutputs.add(lastResult);
 	}
 	
 	/**
@@ -200,7 +200,7 @@ public class LogicController {
 		Validator.validateNumbers(ns);
 		
 		if (!lockIndex)
-		index = Parser.getIndex();
+		index = Parser.inx;
 		
 		double ex = Double.parseDouble(ns.get(0));
 		/*double base = Double.parseDouble(ns.get(1));*/
@@ -208,7 +208,7 @@ public class LogicController {
 		/*System.out.println(String.valueOf((Math.log(ex)/(Math.log(base)))));*/
 		lastResult = (float)(Math.log10(ex));
 		System.out.println(lastResult);
-		HTMLGen.getTotalOutputs().add(lastResult);
+		HTMLGen.totalOutputs.add(lastResult);
 	}
 	
 	/**
@@ -229,7 +229,7 @@ public class LogicController {
 		Validator.validateNumbers(validation);
 		
 		if (!lockIndex)
-		index = Parser.getIndex();
+		index = Parser.inx;
 		
 		String condition = ns.get(0);
 		
@@ -264,7 +264,7 @@ public class LogicController {
 		default :
 			throw new SoupSyntaxException(cache.charAt(i+2), i);
 		}
-		HTMLGen.getTotalOutputs().add(lastResult);
+		HTMLGen.totalOutputs.add(lastResult);
 	}
 	
 	/**
@@ -285,7 +285,7 @@ public class LogicController {
 		Validator.validateNumbers(validation);
 		
 		if (!lockIndex)
-		index = Parser.getIndex();
+		index = Parser.inx;
 		
 		String condition = ns.get(0);
 		
@@ -308,7 +308,7 @@ public class LogicController {
 		default :
 			throw new SoupSyntaxException(cache.charAt(i+2), i);
 		}
-		HTMLGen.getTotalOutputs().add(lastResult);
+		HTMLGen.totalOutputs.add(lastResult);
 	}
 	
 	/**
@@ -324,11 +324,11 @@ public class LogicController {
 		Validator.validateNumbers(ns);
 		
 		if (!lockIndex)
-		index = Parser.getIndex();
+		index = Parser.inx;
 		
 		lastResult = Math.abs(Float.parseFloat(ns.get(0)));
 		System.out.println(String.valueOf(lastResult));
-		HTMLGen.getTotalOutputs().add(lastResult);
+		HTMLGen.totalOutputs.add(lastResult);
 	}
 	
 	/**
@@ -344,11 +344,11 @@ public class LogicController {
 		Validator.validateNumbers(ns);
 		
 		if (!lockIndex)
-		index = Parser.getIndex();
+		index = Parser.inx;
 		
 		lastResult = (float)Math.round(Float.valueOf(ns.get(0)));
 		System.out.println(lastResult);
-		HTMLGen.getTotalOutputs().add(lastResult);
+		HTMLGen.totalOutputs.add(lastResult);
 	}
 	
 	/**
@@ -364,11 +364,11 @@ public class LogicController {
 		Validator.validateNumbers(ns);
 		
 		if (!lockIndex)
-		index = Parser.getIndex();
+		index = Parser.inx;
 		
 		lastResult = (float)Math.sqrt(Double.parseDouble(ns.get(0)));
 		System.out.println(lastResult);
-		HTMLGen.getTotalOutputs().add(lastResult);
+		HTMLGen.totalOutputs.add(lastResult);
 	}
 	
 	/**
@@ -384,18 +384,18 @@ public class LogicController {
 		Validator.validateNumbers(ns);
 		
 		if (!lockIndex)
-			index = Parser.getIndex();
+			index = Parser.inx;
 		
 		int param1 = Integer.parseInt(ns.get(0));
 		int param2 = Integer.parseInt(ns.get(1));
 		
 		lastResult = rnd.getNumberRange(param1, param2);
 		System.out.println(lastResult);
-		HTMLGen.getTotalOutputs().add(lastResult);
+		HTMLGen.totalOutputs.add(lastResult);
 	}
 	
 	/*
-	 * FUNCTSystem.outNALITY CONTROLS
+	 * FUNCTIONALITY CONTROLS
 	 * 
 	 */
 	
@@ -411,7 +411,7 @@ public class LogicController {
 		ns = Parser.parse(i, cache);
 		
 		if (!lockIndex)
-		index = Parser.getIndex();
+		index = Parser.inx;
 		
 		List<String> validation = new ArrayList<String>();
 		for (int e = 1; e < ns.size(); e++) {
@@ -442,7 +442,7 @@ public class LogicController {
 		ns = Parser.parse(i, cache);
 		
 		if (!lockIndex)
-		index = Parser.getIndex();
+		index = Parser.inx;
 		System.out.println(ns.get(0));
 	}
 	
@@ -459,7 +459,7 @@ public class LogicController {
 		Validator.validateNumbers(ns);
 		
 		if (!lockIndex)
-		index = Parser.getIndex();
+		index = Parser.inx;
 		
 		//System.out.println(numbers[0] + " " + numbers[1]);
 				
@@ -489,7 +489,7 @@ public class LogicController {
 		Validator.validateNumbers(ns);
 		
 		if (!lockIndex)
-		index = Parser.getIndex();
+		index = Parser.inx;
 		
 		//System.out.println(numbers[0] + " " + numbers[1]);
 				
@@ -519,7 +519,7 @@ public class LogicController {
 		Validator.validateNumbers(ns);
 		
 		if (!lockIndex)
-		index = Parser.getIndex();
+		index = Parser.inx;
 		
 		//System.out.println(numbers[0] + " " + numbers[1]);
 				
@@ -548,7 +548,7 @@ public class LogicController {
 		ns = Parser.parse(i, cache);
 		
 		if (!lockIndex)
-		index = Parser.getIndex();
+		index = Parser.inx;
 		try {
 			HTMLGen.generateOutputDocumentation(ns.get(0), ns.get(1));
 		} catch (Exception e) {
@@ -568,7 +568,7 @@ public class LogicController {
 	 */
 	public static void soupIfDo(int i, String cache) throws NumberFormatException, SoupVariableException, SoupSyntaxException, SoupFunctionNotDeclaredException {
 		ns = Parser.parseInternalFunctions(i, cache);
-		index = Parser.getIndex();
+		index = Parser.inx;
 		
 		String True = ns.get(0);
 		String False = ns.get(1);
@@ -599,7 +599,7 @@ public class LogicController {
 		Validator.validateNumbers(ns);
 		
 		if (!lockIndex)
-		index = Parser.getIndex();
+		index = Parser.inx;
 		
 		float ret = VariableHandler.getVar(Integer.parseInt(ns.get(0)));
 		System.out.println(ret);
@@ -618,7 +618,7 @@ public class LogicController {
 		Validator.validateNumbers(ns);
 		
 		if (!lockIndex)
-		index = Parser.getIndex();
+		index = Parser.inx;
 		
 		VariableHandler.insertVar(lastResult, Integer.parseInt(ns.get(0)));
 	}
@@ -634,7 +634,7 @@ public class LogicController {
 	public static void soupStoreUserIn(int i, String cache) throws NumberFormatException, SoupVariableException, SoupSyntaxException {
 		ns = Parser.parse(i, cache);
 		
-		HTMLGen.getQuestionStrings().add(ns.get(0));
+		HTMLGen.questionStrings.add(ns.get(0));
 		List<String> validation = new ArrayList<String>();
 		for (int e = 1; e < ns.size(); e++) {
 			validation.add(ns.get(e));
@@ -642,7 +642,7 @@ public class LogicController {
 		Validator.validateNumbers(validation);
 		
 		if (!lockIndex)
-		index = Parser.getIndex();
+		index = Parser.inx;
 		
 		System.out.println(ns.get(0));
 		Scanner s = new Scanner(System.in);
@@ -677,7 +677,7 @@ public class LogicController {
 		Validator.validateNumbers(ns);
 		
 		if (!lockIndex)
-		index = Parser.getIndex();
+		index = Parser.inx;
 		
 		VariableHandler.insertVar(Float.parseFloat(ns.get(0)), Integer.valueOf(ns.get(1)));
 	}
@@ -695,7 +695,7 @@ public class LogicController {
 		ns = Parser.parse(i, cache);
 		
 		if (!lockIndex)
-		index = Parser.getIndex() + 1;
+		index = Parser.inx + 1;
 		Looper.execNewForLoop((int)Integer.valueOf((int) Float.parseFloat(ns.get(0))), (int)Integer.valueOf((int) Float.parseFloat(ns.get(1))), cache, " ");
 	}
 	
@@ -712,7 +712,7 @@ public class LogicController {
 		ns = Parser.parse(i, cache);
 		
 		if (!lockIndex)
-			index = Parser.getIndex() + 1;
+			index = Parser.inx + 1;
 		
 		
 		if (isBreak) {
@@ -734,7 +734,7 @@ public class LogicController {
 		ns = Parser.parse(i, cache);
 		
 		if (!lockIndex)
-		index = Parser.getIndex();
+		index = Parser.inx;
 		
 		Looper.execNewWhileLoop(cache);
 	}
@@ -752,7 +752,7 @@ public class LogicController {
 		ns = Parser.parse(i, cache);
 		
 		if (!lockIndex)
-		index = Parser.getIndex();
+		index = Parser.inx;
 		
 		Looper.execNewWhileNotLoop(cache);
 	}
@@ -770,7 +770,7 @@ public class LogicController {
 		ns = Parser.parse(i, cache);
 		//Validator.validateNumbers(ns);
 		if (!lockIndex)
-		index = Parser.getIndex();
+		index = Parser.inx;
 	}
 	
 	/**
@@ -785,13 +785,13 @@ public class LogicController {
 		ns = Parser.parseInternalFunctions(i, cache);
 		
 		if (!lockIndex) {
-			index = Parser.getIndex();
+			index = Parser.inx;
 		}
 		
 		String function = ns.get(0);
 		int point = Integer.valueOf(ns.get(1));
 		
-		VariableHandler.getStrings().set(point, function);
+		VariableHandler.stringVars.set(point, function);
 	}
 	
 	/**
@@ -807,16 +807,16 @@ public class LogicController {
 		ns = Parser.parse(i, cache);
 		
 		if (!lockIndex) {
-			index = Parser.getIndex();
+			index = Parser.inx;
 		}
 		
 		int point = Integer.valueOf(ns.get(0));
 		
-		if (VariableHandler.getStrings().get(point) == "") {
+		if (VariableHandler.stringVars.get(point) == "") {
 			throw new SoupFunctionNotDeclaredException(point);
 		}
 		else {
-			FunctionInterpolator.interpolateString(VariableHandler.getStrings().get(point));
+			FunctionInterpolator.interpolateString(VariableHandler.stringVars.get(point));
 		}
 	}
 	
@@ -846,29 +846,5 @@ public class LogicController {
 	 */
 	public static void soupComment(int i, String cache) throws NumberFormatException, SoupVariableException {
 		index = cache.length();
-	}
-	
-	/**
-	 * Gets the current index
-	 * @return the current index
-	 */
-	public static int getIndex() {
-		return index;
-	}
-	
-	/**
-	 * Sets the current index
-	 * @param newIndex the new index
-	 */
-	public static void setIndex(int newIndex) {
-		index = newIndex;
-	}
-	
-	/**
-	 * Gets the last result
-	 * @return the last result variable
-	 */
-	public static float getLastResult() {
-		return lastResult;
 	}
 }

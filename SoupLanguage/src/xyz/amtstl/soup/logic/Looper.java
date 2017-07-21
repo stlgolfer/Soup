@@ -20,19 +20,19 @@ public class Looper {
 	 * @throws SoupFunctionNotDeclaredException 
 	 */
 	public static void execNewForLoop(int minBound, int maxBound, String cache, String direction) throws NumberFormatException, SoupVariableException, SoupSyntaxException, SoupFunctionNotDeclaredException {
-		groundState = LogicController.getIndex();
+		groundState = LogicController.index;
 		for (int e = minBound; e < maxBound; e++) {
 			
 			for (int i = groundState; i < cache.length(); i++) {
 				if (cache.charAt(i) == ';') {
 					Soup.checkToken(i, cache, cache.charAt(i));
-					i = LogicController.getIndex();
+					i = LogicController.index;
 				}
 				else {
 					Soup.checkToken(i, cache, cache.charAt(i));
 				}
 			}
-			LogicController.setIndex(groundState);
+			LogicController.index = groundState;
 			VariableHandler.insertVar((float) Float.valueOf(e), 1000);
 			
 			if (LogicController.isBreak) {
@@ -54,19 +54,19 @@ public class Looper {
 	 * @throws SoupFunctionNotDeclaredException
 	 */
 	public static void execNewForLoopDecre(int maxBound, int minBound, String cache, String direction) throws NumberFormatException, SoupVariableException, SoupSyntaxException, SoupFunctionNotDeclaredException {
-		groundState = LogicController.getIndex();
+		groundState = LogicController.index;
 		for (int e = maxBound; e > minBound; e--) {
 			
 			for (int i = groundState; i < cache.length(); i++) {
 				if (cache.charAt(i) == ';') {
 					Soup.checkToken(i, cache, cache.charAt(i));
-					i = LogicController.getIndex();
+					i = LogicController.index;
 				}
 				else {
 					Soup.checkToken(i, cache, cache.charAt(i));
 				}
 			}
-			LogicController.setIndex(groundState);
+			LogicController.index = groundState;
 			VariableHandler.insertVar((float) Float.valueOf(e), 1000);
 			if (LogicController.isBreak) {
 				LogicController.isBreak = false;
@@ -84,7 +84,7 @@ public class Looper {
 	 * @throws SoupFunctionNotDeclaredException
 	 */
 	public static void execNewWhileLoop(String cache) throws NumberFormatException, SoupVariableException, SoupSyntaxException, SoupFunctionNotDeclaredException {
-		groundState = LogicController.getIndex();
+		groundState = LogicController.index;
 		
 		int firstCondition = (int)Integer.valueOf((int) Float.parseFloat(LogicController.ns.get(0)));
 		int secondCondition = (int)Integer.valueOf((int) Float.parseFloat(LogicController.ns.get(1)));
@@ -94,14 +94,14 @@ public class Looper {
 			for (int i = groundState; i < cache.length(); i++) {
 				if (cache.charAt(i) == ';') {
 					Soup.checkToken(i, cache, cache.charAt(i));
-					i = LogicController.getIndex();
+					i = LogicController.index;
 				}
 				else {
 					Soup.checkToken(i, cache, cache.charAt(i));
 				}
 			}
 			
-			LogicController.setIndex(groundState);
+			LogicController.index = groundState;
 			LogicController.ns = Parser.parse(0, cache);
 			firstCondition = (int)Integer.valueOf((int) Float.parseFloat(LogicController.ns.get(0)));
 			secondCondition = (int)Integer.valueOf((int) Float.parseFloat(LogicController.ns.get(1)));
@@ -121,7 +121,7 @@ public class Looper {
 	 * @throws SoupFunctionNotDeclaredException
 	 */
 	public static void execNewWhileNotLoop(String cache) throws NumberFormatException, SoupVariableException, SoupSyntaxException, SoupFunctionNotDeclaredException {
-		groundState = LogicController.getIndex();
+		groundState = LogicController.index;
 		
 		int firstCondition = (int)Integer.valueOf((int) Float.parseFloat(LogicController.ns.get(0)));
 		int secondCondition = (int)Integer.valueOf((int) Float.parseFloat(LogicController.ns.get(1)));
@@ -131,14 +131,14 @@ public class Looper {
 			for (int i = groundState; i < cache.length(); i++) {
 				if (cache.charAt(i) == ';') {
 					Soup.checkToken(i, cache, cache.charAt(i));
-					i = LogicController.getIndex();
+					i = LogicController.index;
 				}
 				else {
 					Soup.checkToken(i, cache, cache.charAt(i));
 				}
 			}
 			
-			LogicController.setIndex(groundState);
+			LogicController.index = groundState;
 			LogicController.ns = Parser.parse(0, cache);
 			firstCondition = (int)Integer.valueOf((int) Float.parseFloat(LogicController.ns.get(0)));
 			secondCondition = (int)Integer.valueOf((int) Float.parseFloat(LogicController.ns.get(1)));

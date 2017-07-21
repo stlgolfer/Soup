@@ -33,8 +33,8 @@ public class TestLowLevel {
 	public void testFunctionInterpolation() throws NumberFormatException, SoupVariableException, SoupSyntaxException, SoupFunctionNotDeclaredException {
 		FunctionInterpolator.interpolateString("+{5,5.7}");
 		
-		System.out.println(LogicController.getLastResult());
-		Assert.assertEquals(10.7, LogicController.getLastResult(), 0.1);
+		System.out.println(LogicController.lastResult);
+		Assert.assertEquals(10.7, LogicController.lastResult, 0.1);
 	}
 	
 	@Test(expected=SoupSyntaxException.class)
@@ -51,7 +51,7 @@ public class TestLowLevel {
 	public void testInterVar() throws NumberFormatException, SoupVariableException, SoupSyntaxException {
 		soup.logic.soupStoreSingle(0, "~{45.2,100}");
 		InterVar.parseInternalVar(new String[] {"v100"});
-		Assert.assertEquals(45.2, Float.parseFloat(InterVar.getParsedNumbers().get(0)), 0.1);
+		Assert.assertEquals(45.2, Float.parseFloat(InterVar.parsedNumbers.get(0)), 0.1);
 	}
 	
 	@Test

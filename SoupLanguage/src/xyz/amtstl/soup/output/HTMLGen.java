@@ -12,28 +12,12 @@ public class HTMLGen {
 	/**
 	 * Total outputs cache
 	 */
-	private static List<Float> totalOutputs = new ArrayList<Float>();
+	public static List<Float> totalOutputs = new ArrayList<Float>();
 	
 	/**
 	 * Total Question Strings cache
 	 */
-	private static List<String> questionStrings = new ArrayList<String>();
-	
-	/**
-	 * Gets the total output cache
-	 * @return total output object
-	 */
-	public static List<Float> getTotalOutputs() {
-		return totalOutputs;
-	}
-	
-	/**
-	 * Get question strings
-	 * @return total questions strings object
-	 */
-	public static List<String> getQuestionStrings() {
-		return questionStrings;
-	}
+	public static List<String> questionStrings = new ArrayList<String>();
 	
 	/**
 	 * Generates HTML documentation for the Soup session
@@ -70,7 +54,7 @@ public class HTMLGen {
 	 * @throws IOException throws if error storing file
 	 */
 	private static void writeVars(FileWriter j) throws IOException {
-		for (float a : VariableHandler.getVarStore()) {
+		for (float a : VariableHandler.intVars) {
 			if (a != 0.0)
 				j.write("<li>" + String.valueOf(a) + "</li>");
 		}
