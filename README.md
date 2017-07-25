@@ -194,6 +194,18 @@ Soup can generate a nice little webpage displaying your code outputs in the curr
 
 `H{title,description}`
 
+# Functions
+Functions of Soup code can be stored and recalled. Note that functions must be declared before they are run.
+
+## Example
+```
+S(P{this function was stored and recalled,1}!0).
+F{0}
+```
+
+# Installation
+Go to Install/ and downlod the correspoding file for your Operating System. Make sure to install the file to a global location (for example, for windows, put it in the System32 file)
+
 # Running Soup
 How to make and run a Soup file
 1) Make a new file with the .soup extension
