@@ -1,1 +1,1 @@
-java -jar "C:\Windows\System32\Soup.jar" %1 %2
+java -jar "C:\Windows\System32\Soup Production.jar" %1 %2
