@@ -8,9 +8,14 @@ import java.util.List;
 
 public class CompilerWriter {
 	private static List<String> outputs = new ArrayList<String>();
+	private static List<String> raw = new ArrayList<String>();
 	
 	public static List<String> getOutputs() {
 		return outputs;
+	}
+	
+	public static List<String> getRawOutputs() {
+		return raw;
 	}
 	
 	public static void writeJavaFile() {
@@ -25,7 +30,12 @@ public class CompilerWriter {
 			
 			// write the commands
 			for (String e : outputs) {
-				fw.write("System.out.println(" + e + ");");
+				fw.write("System.out.println(" + e + ");\n");
+			}
+			
+			// write the raw commands
+			for (String q : raw) {
+				fw.write("System.out.print(" + q + ")");
 			}
 			
 			// close up line endings

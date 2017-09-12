@@ -262,6 +262,7 @@ public class LogicController {
 		lastResult = (float)(Math.log10(ex));
 		System.out.println(lastResult);
 		HTMLGen.totalOutputs.add(lastResult);
+		CompilerWriter.getOutputs().add("Math.log(" + ns.get(0) + ")");
 	}
 	
 	/**
@@ -293,26 +294,32 @@ public class LogicController {
 		case "s" : // sine
 			System.out.println(Float.valueOf((float)(Math.sin(Double.parseDouble(ns.get(1))))));
 			lastResult = (float)(Math.sin(Double.parseDouble(ns.get(1))));
+			CompilerWriter.getOutputs().add("Math.sin(" + ns.get(1) + ")");
 			break;
 		case "c" : // cosine
 			System.out.println(Float.valueOf((float)(Math.cos(Double.parseDouble(ns.get(1))))));
 			lastResult = (float)(Math.cos(Double.parseDouble(ns.get(1))));
+			CompilerWriter.getOutputs().add("Math.cos(" + ns.get(1) + ")");
 			break;
 		case "t" : // tangent
 			System.out.println(Float.valueOf((float)(Math.tan(Double.parseDouble(ns.get(1))))));
 			lastResult = (float)(Math.tan(Double.parseDouble(ns.get(1))));
+			CompilerWriter.getOutputs().add("Math.tan(" + ns.get(1) + ")");
 			break;
 		case "arcs" : // arcsine
 			lastResult = (float)(Math.asin(Double.parseDouble(ns.get(1))));
 			System.out.println(lastResult);
+			CompilerWriter.getOutputs().add("Math.asin(" + ns.get(1) + ")");
 			break;
 		case "arcc" : // arccosine
 			lastResult = (float)(Math.acos(Double.parseDouble(ns.get(1))));
 			System.out.println(lastResult);
+			CompilerWriter.getOutputs().add("Math.acos(" + ns.get(1) + ")");
 			break;
 		case "arct" : // arctangent
 			lastResult = (float)(Math.atan(Double.parseDouble(ns.get(1))));
 			System.out.println(lastResult);
+			CompilerWriter.getOutputs().add("Math.atan(" + ns.get(1) + ")");
 			break;
 		default :
 			throw new SoupSyntaxException(cache.charAt(i+2), i);
@@ -346,10 +353,12 @@ public class LogicController {
 		case "s" : // square
 			lastResult = Float.parseFloat(ns.get(1)) * Float.parseFloat(ns.get(2));
 			System.out.println(lastResult);
+			CompilerWriter.getOutputs().add(ns.get(1) + "*" + ns.get(2));
 			break;
 		case "tri" : // triangle
 			lastResult = Float.parseFloat(ns.get(1)) * Float.parseFloat(ns.get(2))/2;
 			System.out.println(lastResult);
+			CompilerWriter.getOutputs().add("(" + ns.get(1) + "*" + ns.get(2) + ")/2");
 			break;
 		case "tra" : // trapezoid
 			float n1 = Float.parseFloat(ns.get(1));
@@ -357,6 +366,7 @@ public class LogicController {
 			float n3 = Float.parseFloat(ns.get(3));
 			lastResult = ((n1 + n2)/2) * n3;			
 			System.out.println(lastResult);
+			CompilerWriter.getOutputs().add("((" + ns.get(1) + "+" + ns.get(2) + ")/2) * " + ns.get(3));
 			break;
 		default :
 			throw new SoupSyntaxException(cache.charAt(i+2), i);
@@ -382,6 +392,7 @@ public class LogicController {
 		lastResult = Math.abs(Float.parseFloat(ns.get(0)));
 		System.out.println(String.valueOf(lastResult));
 		HTMLGen.totalOutputs.add(lastResult);
+		CompilerWriter.getOutputs().add("Math.abs(" + ns.get(0) + ")");
 	}
 	
 	/**
@@ -402,6 +413,7 @@ public class LogicController {
 		lastResult = (float)Math.round(Float.valueOf(ns.get(0)));
 		System.out.println(lastResult);
 		HTMLGen.totalOutputs.add(lastResult);
+		CompilerWriter.getOutputs().add("Math.round(" + ns.get(0) + ")");
 	}
 	
 	/**
@@ -422,6 +434,7 @@ public class LogicController {
 		lastResult = (float)Math.sqrt(Double.parseDouble(ns.get(0)));
 		System.out.println(lastResult);
 		HTMLGen.totalOutputs.add(lastResult);
+		CompilerWriter.getOutputs().add("Math.sqrt(" + ns.get(0) + ")");
 	}
 	
 	/**
@@ -445,6 +458,7 @@ public class LogicController {
 		lastResult = rnd.getNumberRange(param1, param2);
 		System.out.println(lastResult);
 		HTMLGen.totalOutputs.add(lastResult);
+		CompilerWriter.getOutputs().add(String.valueOf(lastResult));
 	}
 	
 	/*
@@ -475,12 +489,16 @@ public class LogicController {
 		switch (ns.get(1)) {
 		case "0" :
 			System.out.print(ns.get(0));
+			CompilerWriter.getRawOutputs().add(ns.get(0));
 			break;
 		case "1" :
 			System.out.println(ns.get(0));
+			CompilerWriter.getOutputs().add(ns.get(0));
 			break;
 		}
 	}
+	
+	/* Everything above this has been written and readied for the compiler */
 	
 	/**
 	 * Prints line to the user
@@ -518,6 +536,8 @@ public class LogicController {
 				
 		float n1 = Float.parseFloat(ns.get(0));
 		float n2 = Float.parseFloat(ns.get(1));
+		
+		//CompilerWriter.getRawOutputs().add("float temp1 = Float");
 		
 		if (n1 == n2) {
 			ifState = true;
