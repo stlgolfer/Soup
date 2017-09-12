@@ -22,8 +22,8 @@ public class CompilerWriter {
 		FileWriter fw;
 		
 		try {
-			//fw = new FileWriter(new File(System.getenv().get("user.dir")));
-			fw = new FileWriter(new File("C:/users/alex/desktop/soup compiler/Compiled.java"));
+			fw = new FileWriter(new File(System.getProperty("user.dir") + "\\Compiled.java"));
+			//fw = new FileWriter(new File("C:/users/alex/desktop/soup compiler/Compiled.java"));
 			
 			// write class
 			fw.write("public class Compiled {\n public static void main(String args[]) {\n");

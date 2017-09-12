@@ -36,8 +36,8 @@ public class Soup {
 		if (args[0].contains(".soup")) {
 		
 			try {
-				//reader = new FileReader(System.getProperty("user.dir") + "/" + args[0].toString());
-				reader = new FileReader("c:/users/alex/desktop/github/soup/files/program - compiled.soup");
+				reader = new FileReader(System.getProperty("user.dir") + "/" + args[0].toString());
+				//reader = new FileReader("c:/users/alex/desktop/github/soup/files/program - compiled.soup");
 			
 				// pass flag
 				try {
